@@ -1,9 +1,7 @@
 import React from "react";
 
-import classes from "./Content.module.css";
+// import classes from "./Content.module.css";
 
-const Content = () => {
+export const Content = () => {
   return <div>Content</div>;
 };
-
-export default Content;

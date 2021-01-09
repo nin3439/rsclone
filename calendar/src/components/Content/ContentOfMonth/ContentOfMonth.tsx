@@ -1,8 +1,8 @@
 import React from "react";
 
-import classes from "./ContentOfMonth.module.css";
+// import classes from "./ContentOfMonth.module.css";
 
-const ContentOfMonth = () => {
+export const ContentOfMonth = () => {
   return <div>ContentOfMonth</div>;
 };
 

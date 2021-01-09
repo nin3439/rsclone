@@ -1,9 +1,7 @@
 import React from "react";
 
-import classes from "./ContentOfWeek.module.css";
+// import classes from "./ContentOfWeek.module.css";
 
-const ContentOfWeek = () => {
+export const ContentOfWeek = () => {
   return <div>ContentOfWeek</div>;
 };
-
-export default ContentOfWeek;
