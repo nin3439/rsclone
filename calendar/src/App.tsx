@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 
 import {Header} from "./components/Header/Header";
@@ -14,11 +14,12 @@ import {ContentOfFourDay} from "./components/Content/ContentOfFourDay/ContentOfF
 import "./App.css";
 
 export const App = () =>  {
+  const [date, changeDate] = useState(new Date());
   return (
     <BrowserRouter>
       <div className="App">
         <Header />
-        <Widgets />
+        <Widgets date={date} changeDate={changeDate} />
         <div className="App-content">
           <Route exact path="/" component={Content} />
           <Route exact path="/day" component={ContentOfDay} />

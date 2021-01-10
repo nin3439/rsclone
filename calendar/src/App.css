@@ -17,3 +17,7 @@ body {
   height: 93.1vh;
   background-color:#deb887;
 }
+
+.wrapper {
+    display: flex;
+}
