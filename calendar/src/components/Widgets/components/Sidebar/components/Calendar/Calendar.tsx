@@ -5,7 +5,7 @@ import MomentUtils from '@date-io/moment';
 export const Calendar = ({ date, changeDate } : {date: any, changeDate: any}) => {
     return (
         <MuiPickersUtilsProvider utils={MomentUtils}>
-            <DatePicker variant="static" value={date} onChange={changeDate} />
+            <DatePicker variant="static" value={date} onChange={changeDate} disableToolbar={true} animateYearScrolling={true}/>
         </MuiPickersUtilsProvider>
     )
 }
