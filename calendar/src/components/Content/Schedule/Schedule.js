@@ -1,45 +1,37 @@
-import React from "react";
-import { render } from "react-dom";
-import { Calendar, momentLocalizer } from "react-big-calendar";
-import moment from "moment";
-import "react-big-calendar/lib/css/react-big-calendar.css";
+import React from 'react';
+import { render } from 'react-dom';
+import { Calendar, momentLocalizer } from 'react-big-calendar';
+import moment from 'moment';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
+import events from './events';
 
-moment.locale("en-GB");
+moment.locale('en-GB');
 
 const localizer = momentLocalizer(moment);
 
-class App extends React.Component {
+class EventsSchedule extends React.Component {
   constructor(props) {
-    super(props)
-    const now = new Date();
-    const events = [
-      {
-        id: 0,
-        title: 'All Day Event very long title',
-        allDay: true,
-        start: new Date(2021, 0, 1),
-        end: new Date(2021, 0, 2),
-      },
-      {
-        id: 1,
-        title: 'Long Event',
-        start: new Date(2021, 0, 7),
-        end: new Date(2021, 0, 10),
-      },
-      {
-        id: 2,
-        title: 'Right now Time Event',
-        start: now,
-        end: now,
-      },
-    ]
+    super(props);
     this.state = {
-      events
+      events,
     };
   }
-  componentDidMount() {
-    //We will populate this function later
-  }
+
+  handleSelect = ({ start, end }) => {
+    const title = window.prompt('New Event name');
+    if (title)
+      this.setState({
+        events: [
+          ...this.state.events,
+          {
+            start,
+            end,
+            title,
+          },
+        ],
+      });
+  };
+
   render() {
     return (
       <Calendar
@@ -48,9 +40,12 @@ class App extends React.Component {
         startAccessor="start"
         defaultDate={moment().toDate()}
         endAccessor="end"
+        selectable
+        onSelectSlot={this.handleSelect}
+        onSelectEvent={event => alert(event.title)}
       />
-    )
+    );
   }
 }
 
-export default App;
+export default EventsSchedule;
