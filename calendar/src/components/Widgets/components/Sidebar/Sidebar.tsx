@@ -1,9 +1,10 @@
-import React from 'react'
-import { Calendar } from './components/Calendar/Calendar'
-import Button from '@material-ui/core/Button'
-import styles from './styles/Sidebar.module.sass'
+import Button from '@material-ui/core/Button';
+import React from 'react';
+import { Calendar } from './components/Calendar/Calendar';
+import { SidebarProps } from './Sidebar.types';
+import styles from './styles/Sidebar.module.sass';
 
-export const Sidebar = ({ date, changeDate } : {date: any, changeDate: any}) => {
+export const Sidebar = ({ date, changeDate } : SidebarProps) => {
     return (
         <div className={styles.sidebar}>
             <Button className={styles.button} variant="contained" color="primary">
