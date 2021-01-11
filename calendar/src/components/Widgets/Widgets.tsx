@@ -1,10 +1,10 @@
 import { Sidebar } from './components/Sidebar/Sidebar';
+import { WidgetProps } from './Widgets.types';
+import classes from './Widgets.module.css';
 
-import classes from "./Widgets.module.css";
-
-export const Widgets = ({ date, changeDate } : {date: any, changeDate: any}) => {
+export const Widgets = ({ date, changeDate } : WidgetProps) => {
   return (
-    <div className={classes.item}>
+    <div className={classes.widgets}>
       <Sidebar date={date} changeDate={changeDate} />
     </div>
   );
