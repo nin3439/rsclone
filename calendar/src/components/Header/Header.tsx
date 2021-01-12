@@ -5,7 +5,6 @@ import classes from './Header.module.css';
 export const Header: React.FC = () => {
   const changeLanguage = (ln: string) => {
     return () => {
-      console.log(ln);
       i18n.changeLanguage(ln);
     };
   };
