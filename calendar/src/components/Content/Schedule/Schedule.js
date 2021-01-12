@@ -14,7 +14,48 @@ class EventsSchedule extends React.Component {
     super(props);
     this.state = {
       events,
+      holidays: [],
+      isHolidaysSelected: false
     };
+  }
+
+  getHolidays = () => {
+    const url = 'https://holidayapi.com/v1/holidays?pretty&key=7aa6b761-0c81-4bc6-9c4c-c38371475a9a&country=BY&year=2020';
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        data.holidays.map((holiday) => {
+          return this.setState({
+            holidays: [
+              ...this.state.holidays,
+              {
+                start: holiday.date,
+                end: holiday.observed,
+                title: holiday.name,
+              },
+            ]
+          });
+        })
+      })
+      .catch((error) => console.log(error))
+  }
+
+  componentDidMount() {
+    this.getHolidays();
+  }
+
+  toggleHolidays = () => {
+    this.setState({
+      isHolidaysSelected: !this.state.isHolidaysSelected
+    })
+  }
+
+  getAllEvents = () => {
+    if (this.state.isHolidaysSelected) {
+      return [...this.state.events, ...this.state.holidays];
+    } else {
+      return this.state.events;
+    }
   }
 
   handleSelect = ({ start, end }) => {
@@ -34,18 +75,28 @@ class EventsSchedule extends React.Component {
 
   render() {
     return (
-      <Calendar
-        localizer={localizer}
-        events={this.state.events}
-        startAccessor="start"
-        defaultDate={moment().toDate()}
-        endAccessor="end"
-        selectable
-        onSelectSlot={this.handleSelect}
-        onSelectEvent={event => alert(event.title)}
-      />
+      <div>
+        <input type='checkbox' onChange={this.toggleHolidays} checked={this.state.isHolidaysSelected} />
+        <span>Belarus's Holidays</span>
+        <Calendar
+          style={{ height: '90vh' }}
+          localizer={localizer}
+          events={this.getAllEvents()}
+          startAccessor="start"
+          defaultDate={moment().toDate()}
+          endAccessor="end"
+          selectable
+          onSelectSlot={this.handleSelect}
+          onSelectEvent={event => alert(event.title)}
+          popup
+          step={15}
+          timeslots={8}
+        />
+      </div>
     );
   }
 }
+
+
 
 export default EventsSchedule;
