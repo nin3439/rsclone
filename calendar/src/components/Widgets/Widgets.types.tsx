@@ -1,4 +1,4 @@
 export type WidgetProps = {
-  date: object,
+  date: Date,
   changeDate: object
 }
