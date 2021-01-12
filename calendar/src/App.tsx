@@ -4,7 +4,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import {Header} from "./components/Header/Header";
 import {Widgets} from "./components/Widgets/Widgets";
 import {Content} from "./components/Content/Content";
-import {ContentOfDay} from "./components/Content/ContentOfDay/ContentOfDay";
+import {ContentOfDay} from "./components/Content/ContentOfDay/ContentOfDay.jsx";
 import {ContentOfWeek} from "./components/Content/ContentOfWeek/ContentOfWeek";
 import {ContentOfMonth} from "./components/Content/ContentOfMonth/ContentOfMonth";
 import {ContentOfYear} from "./components/Content/ContentOfYear/ContentOfYear";
