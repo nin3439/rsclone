@@ -22,7 +22,7 @@ export const App = () =>  {
         <Header />
         <Widgets date={date} changeDate={changeDate} />
         <div className="App-content">
-          <Route exact path="/" component={Content} />
+          <Route exact path="/" component={Schedule} />
           <Route exact path="/day" component={ContentOfDay} />
           <Route exact path="/week" component={ContentOfWeek} />
           <Route exact path="/month" component={ContentOfMonth} />
@@ -30,6 +30,7 @@ export const App = () =>  {
           <Route exact path="/schedule" component={ContentOfSchedule} />
           <Route exact path="/fourDay" component={ContentOfFourDay} />
         </div>
-      </BrowserRouter>
+      </div>
+    </BrowserRouter>
   );
 };
