@@ -1,26 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { render } from 'react-dom';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import events from './events';
-
+import { FormElement } from '../../Form/Forms';
+import classes from './Shedule.module.css';
 moment.locale('en-GB');
 
 const localizer = momentLocalizer(moment);
+
+
 
 class EventsSchedule extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      modalActive:true,
       events,
     };
   }
 
-  handleSelect = ({ start, end }) => {
-    const title = window.prompt('New Event name');
-    if (title)
+  handleSelect = ({ start, end }, title="no") => {
+
       this.setState({
+        modalActive: true,
         events: [
           ...this.state.events,
           {
@@ -33,7 +37,7 @@ class EventsSchedule extends React.Component {
   };
 
   render() {
-    return (
+    return (<>
       <Calendar
         localizer={localizer}
         events={this.state.events}
@@ -44,6 +48,8 @@ class EventsSchedule extends React.Component {
         onSelectSlot={this.handleSelect}
         onSelectEvent={event => alert(event.title)}
       />
+      <FormElement active={this.state.modalActive} setValue={this.setState.bind(this)}/>
+      </>
     );
   }
 }
