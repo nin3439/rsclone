@@ -28,9 +28,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "lint": "eslint --fix",
-    "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\""
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -52,9 +50,11 @@
     ]
   },
   "devDependencies": {
+    "@types/react-big-calendar": "^0.24.8",
     "eslint-config-prettier": "^7.1.0",
     "eslint-plugin-prettier": "^3.3.1",
     "husky": "^4.3.7",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "react-big-calendar": "^0.30.0"
   }
 }

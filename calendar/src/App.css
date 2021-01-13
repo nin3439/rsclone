@@ -3,19 +3,18 @@ body {
   padding: 0;
 }
 
-.App{
- display: flex;
- flex-direction: row;
- align-items: flex-start;
- justify-content: flex-start;
- flex-wrap: wrap;
- min-height: 100vh;
+.App {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  height: 100vh;
 }
 
 .App-content {
   width: 70%;
   height: 93.1vh;
-  background-color:#deb887;
 }
 
 .wrapper {
