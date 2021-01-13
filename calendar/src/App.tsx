@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
 import { Header } from './components/Header/Header';
 import { Widgets } from './components/Widgets/Widgets';
 import { Content } from './components/Content/Content';
@@ -14,7 +13,8 @@ import Schedule from './components/Content/Schedule/Schedule';
 
 import './App.css';
 
-export const App = () => {
+export const App = () =>  {
+  const [date, changeDate] = useState(new Date());
   return (
     <BrowserRouter>
       <div className="App">

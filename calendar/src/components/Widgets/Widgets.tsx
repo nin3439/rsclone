@@ -1,7 +1,11 @@
-import React from "react";
+import { Sidebar } from './components/Sidebar/Sidebar';
+import { WidgetProps } from './Widgets.types';
+import classes from './Widgets.module.css';
 
-import classes from "./Widgets.module.css";
-
-export const Widgets = () => {
-  return <div className={classes.item}>Widgets</div>;
+export const Widgets = ({ date, changeDate } : WidgetProps) => {
+  return (
+    <div className={classes.widgets}>
+      <Sidebar date={date} changeDate={changeDate} />
+    </div>
+  );
 };
