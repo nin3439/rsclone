@@ -16,3 +16,7 @@ body {
   width: 70%;
   height: 93.1vh;
 }
+
+.wrapper {
+    display: flex;
+}
