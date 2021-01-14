@@ -19,6 +19,7 @@ class EventsSchedule extends React.Component {
       modalActive:props.active,
       events,
     };
+    this.setState = this.setState.bind(this)
   }
 
   handleSelect = ({ start, end }, title="no") => {
@@ -48,7 +49,7 @@ class EventsSchedule extends React.Component {
         onSelectSlot={this.handleSelect}
         onSelectEvent={event => alert(event.title)}
       />
-      <FormElement active={this.state.modalActive} setValue={this.setState.bind(this)}/>
+      <FormElement active={this.state.modalActive} setValue={this.setState} />
       </>
     );
   }
