@@ -1,9 +1,0 @@
-.active {
-  width: 562px;
-  height: 562px;
-  z-index: 1;
-}
-
-.disabled {
-  transform: scale(0);
-}

@@ -5,7 +5,6 @@ import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import events from './events';
 import { FormElement } from '../../Form/Forms';
-import classes from './Shedule.module.css';
 moment.locale('en-GB');
 
 const localizer = momentLocalizer(moment);
@@ -16,9 +15,10 @@ class EventsSchedule extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalActive:true,
+      modalActive:props.active,
       events,
     };
+    this.setState = this.setState.bind(this)
   }
 
   handleSelect = ({ start, end }, title="no") => {
@@ -48,7 +48,7 @@ class EventsSchedule extends React.Component {
         onSelectSlot={this.handleSelect}
         onSelectEvent={event => alert(event.title)}
       />
-      <FormElement active={this.state.modalActive} setValue={this.setState.bind(this)}/>
+      <FormElement active={this.state.modalActive} setValue={this.setState} />
       </>
     );
   }

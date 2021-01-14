@@ -1,37 +1,22 @@
-import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import React, { useState } from "react";
+
 import { Header } from './components/Header/Header';
 import { Widgets } from './components/Widgets/Widgets';
-import { Content } from './components/Content/Content';
-import { ContentOfDay } from './components/Content/ContentOfDay/ContentOfDay';
-import { ContentOfWeek } from './components/Content/ContentOfWeek/ContentOfWeek';
-import { ContentOfMonth } from './components/Content/ContentOfMonth/ContentOfMonth';
-import { ContentOfYear } from './components/Content/ContentOfYear/ContentOfYear';
-import { ContentOfSchedule } from './components/Content/ContentOfShedule/ContentOfSchedule';
-import { ContentOfFourDay } from './components/Content/ContentOfFourDay/ContentOfFourDay';
 import Schedule from './components/Content/Schedule/Schedule';
 
 import './App.css';
+import { render } from "react-dom";
 
 export const App = () =>  {
   const [date, changeDate] = useState(new Date());
+  const [active, setValue] = useState(false)
+
   return (
-    <BrowserRouter>
       <div className="App">
         <Header />
-        <Widgets />
+        <Widgets date={date} changeDate={changeDate} />
         <div className="App-content">
-          <Switch>
-            <Route exact path="/" component={Schedule} />
-            <Route exact path="/day" component={ContentOfDay} />
-            <Route exact path="/week" component={ContentOfWeek} />
-            <Route exact path="/month" component={ContentOfMonth} />
-            <Route exact path="/year" component={ContentOfYear} />
-            <Route exact path="/schedule" component={ContentOfSchedule} />
-            <Route exact path="/fourDay" component={ContentOfFourDay} />
-          </Switch>
+          <Schedule active={active} setValue={setValue} />
         </div>
       </div>
-    </BrowserRouter>
-  );
-};
+  )}
