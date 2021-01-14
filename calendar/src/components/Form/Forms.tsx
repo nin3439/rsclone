@@ -1,29 +1,23 @@
 import React from 'react';
 import { Formik, Form, useField } from 'formik';
 import * as Yup from 'yup';
-
-import EventsSchedule from '../Content/Schedule/Schedule';
-import { MyTextInput } from './components/textInput/TextInput';
-
-import { Button, makeStyles, TextField, Box } from '@material-ui/core';
+import { Button, Box } from '@material-ui/core';
 import {
-  AccessTime,
   Close,
-  LocationOnOutlined,
-  PeopleOutlineRounded,
-  SubjectOutlined,
 } from '@material-ui/icons';
 
 import { useStyles } from './materialUIStyles';
-import classes from './Forms.module.css';
+import { FormSwitch } from './components/FormSwitch/FormSwitch';
 
 
 type FormProps = {
   active: Boolean;
-  setValue:any;
+  setValue: any,
+  children?: React.FC
 };
-export const FormElement = ({ active, setValue }: FormProps) => {
+export const FormElement :React.FC<FormProps> = ({ active, setValue, children}) => {
   const classMaterial: any= useStyles()
+
   return (
     <Box
       className={
@@ -35,9 +29,6 @@ export const FormElement = ({ active, setValue }: FormProps) => {
         <Box className={classMaterial.close}>
           <Close onClick={() => setValue({ modalActive: !active })} />
         </Box>
-        {/* <div className={classes.close}>
-
-        </div> */}
         <Formik
           initialValues={{
             title: '',
@@ -61,90 +52,7 @@ export const FormElement = ({ active, setValue }: FormProps) => {
             }, 400);
           }}
         >
-          <Form>
-            <Box className={classMaterial.form} onClick={e => e.stopPropagation}>
-              <MyTextInput
-                id="standard-basic"
-                style={classMaterial.inputTitle}
-                name="title"
-                type="text"
-                placeholder="Add title"
-              />
-              <Box className={classMaterial                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               .categoryBox}>
-                <Button color="primary">Мероприятие</Button>
-                <Button color="primary">Задача</Button>
-                <Button color="primary">Напоминание</Button>
-              </Box>
-              <Box className={classMaterial.box}>
-                <AccessTime />
-                <Box className={classMaterial.timeBox}>
-                    <MyTextInput
-                      name="dateTimeStart"
-                      id="datetime-local"
-                      type="datetime-local"
-                      label="Start Date"
-                      defaultValue={new Date()}
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                    />
-                    <MyTextInput
-                      name="dateTimeEnd"
-                      id="datetime-local"
-                      type="datetime-local"
-                      label="End Date"
-                      defaultValue={new Date()}
-                      InputLabelProps={{
-                        shrink: true,
-                      }}
-                    />
-                </Box>
-              </Box>
-              <Box className={classMaterial.box}>
-                <PeopleOutlineRounded />
-                <MyTextInput
-                  id="filled-basic"
-                  name="listGuest"
-                  type="text"
-                  style={classMaterial.input}
-                  placeholder="add guests"
-                />
-              </Box>
-              <Box className={classMaterial.box}>
-                <LocationOnOutlined />
-                <MyTextInput
-                  id="filled-basic"
-                  style={classMaterial.input}
-                  name="location"
-                  type="text"
-                  placeholder="indicate the location"
-                />
-              </Box>
-
-              <Box className={classMaterial.box}>
-                <SubjectOutlined />
-                <MyTextInput
-                  id="filled-basic"
-                  style={classMaterial.input}
-                  name="description"
-                  type="text"
-                  placeholder="add a description or attach a file"
-                />
-              </Box>
-              <Box className={classMaterial.buttonsForm}>
-                <Button>Other parameters</Button>
-                <Button
-                  className={classMaterial.btnSubmit}
-                  size="large"
-                  color="primary"
-                  variant="contained"
-                  type="submit"
-                >
-                  Save
-                </Button>
-              </Box>
-            </Box>
-          </Form>
+          <FormSwitch />
         </Formik>
       </Box>
     </Box>
