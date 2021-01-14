@@ -29,20 +29,19 @@ const linksData = [
   }
 ]
 
-const links = linksData.map(element => {
-  return (
-    <NavLink to={`/${element.path}`} className={classes.item}>
-      {element.name}
-    </NavLink>
-  );
+// const links = linksData.map(element => {
+//   return (
+//     <NavLink to={`/${element.path}`} className={classes.item}>
+//       {element.name}
+//     </NavLink>
+//   );
 
-})
+// })
 export const Header = () => {
   return (
     <div className={classes.header}>
       Header
       <div>
-        {links}
       </div>
 
     </div>

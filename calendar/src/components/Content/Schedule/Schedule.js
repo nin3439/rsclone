@@ -16,7 +16,7 @@ class EventsSchedule extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalActive:true,
+      modalActive:props.active,
       events,
     };
   }
