@@ -5,6 +5,7 @@ import Schedule from './components/Schedule/Schedule';
 import moment, { Moment } from 'moment';
 
 import './App.css';
+import { render } from 'react-dom';
 
 export const App = () => {
   const [date, changeDate] = useState<Moment | null>(moment());

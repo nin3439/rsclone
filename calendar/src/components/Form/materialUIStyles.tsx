@@ -17,7 +17,7 @@ export const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     transform: 'scale(0)',
-    zIndex: 4,
+    zIndex: 100,
   },
 
   active: {

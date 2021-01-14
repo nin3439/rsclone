@@ -20,7 +20,7 @@ import classes from './Forms.module.css';
 
 type FormProps = {
   active: Boolean;
-  setValue: (value: any) => {};
+  setValue:any;
 };
 export const FormElement = ({ active, setValue }: FormProps) => {
   const classMaterial: any= useStyles()
@@ -35,6 +35,9 @@ export const FormElement = ({ active, setValue }: FormProps) => {
         <Box className={classMaterial.close}>
           <Close onClick={() => setValue({ modalActive: !active })} />
         </Box>
+        {/* <div className={classes.close}>
+
+        </div> */}
         <Formik
           initialValues={{
             title: '',
@@ -51,6 +54,7 @@ export const FormElement = ({ active, setValue }: FormProps) => {
             setTimeout(() => {
               alert(JSON.stringify(values, null, 2));
               setSubmitting(false);
+              debugger
               setValue({
                 modalActive: !active,
               });

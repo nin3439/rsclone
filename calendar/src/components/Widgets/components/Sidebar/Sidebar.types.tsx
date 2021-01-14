@@ -1,4 +1,4 @@
 export type SidebarProps = {
-  date: object,
-  changeDate: object
-}
+  date: Date;
+  changeDate: object;
+};
