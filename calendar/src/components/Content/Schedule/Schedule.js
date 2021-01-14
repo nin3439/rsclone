@@ -5,7 +5,6 @@ import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import events from './events';
 import { FormElement } from '../../Form/Forms';
-import classes from './Shedule.module.css';
 moment.locale('en-GB');
 
 const localizer = momentLocalizer(moment);
