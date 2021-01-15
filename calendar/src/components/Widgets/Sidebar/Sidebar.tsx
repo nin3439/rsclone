@@ -1,6 +1,7 @@
 import Button from '@material-ui/core/Button';
 import React from 'react';
 import { Calendar } from './components/Calendar/Calendar';
+import { MyCalendars } from './components/MyCalendars/MyCalendars'
 import { SidebarProps } from './Sidebar.types';
 import styles from './styles/Sidebar.module.sass';
 
@@ -11,6 +12,7 @@ export const Sidebar = ({ date, changeDate } : SidebarProps) => {
                 Create
             </Button>
             <Calendar date={date} changeDate={changeDate} />
+            <MyCalendars />
         </div>
     )
 }

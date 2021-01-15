@@ -1,4 +1,4 @@
-import { Sidebar } from './components/Sidebar/Sidebar';
+import { Sidebar } from './Sidebar/Sidebar';
 import { WidgetProps } from './Widgets.types';
 import classes from './Widgets.module.css';
 

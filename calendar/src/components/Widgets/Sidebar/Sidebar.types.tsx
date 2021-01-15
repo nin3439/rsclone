@@ -1,4 +1,4 @@
 export type SidebarProps = {
   date: Date,
-  changeDate: object
+  changeDate: (date: Date) => void
 }
