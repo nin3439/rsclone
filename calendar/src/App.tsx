@@ -16,7 +16,7 @@ export const App = () => {
       <Header />
       <Widgets date={date} changeDate={changeDate} />
       <div className="App-content">
-        <EventsSchedule />
+        <EventsSchedule date={date} changeDate={changeDate}/>
       </div>
     </div>
   );
