@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+
 import { Calendar, momentLocalizer } from 'react-big-calendar';
-import someEvents from './events';
 import moment from 'moment';
-import { EventsScheduleProps, Events } from './Schedule.types';
+import someEvents from './events';
 import classes from './styles/Schedule.module.scss';
+import { EventsScheduleProps, Events } from './Schedule.types';
 
 moment.locale('en-GB');
 

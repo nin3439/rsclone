@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { setConstantValue } from 'typescript';
 import { FormElement } from '../../../Form/Forms';
 import { Calendar } from './components/Calendar/Calendar';
+import { MyCalendars } from './components/MyCalendars/MyCalendars'
 import { SidebarProps } from './Sidebar.types';
 import styles from './styles/Sidebar.module.sass';
 
@@ -26,6 +27,7 @@ export const Sidebar = ({ date, changeDate }: SidebarProps) => {
       </Button>
       <Calendar date={date} changeDate={changeDate} />
       {activeModal && <FormElement changeModalActive={changeModalActive}/>}
+      <MyCalendars />
     </div>
   );
 };
