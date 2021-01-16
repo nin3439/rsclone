@@ -1,11 +1,9 @@
 import React from 'react';
-import { MyTextInput } from '../textInput/TextInput';
+import { TextInput } from '../textInput/TextInput';
 import { Button, Box } from '@material-ui/core';
+import { AccessTime, SubjectOutlined } from '@material-ui/icons';
+
 import { useStyles } from './materialUIStyles';
-import {
-  AccessTime,
-  SubjectOutlined,
-} from '@material-ui/icons';
 
 export const FormReminders = () => {
   const classMaterial: any = useStyles();
@@ -14,7 +12,7 @@ export const FormReminders = () => {
       <Box className={classMaterial.box}>
         <AccessTime />
         <Box className={classMaterial.timeBox}>
-          <MyTextInput
+          <TextInput
             name="dateTimeStart"
             id="datetime-local"
             type="datetime-local"

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Form } from 'formik';
-import { MyTextInput } from '../textInput/TextInput';
-import { Button, Box } from '@material-ui/core';
-import { useStyles } from './materialUIStyles';
 import { FormEvents } from '../FormEvents/FormEvents';
 import { FormTask } from '../formTask/FormTask';
 import { FormReminders } from '../FormReminder/FormReminder';
+import { TextInput } from '../textInput/TextInput';
+import { Button, Box } from '@material-ui/core';
+import { useStyles } from './materialUIStyles';
 
 export const FormSwitch = () => {
   const classMaterial: any = useStyles();
@@ -30,7 +30,7 @@ export const FormSwitch = () => {
   return (
     <Form>
       <Box className={classMaterial.form} onClick={e => e.stopPropagation}>
-        <MyTextInput
+        <TextInput
           id="standard-basic"
           style={classMaterial.inputTitle}
           name="title"
@@ -44,7 +44,7 @@ export const FormSwitch = () => {
             }}
             color="primary"
           >
-            Мероприятие
+            Event
           </Button>
           <Button
             onClick={() => {
@@ -52,7 +52,7 @@ export const FormSwitch = () => {
             }}
             color="primary"
           >
-            Задача
+            Task
           </Button>
           <Button
             onClick={() => {
@@ -60,7 +60,7 @@ export const FormSwitch = () => {
             }}
             color="primary"
           >
-            Напоминание
+            Reminder
           </Button>
         </Box>
         {changeForm(switchParametr)}

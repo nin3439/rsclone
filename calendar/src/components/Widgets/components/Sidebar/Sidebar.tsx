@@ -7,12 +7,16 @@ import { SidebarProps } from './Sidebar.types';
 import styles from './styles/Sidebar.module.sass';
 
 export const Sidebar = ({ date, changeDate }: SidebarProps) => {
-  const [active, setValue] = useState({ modalActive: false });
+  const [activeModal, setActiveModal] = useState(false);
+   const changeModalActive = (): void => {
+      setActiveModal( false );
+    };
+
   return (
     <div className={styles.sidebar}>
       <Button
         onClick={() => {
-          setValue({ modalActive: true });
+         setActiveModal(true);
         }}
         className={styles.button}
         variant="contained"
@@ -21,7 +25,7 @@ export const Sidebar = ({ date, changeDate }: SidebarProps) => {
         Create
       </Button>
       <Calendar date={date} changeDate={changeDate} />
-      <FormElement active={active.modalActive} setValue={setValue} />
+      {activeModal && <FormElement changeModalActive={changeModalActive}/>}
     </div>
   );
 };
