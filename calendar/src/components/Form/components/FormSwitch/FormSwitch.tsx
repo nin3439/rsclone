@@ -9,13 +9,13 @@ import { useStyles } from './materialUIStyles';
 
 export const FormSwitch = () => {
   const classMaterial: any = useStyles();
-  const [switchParametr, setSwitch] = useState('events')
-  const changeSwitchParametr = (param :string) => {
-    if(param === switchParametr) return
-    setSwitch(param)
+  const [switchParameter, setSwitch] = useState('events')
+  const changeswitchParameter = (param :string) => {
+    if(param !== switchParameter)  setSwitch(param);
+
   }
   const changeForm = (switchParam: string) => {
-       switch (switchParametr) {
+       switch (switchParameter) {
               case 'events':
                 return <FormEvents />
               case 'tasks':
@@ -23,8 +23,8 @@ export const FormSwitch = () => {
               case 'reminders':
                 return <FormReminders />
               default:
-                <FormEvents />
-              return ;
+               return <FormEvents />
+
             }
   }
   return (
@@ -40,7 +40,7 @@ export const FormSwitch = () => {
         <Box className={classMaterial.categoryBox}>
           <Button
             onClick={() => {
-              changeSwitchParametr('events');
+              changeswitchParameter('events');
             }}
             color="primary"
           >
@@ -48,7 +48,7 @@ export const FormSwitch = () => {
           </Button>
           <Button
             onClick={() => {
-              changeSwitchParametr('tasks');
+              changeswitchParameter('tasks');
             }}
             color="primary"
           >
@@ -56,14 +56,14 @@ export const FormSwitch = () => {
           </Button>
           <Button
             onClick={() => {
-              changeSwitchParametr('reminders');
+              changeswitchParameter('reminders');
             }}
             color="primary"
           >
             Reminder
           </Button>
         </Box>
-        {changeForm(switchParametr)}
+        {changeForm(switchParameter)}
       </Box>
     </Form>
   );
