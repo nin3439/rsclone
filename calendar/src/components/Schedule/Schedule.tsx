@@ -88,10 +88,10 @@ const EventsSchedule: React.FC<EventsScheduleProps> = ({
         localizer={localizer}
         events={getAllEvents()}
         startAccessor='start'
-        date={date}
+        date={date?.toDate()}
         endAccessor='end'
         selectable
-        onNavigate={changeDate}
+        onNavigate={(e) => {changeDate(moment(e))}}
         onSelectSlot={addNewEvent}
         onSelectEvent={event => alert(event.title)}
         popup

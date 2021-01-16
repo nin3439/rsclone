@@ -1,4 +1,5 @@
+import { Moment } from 'moment'
 export type CalendarProps = {
-  date: Date,
-  changeDate: any
+  date: Moment | null,
+  changeDate: (date: Moment | null) => void
 }

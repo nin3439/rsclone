@@ -1,6 +1,7 @@
+import { Moment } from 'moment'
 export type EventsScheduleProps = {
-    date: Date,
-    changeDate: (date: Date) => void
+    date: Moment | null,
+    changeDate: (date: Moment | null) => void
 }
 
 export type Events = {
