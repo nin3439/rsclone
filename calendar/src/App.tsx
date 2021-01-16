@@ -9,14 +9,13 @@ import { render } from "react-dom";
 
 export const App = () =>  {
   const [date, changeDate] = useState(new Date());
-  const [active, setValue] = useState(false)
 
   return (
       <div className="App">
         <Header />
         <Widgets date={date} changeDate={changeDate} />
         <div className="App-content">
-          <Schedule active={active} setValue={setValue} />
+          <Schedule/>
         </div>
       </div>
   )}
