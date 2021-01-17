@@ -1,5 +1,5 @@
-import { Moment } from 'moment'
+import { Moment } from 'moment';
 export type SidebarProps = {
-  date: Moment | null,
-  changeDate: (date: Moment | null) => void
-}
+  date: Moment | null;
+  changeDate: (date: Moment | null) => void;
+};

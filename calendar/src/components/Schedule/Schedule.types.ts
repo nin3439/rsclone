@@ -1,12 +1,11 @@
-import { Moment } from 'moment'
+import { Moment } from 'moment';
 export type EventsScheduleProps = {
-    date: Moment | null,
-    changeDate: (date: Moment | null) => void
-}
+  date: Moment | null;
+  changeDate: (date: Moment | null) => void;
+};
 
 export type Events = {
-    start: object | string,
-    end: object | string,
-    title: string
-}
-  
+  start: object | string;
+  end: object | string;
+  title: string;
+};

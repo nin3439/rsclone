@@ -16,17 +16,17 @@ const EventsSchedule: React.FC<EventsScheduleProps> = ({
   const [events, setEvents] = useState<Events[]>(someEvents);
   const [holidays, setHolidays] = useState<Events[]>([]);
   const [isHolidaysSelected, changeIsHolidaysSelected] = useState<boolean>(
-    false,
+    false
   );
 
   const getHolidays = () => {
     const url =
       'https://holidayapi.com/v1/holidays?pretty&key=79470c0f-95f1-4988-9261-54417f3e6da3&country=BY&year=2020';
     fetch(url)
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         data.holidays.map((holiday: any) => {
-          return setHolidays(prev => [
+          return setHolidays((prev) => [
             ...prev,
             {
               start: holiday.date,
@@ -44,7 +44,7 @@ const EventsSchedule: React.FC<EventsScheduleProps> = ({
   }, []);
 
   const toggleHolidays = () => {
-    changeIsHolidaysSelected(prev => !prev);
+    changeIsHolidaysSelected((prev) => !prev);
   };
 
   const getAllEvents = () => {
@@ -64,7 +64,7 @@ const EventsSchedule: React.FC<EventsScheduleProps> = ({
   }) => {
     const title = window.prompt('New Event name');
     if (title)
-      setEvents(prev => [
+      setEvents((prev) => [
         ...prev,
         {
           start,
@@ -77,7 +77,7 @@ const EventsSchedule: React.FC<EventsScheduleProps> = ({
     <div className={classes.schedule}>
       <label>
         <input
-          type='checkbox'
+          type="checkbox"
           onChange={toggleHolidays}
           checked={isHolidaysSelected}
         />
@@ -87,13 +87,15 @@ const EventsSchedule: React.FC<EventsScheduleProps> = ({
         style={{ height: '90vh' }}
         localizer={localizer}
         events={getAllEvents()}
-        startAccessor='start'
+        startAccessor="start"
         date={date?.toDate()}
-        endAccessor='end'
+        endAccessor="end"
         selectable
-        onNavigate={(e) => {changeDate(moment(e))}}
+        onNavigate={(e) => {
+          changeDate(moment(e));
+        }}
         onSelectSlot={addNewEvent}
-        onSelectEvent={event => alert(event.title)}
+        onSelectEvent={(event) => alert(event.title)}
         popup
         step={15}
         timeslots={8}
