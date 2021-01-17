@@ -14,7 +14,7 @@ export const App = () => {
     <div className="App">
       {t('create')}
       <Header />
-      <Widgets state={setActive} date={date} changeDate={changeDate} />
+      <Widgets date={date} changeDate={changeDate} />
       <div className="App-content">
         <EventsSchedule />
       </div>
