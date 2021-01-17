@@ -1,26 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { render } from 'react-dom';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import events from './events';
-
+import { FormElement } from '../../Form/Forms';
 moment.locale('en-GB');
 
 const localizer = momentLocalizer(moment);
-
-class EventsSchedule extends React.Component {
+export class EventsSchedule extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      modalActive: false ,
       events,
     };
   }
 
-  handleSelect = ({ start, end }) => {
-    const title = window.prompt('New Event name');
-    if (title)
+  changeModalActive = () => {
+    this.setState({modalActive:false})
+  }
+
+  handleSelect = ({ start, end }, title="no") => {
       this.setState({
+        modalActive: true,
         events: [
           ...this.state.events,
           {
@@ -33,8 +36,9 @@ class EventsSchedule extends React.Component {
   };
 
   render() {
-    return (
+    return (<>
       <Calendar
+       //culture
         localizer={localizer}
         events={this.state.events}
         startAccessor="start"
@@ -42,10 +46,12 @@ class EventsSchedule extends React.Component {
         endAccessor="end"
         selectable
         onSelectSlot={this.handleSelect}
-        onSelectEvent={event => alert(event.title)}
+        onSelectEvent={event => console.log(event)}
       />
+      {this.state.modalActive && <FormElement changeModalActive={this.changeModalActive}/> }
+      </>
     );
   }
 }
 
-export default EventsSchedule;
+

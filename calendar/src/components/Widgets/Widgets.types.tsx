@@ -1,4 +1,4 @@
 export type WidgetProps = {
-  date: Date,
-  changeDate: object
-}
+  date: Date;
+  changeDate: (value: Date) => void;
+};

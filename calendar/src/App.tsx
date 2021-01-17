@@ -1,36 +1,23 @@
-import React, { useState } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import React, { useState } from 'react';
 
 import { Header } from './components/Header/Header';
 import { Widgets } from './components/Widgets/Widgets';
-import { Content } from './components/Content/Content';
-import { ContentOfDay } from './components/Content/ContentOfDay/ContentOfDay';
-import { ContentOfWeek } from './components/Content/ContentOfWeek/ContentOfWeek';
-import { ContentOfMonth } from './components/Content/ContentOfMonth/ContentOfMonth';
-import { ContentOfYear } from './components/Content/ContentOfYear/ContentOfYear';
-import { ContentOfSchedule } from './components/Content/ContentOfShedule/ContentOfSchedule';
-import { ContentOfFourDay } from './components/Content/ContentOfFourDay/ContentOfFourDay';
-import Schedule from './components/Content/Schedule/Schedule';
-
+import { EventsSchedule } from './components/Content/Schedule/Schedule';
+import { useTranslation } from 'react-i18next';
 import './App.css';
 
-export const App = () =>  {
+export const App = () => {
   const [date, changeDate] = useState(new Date());
+  const { t, i18n } = useTranslation();
+  const [active, setActive] = useState(true);
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Header />
-        <Widgets date={date} changeDate={changeDate} />
-        <div className="App-content">
-          <Route exact path="/" component={Schedule} />
-          <Route exact path="/day" component={ContentOfDay} />
-          <Route exact path="/week" component={ContentOfWeek} />
-          <Route exact path="/month" component={ContentOfMonth} />
-          <Route exact path="/year" component={ContentOfYear} />
-          <Route exact path="/schedule" component={ContentOfSchedule} />
-          <Route exact path="/fourDay" component={ContentOfFourDay} />
-        </div>
+    <div className="App">
+      {t('create')}
+      <Header />
+      <Widgets date={date} changeDate={changeDate} />
+      <div className="App-content">
+        <EventsSchedule />
       </div>
-    </BrowserRouter>
+    </div>
   );
 };
