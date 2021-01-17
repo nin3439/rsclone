@@ -2,7 +2,7 @@ export type FormProps = {
   changeModalActive: () => void
 };
 
-export type ValuesFormProps = {
+export type FormValuesProps = {
   title: string;
   listGuest: string;
   location: string;

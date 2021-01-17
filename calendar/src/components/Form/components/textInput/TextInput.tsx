@@ -1,8 +1,7 @@
 import React from 'react';
-import {useField } from 'formik';
+import { useField } from 'formik';
 import { TextField } from '@material-ui/core';
-import { InputProps } from './TextInput.types'
-
+import { InputProps } from './TextInput.types';
 
 export const TextInput = ({ name, style, ...props }: InputProps) => {
   // useField() returns [formik.getFieldProps(), formik.getFieldMeta()]

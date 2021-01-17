@@ -11,7 +11,10 @@ import {
 import { useStyles } from './materialUIStyles';
 
 export const FormEvents = () => {
-  const classMaterial: any = useStyles();
+  const classMaterial: Record<
+    'btnSubmit' | 'box' | 'input' | 'timeBox' | 'formButtons',
+    string
+  > = useStyles();
   return (
     <>
       <Box className={classMaterial.box}>
@@ -70,7 +73,7 @@ export const FormEvents = () => {
           placeholder="add a description or attach a file"
         />
       </Box>
-      <Box className={classMaterial.buttonsForm}>
+      <Box className={classMaterial.formButtons}>
         <Button>Other parameters</Button>
         <Button
           className={classMaterial.btnSubmit}

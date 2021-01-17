@@ -4,29 +4,28 @@ import { FormEvents } from '../FormEvents/FormEvents';
 import { FormTask } from '../formTask/FormTask';
 import { FormReminders } from '../FormReminder/FormReminder';
 import { TextInput } from '../textInput/TextInput';
+import { eventType } from './constants';
 import { Button, Box } from '@material-ui/core';
 import { useStyles } from './materialUIStyles';
 
 export const FormSwitch = () => {
   const classMaterial: any = useStyles();
-  const [switchParameter, setSwitch] = useState('events')
-  const changeswitchParameter = (param :string) => {
-    if(param !== switchParameter)  setSwitch(param);
-
-  }
+  const [switchParameter, setSwitch] = useState('events');
+  const changeswitchParameter = (param: string) => {
+    if (param !== switchParameter) setSwitch(param);
+  };
   const changeForm = (switchParam: string) => {
-       switch (switchParameter) {
-              case 'events':
-                return <FormEvents />
-              case 'tasks':
-                return <FormTask />
-              case 'reminders':
-                return <FormReminders />
-              default:
-               return <FormEvents />
-
-            }
-  }
+    switch (switchParameter) {
+      case eventType.EVENTS:
+        return <FormEvents />;
+      case eventType.TASKS:
+        return <FormTask />;
+      case eventType.REMINDERS:
+        return <FormReminders />;
+      default:
+        return <FormEvents />;
+    }
+  };
   return (
     <Form>
       <Box className={classMaterial.form} onClick={e => e.stopPropagation}>

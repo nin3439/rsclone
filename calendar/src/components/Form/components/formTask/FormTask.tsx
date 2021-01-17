@@ -34,7 +34,7 @@ export const FormTask = () => {
           placeholder="add a description or attach a file"
         />
       </Box>
-      <Box className={classMaterial.buttonsForm}>
+      <Box className={classMaterial.formButtons}>
         <Button
           className={classMaterial.btnSubmit}
           size="large"

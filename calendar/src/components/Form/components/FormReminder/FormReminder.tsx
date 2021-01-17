@@ -24,10 +24,8 @@ export const FormReminders = () => {
           />
         </Box>
       </Box>
-      <Box>
-        Select Interval
-      </Box>
-      <Box className={classMaterial.buttonsForm}>
+      <Box>Select Interval</Box>
+      <Box className={classMaterial.formButtons}>
         <Button
           className={classMaterial.btnSubmit}
           size="large"
