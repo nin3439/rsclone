@@ -9,7 +9,7 @@ import styles from './styles/Sidebar.module.sass';
 export const Sidebar = ({ date, changeDate }: SidebarProps) => {
   const [activeModal, setActiveModal] = useState(false);
    const changeModalActive = (): void => {
-      setActiveModal( false );
+      setActiveModal(false);
     };
 
   return (

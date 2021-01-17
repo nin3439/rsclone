@@ -20,7 +20,7 @@ export const useStyles = makeStyles(theme => ({
     justifyContent: 'space-around',
   },
 
-  buttonsForm: {
+  formButtons: {
     width: '100%',
     display: 'flex',
     justifyContent: ' flex-end',
