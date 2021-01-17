@@ -10,7 +10,6 @@ export const App = () => {
   const { t, i18n } = useTranslation();
   const [active, setActive] = useState(true);
   const [date, changeDate] = useState<Moment | null>(moment());
- 
   return (
     <div className="App">
       {t('create')}
