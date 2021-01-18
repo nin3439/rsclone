@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
+=======
+import React, {useState} from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+
+>>>>>>> events
 import { Header } from './components/Header/Header';
 import { Widgets } from './components/Widgets/Widgets';
 import { EventsSchedule } from './components/Content/Schedule/Schedule';
