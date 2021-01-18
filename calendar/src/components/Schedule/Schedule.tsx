@@ -3,7 +3,6 @@ import { Calendar, momentLocalizer } from 'react-big-calendar';
 import { EventsScheduleProps } from './Schedule.types';
 import { FormElement } from '../Form/Forms';
 import moment from 'moment';
-import classes from './styles/Schedule.module.scss';
 
 moment.locale('en-GB');
 
