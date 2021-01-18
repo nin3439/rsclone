@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import { EventsScheduleProps } from './Schedule.types';
+import { FormElement } from '../Form/Forms';
 import moment from 'moment';
 import classes from './styles/Schedule.module.scss';
 
@@ -8,7 +9,7 @@ moment.locale('en-GB');
 
 const localizer = momentLocalizer(moment);
 
-const EventsSchedule: React.FC<EventsScheduleProps> = ({
+export const EventsSchedule: React.FC<EventsScheduleProps> = ({
   date,
   changeDate,
   events,
@@ -16,12 +17,18 @@ const EventsSchedule: React.FC<EventsScheduleProps> = ({
   holidays,
   isHolidaysSelected,
 }) => {
+  const [isModalActive, setIsModalActive] = useState(false);
+
   const getAllEvents = () => {
     if (isHolidaysSelected) {
       return [...events, ...holidays];
     } else {
       return events;
     }
+  };
+
+  const changeModalActive = () => {
+    setIsModalActive(false);
   };
 
   const addNewEvent = ({
@@ -31,20 +38,19 @@ const EventsSchedule: React.FC<EventsScheduleProps> = ({
     start: object | string;
     end: object | string;
   }) => {
-    const title = window.prompt('New Event name');
-    if (title)
-      setEvents([
-        ...events,
-        {
-          start,
-          end,
-          title,
-        },
-      ]);
+    setIsModalActive(true);
+    setEvents([
+      ...events,
+      {
+        start,
+        end,
+      },
+    ]);
   };
   return (
-    <div className={classes.schedule}>
+    <div>
       <Calendar
+        //culture
         style={{ height: '90vh' }}
         localizer={localizer}
         events={getAllEvents()}
@@ -62,8 +68,7 @@ const EventsSchedule: React.FC<EventsScheduleProps> = ({
         timeslots={8}
         toolbar
       />
+      {isModalActive && <FormElement changeModalActive={changeModalActive} />}
     </div>
   );
 };
-
-export default EventsSchedule;

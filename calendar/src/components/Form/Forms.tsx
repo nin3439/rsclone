@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Formik, Form, useField } from 'formik';
+import React from 'react';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { FormSwitch } from './components/FormSwitch/FormSwitch';
 import { FormProps, FormValuesProps } from './Form.types';
-import { Button, Box } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
 
 import { useStyles } from './materialUIStyles';
@@ -14,7 +14,7 @@ export const FormElement: React.FC<FormProps> = ({ changeModalActive }) => {
       className={`${classMaterial.overlay} ${classMaterial.active}`}
       onClick={changeModalActive}
     >
-      <Box className={classMaterial.modal} onClick={e => e.stopPropagation()}>
+      <Box className={classMaterial.modal} onClick={(e) => e.stopPropagation()}>
         <Box className={classMaterial.close}>
           <Close onClick={changeModalActive} />
         </Box>

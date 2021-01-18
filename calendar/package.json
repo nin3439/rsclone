@@ -37,7 +37,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "precommit": "lint-staged"
-
   },
   "eslintConfig": {
     "extends": [
@@ -66,7 +65,7 @@
   },
   "lint-staged": {
     "*.{ts, tsx}": [
-      "node_modules/.bin/eslint --max-warnings=0",
+      "node_modules/.bin/eslint",
       "prettier --write",
       "git add"
     ]

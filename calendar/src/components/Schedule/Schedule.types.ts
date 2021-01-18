@@ -10,7 +10,7 @@ export type EventsScheduleProps = {
   date: Moment | null;
   changeDate: (date: Moment | null) => void;
   holidays: Events[];
-  events: Events[];
-  setEvents: (events: Events[]) => void;
+  events: any[];
+  setEvents: (events: any[]) => void;
   isHolidaysSelected: boolean;
 };
