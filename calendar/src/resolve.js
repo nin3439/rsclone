@@ -21,29 +21,29 @@ export class EventsSchedule extends React.Component {
     super(t);
     this.t = t
     this.state = {
-      modalActive: false ,
+      modalActive: false,
       events,
     };
   }
 
   changeModalActive = () => {
-    this.setState({modalActive:false})
+    this.setState({ modalActive: false })
   }
 
-  handleSelect = ({ start, end, ...e }, title="no") => {
+  handleSelect = ({ start, end, ...e }, title = "no") => {
     debugger
     console.log(e)
-      this.setState({
-        modalActive: true,
-        events: [
-          ...this.state.events,
-          {
-            start,
-            end,
-            title,
-          },
-        ],
-      });
+    this.setState({
+      modalActive: true,
+      events: [
+        ...this.state.events,
+        {
+          start,
+          end,
+          title,
+        },
+      ],
+    });
   };
 
   render() {
@@ -59,19 +59,17 @@ export class EventsSchedule extends React.Component {
         onSelectSlot={this.handleSelect}
         onSelectEvent={event => console.log(event)}
         messages={{
-          next:this.t("Next"),
+          next: this.t("Next"),
           previous: this.t("Back"),
           today: this.t("Today"),
           month: this.t("Month"),
           week: this.t("Week"),
           day: this.t("Day"),
-          agenda:this.t("Agenda")
+          agenda: this.t("Agenda")
         }}
       />
-      {this.state.modalActive && <FormElement changeModalActive={this.changeModalActive}/> }
-      </>
+      {this.state.modalActive && <FormElement changeModalActive={this.changeModalActive} />}
+    </>
     );
   }
 }
-
-

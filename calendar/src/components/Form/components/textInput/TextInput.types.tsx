@@ -4,7 +4,7 @@ export type InputProps = {
   placeholder?: string;
   id: string;
   style?: any;
-  defaultValue?: Date;
+  defaultValue?: any;
   InputLabelProps?: Object;
   label?: string;
 };

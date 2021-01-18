@@ -5,9 +5,10 @@ import { FormSwitch } from './components/FormSwitch/FormSwitch';
 import { FormProps, FormValuesProps } from './Form.types';
 import { Button, Box } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
-
+import { useTranslation } from 'react-i18next';
 import { useStyles } from './materialUIStyles';
 export const FormElement: React.FC<FormProps> = ({ changeModalActive }) => {
+  const { t, i18n } = useTranslation();
   const classMaterial: any = useStyles();
   return (
     <Box
@@ -38,7 +39,7 @@ export const FormElement: React.FC<FormProps> = ({ changeModalActive }) => {
             }, 400);
           }}
         >
-          <FormSwitch />
+          <FormSwitch t={t} />
         </Formik>
       </Box>
     </Box>

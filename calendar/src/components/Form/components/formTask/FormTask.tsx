@@ -5,7 +5,7 @@ import { Button, Box } from '@material-ui/core';
 import { AccessTime, SubjectOutlined } from '@material-ui/icons';
 import { useStyles } from './materialUIStyles';
 
-export const FormTask = () => {
+export const FormTask = ({t}:any) => {
   const classMaterial: any = useStyles();
   return (
     <Box>
@@ -16,7 +16,7 @@ export const FormTask = () => {
             name="dateTimeStart"
             id="datetime-local"
             type="datetime-local"
-            label="Start Date"
+            label={t("Start_Date")}
             defaultValue={new Date()}
             InputLabelProps={{
               shrink: true,
@@ -31,7 +31,7 @@ export const FormTask = () => {
           style={classMaterial.input}
           name="description"
           type="text"
-          placeholder="add a description or attach a file"
+          placeholder={t("add_description")}
         />
       </Box>
       <Box className={classMaterial.formButtons}>
@@ -42,7 +42,7 @@ export const FormTask = () => {
           variant="contained"
           type="submit"
         >
-          Save
+          {t("save")}
         </Button>
       </Box>
     </Box>
