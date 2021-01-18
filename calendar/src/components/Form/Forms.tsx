@@ -1,33 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, useField } from 'formik';
 import * as Yup from 'yup';
+import { FormSwitch } from './components/FormSwitch/FormSwitch';
+import { FormProps, FormValuesProps } from './Form.types';
 import { Button, Box } from '@material-ui/core';
-import {
-  Close,
-} from '@material-ui/icons';
+import { Close } from '@material-ui/icons';
 
 import { useStyles } from './materialUIStyles';
-import { FormSwitch } from './components/FormSwitch/FormSwitch';
-
-
-type FormProps = {
-  active: Boolean;
-  setValue: any,
-  children?: React.FC
-};
-export const FormElement :React.FC<FormProps> = ({ active, setValue, children}) => {
-  const classMaterial: any= useStyles()
-
+export const FormElement: React.FC<FormProps> = ({ changeModalActive }) => {
+  const classMaterial: any = useStyles();
   return (
     <Box
-      className={
-        active ? `${classMaterial.overlay} ${classMaterial.active}` : classMaterial.overlay
-      }
-      onClick={() => setValue({ modalActive: !active })}
+      className={`${classMaterial.overlay} ${classMaterial.active}`}
+      onClick={changeModalActive}
     >
       <Box className={classMaterial.modal} onClick={e => e.stopPropagation()}>
         <Box className={classMaterial.close}>
-          <Close onClick={() => setValue({ modalActive: !active })} />
+          <Close onClick={changeModalActive} />
         </Box>
         <Formik
           initialValues={{
@@ -41,14 +30,11 @@ export const FormElement :React.FC<FormProps> = ({ active, setValue, children}) 
           validationSchema={Yup.object({
             title: Yup.string().max(44, 'Must be 44 characters or less'),
           })}
-          onSubmit={(values, { setSubmitting }) => {
+          onSubmit={(values: FormValuesProps, { setSubmitting }) => {
             setTimeout(() => {
               alert(JSON.stringify(values, null, 2));
               setSubmitting(false);
-              debugger
-              setValue({
-                modalActive: !active,
-              });
+              changeModalActive();
             }, 400);
           }}
         >

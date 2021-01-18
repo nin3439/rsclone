@@ -1,22 +1,23 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 import { Header } from './components/Header/Header';
 import { Widgets } from './components/Widgets/Widgets';
-import Schedule from './components/Content/Schedule/Schedule';
-
+import { EventsSchedule } from './components/Content/Schedule/Schedule';
+import { useTranslation } from 'react-i18next';
 import './App.css';
-import { render } from "react-dom";
 
-export const App = () =>  {
+export const App = () => {
   const [date, changeDate] = useState(new Date());
-  const [active, setValue] = useState(false)
-
+  const { t, i18n } = useTranslation();
+  const [active, setActive] = useState(true);
   return (
-      <div className="App">
-        <Header />
-        <Widgets date={date} changeDate={changeDate} />
-        <div className="App-content">
-          <Schedule active={active} setValue={setValue} />
-        </div>
+    <div className="App">
+      {t('create')}
+      <Header />
+      <Widgets date={date} changeDate={changeDate} />
+      <div className="App-content">
+        <EventsSchedule />
       </div>
-  )}
+    </div>
+  );
+};

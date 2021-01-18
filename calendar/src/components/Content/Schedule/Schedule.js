@@ -8,21 +8,20 @@ import { FormElement } from '../../Form/Forms';
 moment.locale('en-GB');
 
 const localizer = momentLocalizer(moment);
-
-
-
-class EventsSchedule extends React.Component {
+export class EventsSchedule extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      modalActive:props.active,
+      modalActive: false ,
       events,
     };
-    this.setState = this.setState.bind(this)
+  }
+
+  changeModalActive = () => {
+    this.setState({modalActive:false})
   }
 
   handleSelect = ({ start, end }, title="no") => {
-
       this.setState({
         modalActive: true,
         events: [
@@ -39,6 +38,7 @@ class EventsSchedule extends React.Component {
   render() {
     return (<>
       <Calendar
+       //culture
         localizer={localizer}
         events={this.state.events}
         startAccessor="start"
@@ -46,12 +46,12 @@ class EventsSchedule extends React.Component {
         endAccessor="end"
         selectable
         onSelectSlot={this.handleSelect}
-        onSelectEvent={event => alert(event.title)}
+        onSelectEvent={event => console.log(event)}
       />
-      <FormElement active={this.state.modalActive} setValue={this.setState} />
+      {this.state.modalActive && <FormElement changeModalActive={this.changeModalActive}/> }
       </>
     );
   }
 }
 
-export default EventsSchedule;
+

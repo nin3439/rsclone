@@ -1,12 +1,9 @@
 import React from 'react';
 import { Form } from 'formik';
-import { MyTextInput } from '../textInput/TextInput';
+import { TextInput } from '../textInput/TextInput';
 import { Button, Box } from '@material-ui/core';
+import { AccessTime, SubjectOutlined } from '@material-ui/icons';
 import { useStyles } from './materialUIStyles';
-import {
-  AccessTime,
-  SubjectOutlined,
-} from '@material-ui/icons';
 
 export const FormTask = () => {
   const classMaterial: any = useStyles();
@@ -15,7 +12,7 @@ export const FormTask = () => {
       <Box className={classMaterial.box}>
         <AccessTime />
         <Box className={classMaterial.timeBox}>
-          <MyTextInput
+          <TextInput
             name="dateTimeStart"
             id="datetime-local"
             type="datetime-local"
@@ -29,7 +26,7 @@ export const FormTask = () => {
       </Box>
       <Box className={classMaterial.box}>
         <SubjectOutlined />
-        <MyTextInput
+        <TextInput
           id="filled-basic"
           style={classMaterial.input}
           name="description"
@@ -37,7 +34,7 @@ export const FormTask = () => {
           placeholder="add a description or attach a file"
         />
       </Box>
-      <Box className={classMaterial.buttonsForm}>
+      <Box className={classMaterial.formButtons}>
         <Button
           className={classMaterial.btnSubmit}
           size="large"

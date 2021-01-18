@@ -1,36 +1,35 @@
 import React, { useState } from 'react';
 import { Form } from 'formik';
-import { MyTextInput } from '../textInput/TextInput';
-import { Button, Box } from '@material-ui/core';
-import { useStyles } from './materialUIStyles';
 import { FormEvents } from '../FormEvents/FormEvents';
 import { FormTask } from '../formTask/FormTask';
 import { FormReminders } from '../FormReminder/FormReminder';
+import { TextInput } from '../textInput/TextInput';
+import { eventType } from './constants';
+import { Button, Box } from '@material-ui/core';
+import { useStyles } from './materialUIStyles';
 
 export const FormSwitch = () => {
   const classMaterial: any = useStyles();
-  const [switchParametr, setSwitch] = useState('events')
-  const changeSwitchParametr = (param :string) => {
-    if(param === switchParametr) return
-    setSwitch(param)
-  }
+  const [switchParameter, setSwitch] = useState('events');
+  const changeswitchParameter = (param: string) => {
+    if (param !== switchParameter) setSwitch(param);
+  };
   const changeForm = (switchParam: string) => {
-       switch (switchParametr) {
-              case 'events':
-                return <FormEvents />
-              case 'tasks':
-                return <FormTask />
-              case 'reminders':
-                return <FormReminders />
-              default:
-                <FormEvents />
-              return ;
-            }
-  }
+    switch (switchParameter) {
+      case eventType.EVENTS:
+        return <FormEvents />;
+      case eventType.TASKS:
+        return <FormTask />;
+      case eventType.REMINDERS:
+        return <FormReminders />;
+      default:
+        return <FormEvents />;
+    }
+  };
   return (
     <Form>
       <Box className={classMaterial.form} onClick={e => e.stopPropagation}>
-        <MyTextInput
+        <TextInput
           id="standard-basic"
           style={classMaterial.inputTitle}
           name="title"
@@ -40,30 +39,30 @@ export const FormSwitch = () => {
         <Box className={classMaterial.categoryBox}>
           <Button
             onClick={() => {
-              changeSwitchParametr('events');
+              changeswitchParameter('events');
             }}
             color="primary"
           >
-            Мероприятие
+            Event
           </Button>
           <Button
             onClick={() => {
-              changeSwitchParametr('tasks');
+              changeswitchParameter('tasks');
             }}
             color="primary"
           >
-            Задача
+            Task
           </Button>
           <Button
             onClick={() => {
-              changeSwitchParametr('reminders');
+              changeswitchParameter('reminders');
             }}
             color="primary"
           >
-            Напоминание
+            Reminder
           </Button>
         </Box>
-        {changeForm(switchParametr)}
+        {changeForm(switchParameter)}
       </Box>
     </Form>
   );

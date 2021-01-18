@@ -1,7 +1,6 @@
 import React from 'react';
-import { MyTextInput } from '../textInput/TextInput';
+import { TextInput } from '../textInput/TextInput';
 import { Button, Box } from '@material-ui/core';
-import { useStyles } from './materialUIStyles';
 import {
   AccessTime,
   LocationOnOutlined,
@@ -9,14 +8,19 @@ import {
   SubjectOutlined,
 } from '@material-ui/icons';
 
+import { useStyles } from './materialUIStyles';
+
 export const FormEvents = () => {
-  const classMaterial: any = useStyles();
+  const classMaterial: Record<
+    'btnSubmit' | 'box' | 'input' | 'timeBox' | 'formButtons',
+    string
+  > = useStyles();
   return (
     <>
       <Box className={classMaterial.box}>
         <AccessTime />
         <Box className={classMaterial.timeBox}>
-          <MyTextInput
+          <TextInput
             name="dateTimeStart"
             id="datetime-local"
             type="datetime-local"
@@ -26,7 +30,7 @@ export const FormEvents = () => {
               shrink: true,
             }}
           />
-          <MyTextInput
+          <TextInput
             name="dateTimeEnd"
             id="datetime-local"
             type="datetime-local"
@@ -40,7 +44,7 @@ export const FormEvents = () => {
       </Box>
       <Box className={classMaterial.box}>
         <PeopleOutlineRounded />
-        <MyTextInput
+        <TextInput
           id="filled-basic"
           name="listGuest"
           type="text"
@@ -50,7 +54,7 @@ export const FormEvents = () => {
       </Box>
       <Box className={classMaterial.box}>
         <LocationOnOutlined />
-        <MyTextInput
+        <TextInput
           id="filled-basic"
           style={classMaterial.input}
           name="location"
@@ -61,7 +65,7 @@ export const FormEvents = () => {
 
       <Box className={classMaterial.box}>
         <SubjectOutlined />
-        <MyTextInput
+        <TextInput
           id="filled-basic"
           style={classMaterial.input}
           name="description"
@@ -69,7 +73,7 @@ export const FormEvents = () => {
           placeholder="add a description or attach a file"
         />
       </Box>
-      <Box className={classMaterial.buttonsForm}>
+      <Box className={classMaterial.formButtons}>
         <Button>Other parameters</Button>
         <Button
           className={classMaterial.btnSubmit}

@@ -29,11 +29,11 @@ export const useStyles = makeStyles(theme => ({
     justifyContent: 'space-around',
   },
 
-  buttonsForm: {
-  width: '100%',
-  display:"flex",
-  justifyContent:' flex-end',
-  alignItems: 'center',
-  paddingBottom:'1%'
-}
+  formButtons: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: ' flex-end',
+    alignItems: 'center',
+    paddingBottom: '1%',
+  },
 }));
