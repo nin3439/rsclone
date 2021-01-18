@@ -8,9 +8,9 @@ import {
   SubjectOutlined,
 } from '@material-ui/icons';
 
+import { useTranslation } from 'react-i18next';
 import { useStyles } from './materialUIStyles';
-
-export const FormEvents = () => {
+export const FormEvents = ({ t }: any )  => {
   const classMaterial: Record<
     'btnSubmit' | 'box' | 'input' | 'timeBox' | 'formButtons',
     string
@@ -24,7 +24,7 @@ export const FormEvents = () => {
             name="dateTimeStart"
             id="datetime-local"
             type="datetime-local"
-            label="Start Date"
+            label={t('Start_Date')}
             defaultValue={new Date()}
             InputLabelProps={{
               shrink: true,
@@ -34,8 +34,8 @@ export const FormEvents = () => {
             name="dateTimeEnd"
             id="datetime-local"
             type="datetime-local"
-            label="End Date"
-            defaultValue={new Date()}
+            label={t('End_Date')}
+            defaultValue={'2017-05-24T10:30'}
             InputLabelProps={{
               shrink: true,
             }}
@@ -49,7 +49,7 @@ export const FormEvents = () => {
           name="listGuest"
           type="text"
           style={classMaterial.input}
-          placeholder="add guests"
+          placeholder={t('Add_guests')}
         />
       </Box>
       <Box className={classMaterial.box}>
@@ -59,7 +59,7 @@ export const FormEvents = () => {
           style={classMaterial.input}
           name="location"
           type="text"
-          placeholder="indicate the location"
+          placeholder={t('indicate_location')}
         />
       </Box>
 
@@ -70,11 +70,11 @@ export const FormEvents = () => {
           style={classMaterial.input}
           name="description"
           type="text"
-          placeholder="add a description or attach a file"
+          placeholder="add a description"
         />
       </Box>
       <Box className={classMaterial.formButtons}>
-        <Button>Other parameters</Button>
+        <Button>{'Other_parameters'}</Button>
         <Button
           className={classMaterial.btnSubmit}
           size="large"
@@ -82,7 +82,7 @@ export const FormEvents = () => {
           variant="contained"
           type="submit"
         >
-          Save
+          {t('save')}
         </Button>
       </Box>
     </>
