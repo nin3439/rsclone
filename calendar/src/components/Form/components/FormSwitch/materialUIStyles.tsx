@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
-export const useStyles = makeStyles(theme => ({
+export const useStyles = makeStyles((theme) => ({
   inputTitle: {
     fontFamily: 'Roboto,RobotoDraft,Helvetica,Arial,sans-serif',
     fontSize: theme.spacing(3),

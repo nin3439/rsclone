@@ -5,7 +5,7 @@ import { AccessTime, SubjectOutlined } from '@material-ui/icons';
 
 import { useStyles } from './materialUIStyles';
 
-export const FormReminders = ({t}:any) => {
+export const FormReminders = ({ t }: any) => {
   const classMaterial: any = useStyles();
   return (
     <Box>
@@ -16,7 +16,7 @@ export const FormReminders = ({t}:any) => {
             name="dateTimeStart"
             id="datetime-local"
             type="datetime-local"
-            label={t("Start_Date")}
+            label={t('Start_Date')}
             defaultValue={new Date()}
             InputLabelProps={{
               shrink: true,
@@ -24,7 +24,7 @@ export const FormReminders = ({t}:any) => {
           />
         </Box>
       </Box>
-      <Box>{t("Select_Interval")}</Box>
+      <Box>{t('Select_Interval')}</Box>
       <Box className={classMaterial.formButtons}>
         <Button
           className={classMaterial.btnSubmit}
@@ -33,7 +33,7 @@ export const FormReminders = ({t}:any) => {
           variant="contained"
           type="submit"
         >
-          {t("save")}
+          {t('save')}
         </Button>
       </Box>
     </Box>

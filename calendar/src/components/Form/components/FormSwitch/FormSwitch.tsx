@@ -8,7 +8,7 @@ import { eventType } from './constants';
 import { Button, Box } from '@material-ui/core';
 import { useStyles } from './materialUIStyles';
 
-export const FormSwitch = ({t}: any ) => {
+export const FormSwitch = ({ t }: any) => {
   const classMaterial: any = useStyles();
   const [switchParameter, setSwitch] = useState('events');
   const changeswitchParameter = (param: string) => {
@@ -17,24 +17,24 @@ export const FormSwitch = ({t}: any ) => {
   const changeForm = (switchParam: string) => {
     switch (switchParameter) {
       case eventType.EVENTS:
-        return <FormEvents t={t}/>;
+        return <FormEvents t={t} />;
       case eventType.TASKS:
-        return <FormTask t={t}/>;
+        return <FormTask t={t} />;
       case eventType.REMINDERS:
         return <FormReminders t={t} />;
       default:
-        return <FormEvents t={t}/>;
+        return <FormEvents t={t} />;
     }
   };
   return (
     <Form>
-      <Box className={classMaterial.form} onClick={e => e.stopPropagation}>
+      <Box className={classMaterial.form} onClick={(e) => e.stopPropagation}>
         <TextInput
           id="standard-basic"
           style={classMaterial.inputTitle}
           name="title"
           type="text"
-          placeholder={t("Add_title")}
+          placeholder={t('Add_title')}
         />
         <Box className={classMaterial.categoryBox}>
           <Button
@@ -43,7 +43,7 @@ export const FormSwitch = ({t}: any ) => {
             }}
             color="primary"
           >
-            {t("Event")}
+            {t('event')}
           </Button>
           <Button
             onClick={() => {
@@ -51,7 +51,7 @@ export const FormSwitch = ({t}: any ) => {
             }}
             color="primary"
           >
-            {t("task")}
+            {t('task')}
           </Button>
           <Button
             onClick={() => {
@@ -59,7 +59,7 @@ export const FormSwitch = ({t}: any ) => {
             }}
             color="primary"
           >
-            {t("reminder")}
+            {t('reminder')}
           </Button>
         </Box>
         {changeForm(switchParameter)}

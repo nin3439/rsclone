@@ -7,17 +7,21 @@ import { Button, Box } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
 import { useStyles } from './materialUIStyles';
+
 export const FormElement: React.FC<FormProps> = ({ changeModalActive }) => {
   const { t, i18n } = useTranslation();
   const classMaterial: any = useStyles();
+  const closeModal = () => {
+    changeModalActive(false);
+  };
   return (
     <Box
       className={`${classMaterial.overlay} ${classMaterial.active}`}
-      onClick={changeModalActive}
+      onClick={closeModal}
     >
-      <Box className={classMaterial.modal} onClick={e => e.stopPropagation()}>
+      <Box className={classMaterial.modal} onClick={(e) => e.stopPropagation()}>
         <Box className={classMaterial.close}>
-          <Close onClick={changeModalActive} />
+          <Close onClick={closeModal} />
         </Box>
         <Formik
           initialValues={{
@@ -35,7 +39,7 @@ export const FormElement: React.FC<FormProps> = ({ changeModalActive }) => {
             setTimeout(() => {
               alert(JSON.stringify(values, null, 2));
               setSubmitting(false);
-              changeModalActive();
+              closeModal();
             }, 400);
           }}
         >

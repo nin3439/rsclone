@@ -10,7 +10,7 @@ import {
 
 import { useTranslation } from 'react-i18next';
 import { useStyles } from './materialUIStyles';
-export const FormEvents = ({ t }: any )  => {
+export const FormEvents = ({ t }: any) => {
   const classMaterial: Record<
     'btnSubmit' | 'box' | 'input' | 'timeBox' | 'formButtons',
     string
