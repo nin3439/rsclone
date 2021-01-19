@@ -6,11 +6,11 @@ export type Events = {
   title: string;
 };
 
-export type WidgetsProps = {
+export type EventsScheduleProps = {
   date: Moment | null;
   changeDate: (date: Moment | null) => void;
   holidays: Events[];
-  setHolidays: (holidays: Events[]) => void;
+  events: any[];
+  setEvents: (events: any[]) => void;
   isHolidaysSelected: boolean;
-  setIsHolidaysSelected: (isHolidaysSelected: boolean) => void;
 };
