@@ -8,15 +8,15 @@ import styles from './styles/Sidebar.module.sass';
 
 export const Sidebar = ({ date, changeDate }: SidebarProps) => {
   const [activeModal, setActiveModal] = useState(false);
-   const changeModalActive = (): void => {
-      setActiveModal(false);
-    };
+  const changeModalActive = (): void => {
+    setActiveModal(false);
+  };
 
   return (
     <div className={styles.sidebar}>
       <Button
         onClick={() => {
-         setActiveModal(true);
+          setActiveModal(true);
         }}
         className={styles.button}
         variant="contained"
@@ -25,7 +25,7 @@ export const Sidebar = ({ date, changeDate }: SidebarProps) => {
         Create
       </Button>
       <Calendar date={date} changeDate={changeDate} />
-      {activeModal && <FormElement changeModalActive={changeModalActive}/>}
+      {activeModal && <FormElement changeModalActive={changeModalActive} />}
     </div>
   );
 };

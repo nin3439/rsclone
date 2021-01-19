@@ -1,4 +1,4 @@
 export type CalendarProps = {
-  date: Date,
-  changeDate: any
-}
+  date: Date;
+  changeDate: any;
+};
