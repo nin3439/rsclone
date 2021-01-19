@@ -34,8 +34,8 @@ export const EventsSchedule: React.FC<EventsScheduleProps> = ({
     start,
     end,
   }: {
-    start: object | string;
-    end: object | string;
+    start: Date | string;
+    end: Date | string;
   }) => {
     setIsModalActive(true);
     setEvents([

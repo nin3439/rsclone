@@ -3,12 +3,12 @@ import { Header } from './components/Header/Header';
 import { Widgets } from './components/Widgets/Widgets';
 import { EventsSchedule } from './components/Schedule/Schedule';
 import moment, { Moment } from 'moment';
-import someEvents from './events';
+import examplesOfEvents from './events';
 import { Events } from './App.types';
 import './App.css';
 
 export const App = () => {
-  const [events, setEvents] = useState(someEvents);
+  const [events, setEvents] = useState(examplesOfEvents);
   const [holidays, setHolidays] = useState<Events[]>([]);
   const [isHolidaysSelected, setIsHolidaysSelected] = useState<boolean>(false);
   const [date, changeDate] = useState<Moment | null>(moment());

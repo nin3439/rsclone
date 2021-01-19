@@ -1,6 +1,6 @@
 import React from 'react';
 import i18n from '../../i18ns';
-import classes from './Header.module.css';
+import classes from './Header.module.scss';
 
 export const Header: React.FC = () => {
   const changeLanguage = (ln: string) => {
