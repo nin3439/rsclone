@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Formik, Form, useField } from 'formik';
 import * as Yup from 'yup';
 import { FormSwitch } from './components/FormSwitch/FormSwitch';
