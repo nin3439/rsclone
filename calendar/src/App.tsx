@@ -12,17 +12,23 @@ export const App = () => {
   const [holidays, setHolidays] = useState<Events[]>([]);
   const [isHolidaysSelected, setIsHolidaysSelected] = useState<boolean>(false);
   const [date, changeDate] = useState<Moment | null>(moment());
+  const [showBlock, setShowBlock] = useState<boolean>(true);
   return (
     <div className="App">
-      <Header />
-      <Widgets
+      <Header
+        showBlock={showBlock}
+        setShowBlock={setShowBlock}
+        date={date}
+        changeDate={changeDate}
+      />
+      {showBlock ? <Widgets
         date={date}
         changeDate={changeDate}
         holidays={holidays}
         setHolidays={setHolidays}
         isHolidaysSelected={isHolidaysSelected}
         setIsHolidaysSelected={setIsHolidaysSelected}
-      />
+      /> : null}
       <div className="App-content">
         <EventsSchedule
           date={date}
