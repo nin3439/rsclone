@@ -36,7 +36,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "eslint": "node_modules/.bin/eslint src/"
   },
   "eslintConfig": {
     "extends": [
@@ -57,7 +58,7 @@
     ]
   },
   "devDependencies": {
-    "eslint-config-prettier": "^7.1.0",
+    "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.22.0",
     "husky": "^4.3.8",
@@ -66,7 +67,7 @@
   },
   "lint-staged": {
     "*.{ts, tsx}": [
-      "node_modules/.bin/eslint --max-warnings=0",
+      "node_modules/.bin/eslint",
       "prettier --write",
       "git add"
     ]

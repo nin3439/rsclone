@@ -1,5 +1,5 @@
 export type FormProps = {
-  changeModalActive: (value: boolean) => void
+  changeModalActive: () => void;
 };
 
 export type FormValuesProps = {

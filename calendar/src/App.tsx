@@ -1,20 +1,41 @@
 import React, { useState } from 'react';
 import { Header } from './components/Header/Header';
-import { Sidebar } from './components/Sidebar/Sidebar';
-import Schedule from './components/Schedule/Schedule';
+import { Widgets } from './components/Widgets/Widgets';
+import { EventsSchedule } from './components/Schedule/Schedule';
 import moment, { Moment } from 'moment';
+import examplesOfEvents from './events';
+import { Events } from './App.types';
+import './App.css';
 import { useTranslation } from 'react-i18next';
 
-import './App.css';
-
 export const App = () => {
+  const [events, setEvents] = useState(examplesOfEvents);
+  const [holidays, setHolidays] = useState<Events[]>([]);
+  const [isHolidaysSelected, setIsHolidaysSelected] = useState<boolean>(false);
   const [date, changeDate] = useState<Moment | null>(moment());
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   return (
     <div className="App">
       <Header />
-      <Sidebar date={date} changeDate={changeDate} />
-      <Schedule t={t} date={date} changeDate={changeDate} />
+      <Widgets
+        date={date}
+        changeDate={changeDate}
+        holidays={holidays}
+        setHolidays={setHolidays}
+        isHolidaysSelected={isHolidaysSelected}
+        setIsHolidaysSelected={setIsHolidaysSelected}
+      />
+      <div className="App-content">
+        <EventsSchedule
+          date={date}
+          changeDate={changeDate}
+          events={events}
+          setEvents={setEvents}
+          holidays={holidays}
+          isHolidaysSelected={isHolidaysSelected}
+          t={t}
+        />
+      </div>
     </div>
   );
 };

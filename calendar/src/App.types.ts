@@ -1,5 +1,5 @@
 export type Events = {
-  start: object | string;
-  end: object | string;
+  start: Date | string;
+  end: Date | string;
   title: string;
 };

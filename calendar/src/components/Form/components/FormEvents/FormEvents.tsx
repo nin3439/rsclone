@@ -8,7 +8,6 @@ import {
   SubjectOutlined,
 } from '@material-ui/icons';
 
-import { useTranslation } from 'react-i18next';
 import { useStyles } from './materialUIStyles';
 export const FormEvents = ({ t }: any) => {
   const classMaterial: Record<
@@ -70,7 +69,7 @@ export const FormEvents = ({ t }: any) => {
           style={classMaterial.input}
           name="description"
           type="text"
-          placeholder="add a description"
+          placeholder={t('add_description')}
         />
       </Box>
       <Box className={classMaterial.formButtons}>

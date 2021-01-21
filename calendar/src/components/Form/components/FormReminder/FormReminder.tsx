@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextInput } from '../textInput/TextInput';
 import { Button, Box } from '@material-ui/core';
-import { AccessTime, SubjectOutlined } from '@material-ui/icons';
+import { AccessTime } from '@material-ui/icons';
 
 import { useStyles } from './materialUIStyles';
 

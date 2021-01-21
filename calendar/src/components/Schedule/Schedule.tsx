@@ -1,57 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
-import someEvents from './events';
+import { FormElement } from '../Form/Forms';
 import moment from 'moment';
-import { EventsScheduleProps, Events } from './Schedule.types';
-import classes from './styles/Schedule.module.scss';
+import { EventsScheduleProps } from './Schedule.types';
 import i18n from '../../i18ns';
 import 'moment/locale/en-gb';
 import 'moment/locale/ru';
 import 'moment/locale/de';
-import { FormElement } from '../Form/Forms';
 moment.locale(`${i18n.language}`);
 const localizer = momentLocalizer(moment);
-
-const EventsSchedule: React.FC<EventsScheduleProps> = ({
+export const EventsSchedule: React.FC<EventsScheduleProps> = ({
   date,
   changeDate,
+  events,
+  setEvents,
+  holidays,
+  isHolidaysSelected,
   t,
 }) => {
-  const [events, setEvents] = useState<Events[]>(someEvents);
-  const [holidays, setHolidays] = useState<Events[]>([]);
-  const [isHolidaysSelected, changeIsHolidaysSelected] = useState<boolean>(
-    false
-  );
-  const [modalActive, changeModalActive] = useState(false);
-
-  const getHolidays = () => {
-    const url =
-      'https://holidayapi.com/v1/holidays?pretty&key=79470c0f-95f1-4988-9261-54417f3e6da3&country=BY&year=2020';
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        data.holidays.map((holiday: any) => {
-          return setHolidays((prev) => [
-            ...prev,
-            {
-              start: holiday.date,
-              end: holiday.observed,
-              title: holiday.name,
-            },
-          ]);
-        });
-      })
-      .catch(Error);
-  };
-
-  useEffect(() => {
-    getHolidays();
-  }, []);
-
-  const toggleHolidays = () => {
-    changeIsHolidaysSelected((prev) => !prev);
-  };
-
+  console.log(t('Next'));
+  const [isModalActive, setIsModalActive] = useState(false);
+  debugger;
   const getAllEvents = () => {
     if (isHolidaysSelected) {
       return [...events, ...holidays];
@@ -60,35 +29,28 @@ const EventsSchedule: React.FC<EventsScheduleProps> = ({
     }
   };
 
+  const changeModalActive = () => {
+    setIsModalActive(false);
+  };
+
   const addNewEvent = ({
     start,
     end,
   }: {
-    start: object | string;
-    end: object | string;
+    start: Date | string;
+    end: Date | string;
   }) => {
-    changeModalActive(true);
-    const title = 'f';
-    if (title)
-      setEvents((prev) => [
-        ...prev,
-        {
-          start,
-          end,
-          title,
-        },
-      ]);
+    setIsModalActive(true);
+    setEvents([
+      ...events,
+      {
+        start,
+        end,
+      },
+    ]);
   };
   return (
-    <div className={classes.schedule}>
-      <label>
-        <input
-          type="checkbox"
-          onChange={toggleHolidays}
-          checked={isHolidaysSelected}
-        />
-        Belarus's Holidays
-      </label>
+    <div>
       <Calendar
         style={{ height: '90vh' }}
         localizer={localizer}
@@ -106,7 +68,6 @@ const EventsSchedule: React.FC<EventsScheduleProps> = ({
         popup
         step={15}
         timeslots={8}
-        toolbar
         messages={{
           next: t('Next'),
           previous: t('Back'),
@@ -117,9 +78,7 @@ const EventsSchedule: React.FC<EventsScheduleProps> = ({
           agenda: t('Agenda'),
         }}
       />
-      {modalActive && <FormElement changeModalActive={changeModalActive} />}
+      {isModalActive && <FormElement changeModalActive={changeModalActive} />}
     </div>
   );
 };
-
-export default EventsSchedule;
