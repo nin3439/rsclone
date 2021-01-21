@@ -1,18 +1,13 @@
-import React from "react";
+import React from 'react';
 import i18n from '../../i18ns';
-import classes from "./Header.module.css";
+import classes from './Header.module.scss';
 
-export const Header:React.FC = () => {
-
-  const changeLanguage = (ln: string ) => {
+export const Header: React.FC = () => {
+  const changeLanguage = (ln: string) => {
     return () => {
-      debugger
-      console.log(ln)
-
-      i18n.changeLanguage(ln)
-      console.log(i18n.language)
-    }
-  }
+      i18n.changeLanguage(ln);
+    };
+  };
   return (
     <div className={classes.header}>
       Header

@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
-export const useStyles = makeStyles(theme => ({
+export const useStyles = makeStyles((theme) => ({
   btnSubmit: {
     width: theme.spacing(20),
     marginRight: theme.spacing(1),

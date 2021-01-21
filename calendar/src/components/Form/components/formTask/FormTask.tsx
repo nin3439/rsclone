@@ -1,11 +1,10 @@
 import React from 'react';
-import { Form } from 'formik';
 import { TextInput } from '../textInput/TextInput';
 import { Button, Box } from '@material-ui/core';
 import { AccessTime, SubjectOutlined } from '@material-ui/icons';
 import { useStyles } from './materialUIStyles';
 
-export const FormTask = ({t}:any) => {
+export const FormTask = ({ t }: any) => {
   const classMaterial: any = useStyles();
   return (
     <Box>
@@ -16,7 +15,7 @@ export const FormTask = ({t}:any) => {
             name="dateTimeStart"
             id="datetime-local"
             type="datetime-local"
-            label={t("Start_Date")}
+            label={t('Start_Date')}
             defaultValue={new Date()}
             InputLabelProps={{
               shrink: true,
@@ -31,7 +30,7 @@ export const FormTask = ({t}:any) => {
           style={classMaterial.input}
           name="description"
           type="text"
-          placeholder={t("add_description")}
+          placeholder={t('add_description')}
         />
       </Box>
       <Box className={classMaterial.formButtons}>
@@ -42,7 +41,7 @@ export const FormTask = ({t}:any) => {
           variant="contained"
           type="submit"
         >
-          {t("save")}
+          {t('save')}
         </Button>
       </Box>
     </Box>
