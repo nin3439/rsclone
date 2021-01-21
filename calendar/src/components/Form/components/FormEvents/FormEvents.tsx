@@ -73,7 +73,7 @@ export const FormEvents = ({ t }: any) => {
         />
       </Box>
       <Box className={classMaterial.formButtons}>
-        <Button>{'Other_parameters'}</Button>
+        <Button>{t('Other_parameters')}</Button>
         <Button
           className={classMaterial.btnSubmit}
           size="large"

@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import { FormElement } from '../Form/Forms';
 import moment from 'moment';
-import { EventsScheduleProps } from './Schedule.types';
+import { EventsScheduleProps, updateDateFormProps } from './Schedule.types';
 import i18n from '../../i18ns';
 import 'moment/locale/en-gb';
 import 'moment/locale/ru';
 import 'moment/locale/de';
+import 'moment/locale/pt';
+import { eventType } from '../../constants';
 moment.locale(`${i18n.language}`);
 const localizer = momentLocalizer(moment);
 export const EventsSchedule: React.FC<EventsScheduleProps> = ({
@@ -20,7 +22,6 @@ export const EventsSchedule: React.FC<EventsScheduleProps> = ({
 }) => {
   console.log(t('Next'));
   const [isModalActive, setIsModalActive] = useState(false);
-  debugger;
   const getAllEvents = () => {
     if (isHolidaysSelected) {
       return [...events, ...holidays];
@@ -33,6 +34,49 @@ export const EventsSchedule: React.FC<EventsScheduleProps> = ({
     setIsModalActive(false);
   };
 
+  const updateDateForm = ({
+    typeEvents,
+    title,
+    listGuest,
+    location,
+    description,
+    dateTimeStart,
+    dateTimeEnd,
+  }: updateDateFormProps) => {
+    switch (typeEvents) {
+      case eventType.EVENTS:
+        const dateEvents = {
+          id: events.length + 1,
+          typeEvents,
+          title,
+          listGuest,
+          location,
+          allDay: false,
+          description,
+          start: new Date(dateTimeStart),
+          end: new Date(dateTimeEnd),
+        };
+        setEvents([...events, dateEvents]);
+        break;
+      case eventType.TASKS:
+        const dateTasks = {
+          id: events.length + 1,
+          typeEvents,
+          allDay: false,
+          title,
+          description,
+          start: new Date(dateTimeStart),
+          end: new Date(dateTimeEnd),
+        };
+        setEvents([...events, dateTasks]);
+        break;
+      default:
+        console.log(typeEvents);
+        break;
+    }
+    console.log(typeEvents);
+  };
+
   const addNewEvent = ({
     start,
     end,
@@ -41,13 +85,14 @@ export const EventsSchedule: React.FC<EventsScheduleProps> = ({
     end: Date | string;
   }) => {
     setIsModalActive(true);
-    setEvents([
-      ...events,
-      {
-        start,
-        end,
-      },
-    ]);
+    // setEvents([
+    //   ...events,
+    //   {
+    //     start,
+    //     end,
+    //   },
+    // ]);
+    // console.log(events);
   };
   return (
     <div>
@@ -61,10 +106,11 @@ export const EventsSchedule: React.FC<EventsScheduleProps> = ({
         endAccessor="end"
         selectable
         onNavigate={(e) => {
+          debugger;
           changeDate(moment(e));
         }}
         onSelectSlot={addNewEvent}
-        onSelectEvent={(event) => alert(event.title)}
+        onSelectEvent={(event) => console.log(event)}
         popup
         step={15}
         timeslots={8}
@@ -78,7 +124,12 @@ export const EventsSchedule: React.FC<EventsScheduleProps> = ({
           agenda: t('Agenda'),
         }}
       />
-      {isModalActive && <FormElement changeModalActive={changeModalActive} />}
+      {isModalActive && (
+        <FormElement
+          updateDateForm={updateDateForm}
+          changeModalActive={changeModalActive}
+        />
+      )}
     </div>
   );
 };

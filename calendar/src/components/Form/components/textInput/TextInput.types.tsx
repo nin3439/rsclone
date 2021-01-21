@@ -7,4 +7,5 @@ export type InputProps = {
   defaultValue?: any;
   InputLabelProps?: Object;
   label?: string;
+  value?: string;
 };

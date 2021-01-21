@@ -18,6 +18,8 @@ export const Header: React.FC = () => {
       <div>
         <button onClick={changeLanguage('en')}>EN</button>
         <button onClick={changeLanguage('ru')}>RU</button>
+        <button onClick={changeLanguage('pt')}>PT</button>
+        <button onClick={changeLanguage('de')}>DE</button>
       </div>
     </div>
   );

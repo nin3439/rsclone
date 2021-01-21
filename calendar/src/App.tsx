@@ -7,13 +7,14 @@ import examplesOfEvents from './events';
 import { Events } from './App.types';
 import './App.css';
 import { useTranslation } from 'react-i18next';
-
+debugger;
 export const App = () => {
   const [events, setEvents] = useState(examplesOfEvents);
   const [holidays, setHolidays] = useState<Events[]>([]);
   const [isHolidaysSelected, setIsHolidaysSelected] = useState<boolean>(false);
   const [date, changeDate] = useState<Moment | null>(moment());
   const { t } = useTranslation();
+
   return (
     <div className="App">
       <Header />
