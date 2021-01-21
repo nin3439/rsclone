@@ -15,6 +15,8 @@ export const EventsSchedule: React.FC<EventsScheduleProps> = ({
   setEvents,
   holidays,
   isHolidaysSelected,
+  viewFormat,
+  setViewFormat,
 }) => {
   const [isModalActive, setIsModalActive] = useState(false);
 
@@ -46,6 +48,7 @@ export const EventsSchedule: React.FC<EventsScheduleProps> = ({
       },
     ]);
   };
+  console.log(viewFormat)
   return (
     <div>
       <Calendar
@@ -65,7 +68,9 @@ export const EventsSchedule: React.FC<EventsScheduleProps> = ({
         popup
         step={15}
         timeslots={8}
-        toolbar
+        toolbar={false}
+        view={viewFormat}
+        onView={setViewFormat}
       />
       {isModalActive && <FormElement changeModalActive={changeModalActive} />}
     </div>

@@ -3,3 +3,5 @@ export type Events = {
   end: Date | string;
   title: string;
 };
+
+export type View = 'month' | 'week' | 'work_week' | 'day' | 'agenda';

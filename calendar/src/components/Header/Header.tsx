@@ -10,12 +10,16 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import Tooltip from '@material-ui/core/Tooltip';
 import SearchIcon from '@material-ui/icons/Search';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 export const Header: React.FC<HeaderProps> = ({
   showBlock,
   setShowBlock,
   date,
   changeDate,
+  setViewFormat,
 }) => {
   const getShowBlock = () => {showBlock ? setShowBlock(false) : setShowBlock(true)}
   const changeLanguage = (ln: string) => {
@@ -33,7 +37,7 @@ export const Header: React.FC<HeaderProps> = ({
         </Tooltip>
 
         <img className={classes.calendarImage} src='http://ssl.gstatic.com/calendar/images/dynamiclogo_2020q4/calendar_18_2x.png#' />
-        <span>Calendar</span>
+        <span className={classes.calendarName}>Calendar</span>
 
         <Tooltip title={moment().format('dddd, Do MMMM')}>
           <Button variant='outlined' onClick={() => {
@@ -57,13 +61,26 @@ export const Header: React.FC<HeaderProps> = ({
           </Button>
         </Tooltip>
 
-        <span>{moment().format('MMMM YYYY')}</span>
+        <span className={classes.calendarDate}>{moment().format('MMMM YYYY')}</span>
 
         <Tooltip title={'search'}>
           <Button>
             <SearchIcon />
           </Button>
         </Tooltip>
+
+        <FormControl variant="outlined" className={classes.formControl}>
+          <Select
+            displayEmpty={false}
+            className={classes.selectEmpty}
+            inputProps={{ 'aria-label': 'Without label' }}
+          >
+            <MenuItem onClick={() => setViewFormat('month')}>Month</MenuItem>
+            <MenuItem onClick={() => setViewFormat('week')}>Week</MenuItem>
+            <MenuItem onClick={() => setViewFormat('day')}>Day</MenuItem>
+            <MenuItem onClick={() => setViewFormat('agenda')}>Agenta</MenuItem>
+          </Select>
+        </FormControl>
 
         <button onClick={changeLanguage('en')}>EN</button>
         <button onClick={changeLanguage('ru')}>RU</button>
