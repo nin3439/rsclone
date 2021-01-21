@@ -21,7 +21,9 @@ export const Header: React.FC<HeaderProps> = ({
   changeDate,
   setViewFormat,
 }) => {
-  const getShowBlock = () => {showBlock ? setShowBlock(false) : setShowBlock(true)}
+  const getShowBlock = () => {
+    showBlock ? setShowBlock(false) : setShowBlock(true);
+  };
   const changeLanguage = (ln: string) => {
     return () => {
       i18n.changeLanguage(ln);
@@ -36,32 +38,47 @@ export const Header: React.FC<HeaderProps> = ({
           </IconButton>
         </Tooltip>
 
-        <img className={classes.calendarImage} src="http://ssl.gstatic.com/calendar/images/dynamiclogo_2020q4/calendar_18_2x.png#" alt="Logo"/>
+        <img
+          className={classes.calendarImage}
+          src="http://ssl.gstatic.com/calendar/images/dynamiclogo_2020q4/calendar_18_2x.png#"
+          alt="Logo"
+        />
         <span className={classes.calendarName}>Calendar</span>
 
         <Tooltip title={moment().format('dddd, Do MMMM')}>
-          <Button variant="outlined" onClick={() => {
-            changeDate(moment());
-          }}>Today</Button>
+          <Button
+            variant="outlined"
+            onClick={() => {
+              changeDate(moment());
+            }}
+          >
+            Today
+          </Button>
         </Tooltip>
 
         <Tooltip title={'previous month'}>
-          <Button onClick={() => {
-            changeDate(moment(date).subtract(31,'days'));
-          }}>
+          <Button
+            onClick={() => {
+              changeDate(moment(date).subtract(31, 'days'));
+            }}
+          >
             <ArrowBackIosIcon />
           </Button>
         </Tooltip>
 
         <Tooltip title={'next month'}>
-          <Button onClick={() => {
-            changeDate(moment(date).add(31,'days'));
-          }}>
+          <Button
+            onClick={() => {
+              changeDate(moment(date).add(31, 'days'));
+            }}
+          >
             <ArrowForwardIosIcon />
           </Button>
         </Tooltip>
 
-        <span className={classes.calendarDate}>{moment().format('MMMM YYYY')}</span>
+        <span className={classes.calendarDate}>
+          {moment().format('MMMM YYYY')}
+        </span>
 
         <Tooltip title={'search'}>
           <Button>

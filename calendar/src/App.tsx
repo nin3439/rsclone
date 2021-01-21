@@ -23,14 +23,16 @@ export const App = () => {
         changeDate={changeDate}
         setViewFormat={setViewFormat}
       />
-      {showBlock ? <Widgets
-        date={date}
-        changeDate={changeDate}
-        holidays={holidays}
-        setHolidays={setHolidays}
-        isHolidaysSelected={isHolidaysSelected}
-        setIsHolidaysSelected={setIsHolidaysSelected}
-      /> : null}
+      {showBlock ? (
+        <Widgets
+          date={date}
+          changeDate={changeDate}
+          holidays={holidays}
+          setHolidays={setHolidays}
+          isHolidaysSelected={isHolidaysSelected}
+          setIsHolidaysSelected={setIsHolidaysSelected}
+        />
+      ) : null}
       <div className="App-content">
         <EventsSchedule
           date={date}
