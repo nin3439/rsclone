@@ -86,18 +86,7 @@ export const Header: React.FC<HeaderProps> = ({
           </Button>
         </Tooltip>
 
-        <FormControl variant="outlined" className={classes.formControl}>
-          <Select
-            displayEmpty={false}
-            className={classes.selectEmpty}
-            inputProps={{ 'aria-label': 'Without label' }}
-          >
-            <MenuItem onClick={() => setViewFormat('month')}>Month</MenuItem>
-            <MenuItem onClick={() => setViewFormat('week')}>Week</MenuItem>
-            <MenuItem onClick={() => setViewFormat('day')}>Day</MenuItem>
-            <MenuItem onClick={() => setViewFormat('agenda')}>Agenta</MenuItem>
-          </Select>
-        </FormControl>
+
 
         <button onClick={changeLanguage('en')}>EN</button>
         <button onClick={changeLanguage('ru')}>RU</button>
