@@ -48,7 +48,6 @@ export const EventsSchedule: React.FC<EventsScheduleProps> = ({
       },
     ]);
   };
-  console.log(viewFormat)
   return (
     <div>
       <Calendar

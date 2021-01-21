@@ -36,11 +36,11 @@ export const Header: React.FC<HeaderProps> = ({
           </IconButton>
         </Tooltip>
 
-        <img className={classes.calendarImage} src='http://ssl.gstatic.com/calendar/images/dynamiclogo_2020q4/calendar_18_2x.png#' />
+        <img className={classes.calendarImage} src="http://ssl.gstatic.com/calendar/images/dynamiclogo_2020q4/calendar_18_2x.png#" alt="Logo"/>
         <span className={classes.calendarName}>Calendar</span>
 
         <Tooltip title={moment().format('dddd, Do MMMM')}>
-          <Button variant='outlined' onClick={() => {
+          <Button variant="outlined" onClick={() => {
             changeDate(moment());
           }}>Today</Button>
         </Tooltip>
