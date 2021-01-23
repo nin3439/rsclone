@@ -4,4 +4,4 @@ export type Events = {
   title: string;
 };
 
-export type View = 'month' | 'week' | 'work_week' | 'day' | 'agenda';
+export type TimeFormats = 'month' | 'week' | 'work_week' | 'day' | 'agenda';

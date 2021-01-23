@@ -21,6 +21,8 @@ export const Header: React.FC<HeaderProps> = ({
   changeDate,
   setViewFormat,
 }) => {
+  const calendarTodayDate = moment().format('dddd, Do MMMM');
+  const calendarMouthYear = moment().format('MMMM YYYY');
   const getShowBlock = () => {
     showBlock ? setShowBlock(false) : setShowBlock(true);
   };
@@ -32,7 +34,7 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <div className={classes.header}>
       <div>
-        <Tooltip title={'Menu'}>
+        <Tooltip title="Menu">
           <IconButton>
             <MenuIcon onClick={getShowBlock} />
           </IconButton>
@@ -45,7 +47,7 @@ export const Header: React.FC<HeaderProps> = ({
         />
         <span className={classes.calendarName}>Calendar</span>
 
-        <Tooltip title={moment().format('dddd, Do MMMM')}>
+        <Tooltip title={calendarTodayDate}>
           <Button
             variant="outlined"
             onClick={() => {
@@ -56,7 +58,7 @@ export const Header: React.FC<HeaderProps> = ({
           </Button>
         </Tooltip>
 
-        <Tooltip title={'previous month'}>
+        <Tooltip title="previous month">
           <Button
             onClick={() => {
               changeDate(moment(date).subtract(31, 'days'));
@@ -66,7 +68,7 @@ export const Header: React.FC<HeaderProps> = ({
           </Button>
         </Tooltip>
 
-        <Tooltip title={'next month'}>
+        <Tooltip title="next month">
           <Button
             onClick={() => {
               changeDate(moment(date).add(31, 'days'));
@@ -76,11 +78,9 @@ export const Header: React.FC<HeaderProps> = ({
           </Button>
         </Tooltip>
 
-        <span className={classes.calendarDate}>
-          {moment().format('MMMM YYYY')}
-        </span>
+        <span className={classes.calendarDate}>{calendarMouthYear}</span>
 
-        <Tooltip title={'search'}>
+        <Tooltip title="search">
           <Button>
             <SearchIcon />
           </Button>

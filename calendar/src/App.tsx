@@ -4,7 +4,7 @@ import { Widgets } from './components/Widgets/Widgets';
 import { EventsSchedule } from './components/Schedule/Schedule';
 import moment, { Moment } from 'moment';
 import examplesOfEvents from './events';
-import { Events, View } from './App.types';
+import { Events, TimeFormats } from './App.types';
 import './App.css';
 
 export const App = () => {
@@ -13,7 +13,7 @@ export const App = () => {
   const [isHolidaysSelected, setIsHolidaysSelected] = useState<boolean>(false);
   const [date, changeDate] = useState<Moment | null>(moment());
   const [showBlock, setShowBlock] = useState<boolean>(true);
-  const [viewFormat, setViewFormat] = useState<View>('month');
+  const [viewFormat, setViewFormat] = useState<TimeFormats>('month');
   return (
     <div className="App">
       <Header
