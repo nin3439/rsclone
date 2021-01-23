@@ -13,6 +13,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import { Formats } from '../../formats';
 
 export const Header: React.FC<HeaderProps> = ({
   showBlock,
@@ -92,10 +93,16 @@ export const Header: React.FC<HeaderProps> = ({
             className={classes.selectEmpty}
             inputProps={{ 'aria-label': 'Without label' }}
           >
-            <MenuItem onClick={() => setViewFormat('month')}>Month</MenuItem>
-            <MenuItem onClick={() => setViewFormat('week')}>Week</MenuItem>
-            <MenuItem onClick={() => setViewFormat('day')}>Day</MenuItem>
-            <MenuItem onClick={() => setViewFormat('agenda')}>Agenta</MenuItem>
+            <MenuItem onClick={() => setViewFormat(Formats.MONTH)}>
+              Month
+            </MenuItem>
+            <MenuItem onClick={() => setViewFormat(Formats.WEEK)}>
+              Week
+            </MenuItem>
+            <MenuItem onClick={() => setViewFormat(Formats.DAY)}>Day</MenuItem>
+            <MenuItem onClick={() => setViewFormat(Formats.AGENDA)}>
+              Agenta
+            </MenuItem>
           </Select>
         </FormControl>
 
