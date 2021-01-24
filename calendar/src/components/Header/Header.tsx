@@ -22,11 +22,8 @@ export const Header: React.FC<HeaderProps> = ({
   changeDate,
   setViewFormat,
 }) => {
-  const calendarTodayDate = moment().format('dddd, Do MMMM');
-  const calendarMouthYear = moment().format('MMMM YYYY');
-  const getShowBlock = () => {
-    showBlock ? setShowBlock(false) : setShowBlock(true);
-  };
+  const calendarTodayDate = 'dddd, Do MMMM';
+  const calendarMouthYear = 'MMMM YYYY';
   const changeLanguage = (ln: string) => {
     return () => {
       i18n.changeLanguage(ln);
@@ -37,7 +34,7 @@ export const Header: React.FC<HeaderProps> = ({
       <div>
         <Tooltip title="Menu">
           <IconButton>
-            <MenuIcon onClick={getShowBlock} />
+            <MenuIcon onClick={() => setShowBlock(!showBlock)} />
           </IconButton>
         </Tooltip>
 
@@ -48,7 +45,7 @@ export const Header: React.FC<HeaderProps> = ({
         />
         <span className={classes.calendarName}>Calendar</span>
 
-        <Tooltip title={calendarTodayDate}>
+        <Tooltip title={moment().format(calendarTodayDate)}>
           <Button
             variant="outlined"
             onClick={() => {
@@ -79,7 +76,9 @@ export const Header: React.FC<HeaderProps> = ({
           </Button>
         </Tooltip>
 
-        <span className={classes.calendarDate}>{calendarMouthYear}</span>
+        <span className={classes.calendarDate}>
+          {moment().format(calendarMouthYear)}
+        </span>
 
         <Tooltip title="search">
           <Button>
