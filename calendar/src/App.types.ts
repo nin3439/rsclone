@@ -3,3 +3,5 @@ export type Events = {
   end: Date | string;
   title: string;
 };
+
+export type TimeFormats = 'month' | 'week' | 'work_week' | 'day' | 'agenda';

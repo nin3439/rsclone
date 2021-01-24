@@ -6,6 +6,8 @@ export type Events = {
   title: string;
 };
 
+export type TimeFormats = 'month' | 'week' | 'work_week' | 'day' | 'agenda';
+
 export type EventsScheduleProps = {
   date: Moment | null;
   changeDate: (date: Moment | null) => void;
@@ -13,4 +15,6 @@ export type EventsScheduleProps = {
   events: any[];
   setEvents: (events: any[]) => void;
   isHolidaysSelected: boolean;
+  viewFormat: TimeFormats;
+  setViewFormat: (view: TimeFormats) => void;
 };
