@@ -26,7 +26,11 @@ export const Header: React.FC<HeaderProps> = ({
   const calendarMouthYear = 'MMMM YYYY';
   const changeLanguage = (ln: string) => {
     return () => {
+      debugger;
+      console.log(ln);
+
       i18n.changeLanguage(ln);
+      console.log(i18n.language);
     };
   };
   return (
@@ -107,6 +111,8 @@ export const Header: React.FC<HeaderProps> = ({
 
         <button onClick={changeLanguage('en')}>EN</button>
         <button onClick={changeLanguage('ru')}>RU</button>
+        <button onClick={changeLanguage('pt')}>PT</button>
+        <button onClick={changeLanguage('de')}>DE</button>
       </div>
     </div>
   );

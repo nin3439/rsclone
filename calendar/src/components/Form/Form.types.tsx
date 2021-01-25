@@ -1,5 +1,6 @@
 export type FormProps = {
   changeModalActive: () => void;
+  updateDateForm?: any;
 };
 
 export type FormValuesProps = {

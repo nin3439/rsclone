@@ -24,7 +24,7 @@ export const FormEvents = ({ t }: any) => {
             id="datetime-local"
             type="datetime-local"
             label={t('Start_Date')}
-            defaultValue={new Date()}
+            defaultValue="2017-05-24"
             InputLabelProps={{
               shrink: true,
             }}
@@ -34,7 +34,7 @@ export const FormEvents = ({ t }: any) => {
             id="datetime-local"
             type="datetime-local"
             label={t('End_Date')}
-            defaultValue={'2017-05-24T10:30'}
+            defaultValue="2017-05-24"
             InputLabelProps={{
               shrink: true,
             }}
@@ -69,11 +69,11 @@ export const FormEvents = ({ t }: any) => {
           style={classMaterial.input}
           name="description"
           type="text"
-          placeholder="add a description"
+          placeholder={t('add_description')}
         />
       </Box>
       <Box className={classMaterial.formButtons}>
-        <Button>{'Other_parameters'}</Button>
+        <Button>{t('Other_parameters')}</Button>
         <Button
           className={classMaterial.btnSubmit}
           size="large"

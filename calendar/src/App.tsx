@@ -7,7 +7,8 @@ import examplesOfEvents from './events';
 import { Events, TimeFormats } from './App.types';
 import { Formats } from './formats';
 import './App.css';
-
+import { useTranslation } from 'react-i18next';
+debugger;
 export const App = () => {
   const [events, setEvents] = useState(examplesOfEvents);
   const [holidays, setHolidays] = useState<Events[]>([]);
@@ -15,6 +16,7 @@ export const App = () => {
   const [date, changeDate] = useState<Moment | null>(moment());
   const [showBlock, setShowBlock] = useState<boolean>(true);
   const [viewFormat, setViewFormat] = useState<TimeFormats>(Formats.MONTH);
+  const { t } = useTranslation();
   return (
     <div className="App">
       <Header
@@ -44,6 +46,7 @@ export const App = () => {
           isHolidaysSelected={isHolidaysSelected}
           viewFormat={viewFormat}
           setViewFormat={setViewFormat}
+          t={t}
         />
       </div>
     </div>

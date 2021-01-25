@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Form } from 'formik';
 import { FormEvents } from '../FormEvents/FormEvents';
 import { FormTask } from '../formTask/FormTask';
 import { FormReminders } from '../FormReminder/FormReminder';
 import { TextInput } from '../textInput/TextInput';
-import { eventType } from './constants';
+import { eventType } from '../../../../constants';
 import { Button, Box } from '@material-ui/core';
 import { useStyles } from './materialUIStyles';
 
-export const FormSwitch = ({ t }: any) => {
+export const FormSwitch = ({ t, setSwitch, switchParameter }: any) => {
   const classMaterial: any = useStyles();
-  const [switchParameter, setSwitch] = useState('events');
   const changeswitchParameter = (param: string) => {
     if (param !== switchParameter) setSwitch(param);
   };
@@ -43,7 +42,7 @@ export const FormSwitch = ({ t }: any) => {
             }}
             color="primary"
           >
-            {t('Event')}
+            {t('event')}
           </Button>
           <Button
             onClick={() => {

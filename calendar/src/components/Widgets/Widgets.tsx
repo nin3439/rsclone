@@ -5,6 +5,7 @@ import { Calendar } from './components/Calendar/Calendar';
 import { MyCalendars } from './components/MyCalendars/MyCalendars';
 import { WidgetsProps } from './Widgets.types';
 import styles from './styles/Widgets.module.scss';
+import { useTranslation } from 'react-i18next';
 
 export const Widgets: React.FC<WidgetsProps> = ({
   date,
@@ -14,6 +15,7 @@ export const Widgets: React.FC<WidgetsProps> = ({
   isHolidaysSelected,
   setIsHolidaysSelected,
 }) => {
+  const { t } = useTranslation();
   const [activeModal, setActiveModal] = useState(false);
   const changeModalActive = (): void => {
     setActiveModal(false);
@@ -28,7 +30,7 @@ export const Widgets: React.FC<WidgetsProps> = ({
         variant="contained"
         color="primary"
       >
-        Create
+        {t('create')}
       </Button>
       <Calendar date={date} changeDate={changeDate} />
       {activeModal && <FormElement changeModalActive={changeModalActive} />}

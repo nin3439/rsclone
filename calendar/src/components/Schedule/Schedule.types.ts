@@ -17,4 +17,15 @@ export type EventsScheduleProps = {
   isHolidaysSelected: boolean;
   viewFormat: TimeFormats;
   setViewFormat: (view: TimeFormats) => void;
+  t: any;
+};
+
+export type updateDateFormProps = {
+  typeEvents: string;
+  title: string;
+  listGuest: string;
+  location: string;
+  description: string;
+  dateTimeStart: string;
+  dateTimeEnd: string;
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { FormSwitch } from './components/FormSwitch/FormSwitch';
@@ -7,9 +7,15 @@ import { Box } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
 import { useStyles } from './materialUIStyles';
-export const FormElement: React.FC<FormProps> = ({ changeModalActive }) => {
+
+export const FormElement: React.FC<FormProps> = ({
+  changeModalActive,
+  updateDateForm,
+}) => {
   const { t } = useTranslation();
   const classMaterial: any = useStyles();
+  const [switchParameter, setSwitch] = useState('events');
+
   return (
     <Box
       className={`${classMaterial.overlay} ${classMaterial.active}`}
@@ -33,13 +39,19 @@ export const FormElement: React.FC<FormProps> = ({ changeModalActive }) => {
           })}
           onSubmit={(values: FormValuesProps, { setSubmitting }) => {
             setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
+              const typeEvents = switchParameter;
+              updateDateForm({ typeEvents, ...values });
+              // console.log(JSON.stringify({ typeEvents, ...values }, null, 2));
               setSubmitting(false);
               changeModalActive();
             }, 400);
           }}
         >
-          <FormSwitch t={t} />
+          <FormSwitch
+            switchParameter={switchParameter}
+            setSwitch={setSwitch}
+            t={t}
+          />
         </Formik>
       </Box>
     </Box>
