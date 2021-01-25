@@ -1,6 +1,5 @@
 import { Moment } from 'moment';
-
-export type TimeFormats = 'month' | 'week' | 'work_week' | 'day' | 'agenda';
+import {TimeFormats} from "../../App.types";
 
 export type HeaderProps = {
   showBlock: boolean;

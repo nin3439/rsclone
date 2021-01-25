@@ -1,7 +1,9 @@
+import {Formats} from "./formats";
+
 export type Events = {
   start: Date | string;
   end: Date | string;
   title: string;
 };
 
-export type TimeFormats = 'month' | 'week' | 'work_week' | 'day' | 'agenda';
+export type TimeFormats = typeof Formats[keyof typeof Formats];
