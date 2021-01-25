@@ -9,6 +9,7 @@ import 'moment/locale/ru';
 import 'moment/locale/de';
 import 'moment/locale/pt';
 import { eventType } from '../../constants';
+import axios from 'axios';
 moment.locale(`${i18n.language}`);
 const localizer = momentLocalizer(moment);
 export const EventsSchedule: React.FC<EventsScheduleProps> = ({
@@ -33,48 +34,47 @@ export const EventsSchedule: React.FC<EventsScheduleProps> = ({
   const changeModalActive = () => {
     setIsModalActive(false);
   };
-
-  const updateDateForm = ({
-    typeEvents,
-    title,
-    listGuest,
-    location,
-    description,
-    dateTimeStart,
-    dateTimeEnd,
-  }: updateDateFormProps) => {
-    switch (typeEvents) {
-      case eventType.EVENTS:
-        const dateEvents = {
-          id: events.length + 1,
-          typeEvents,
-          title,
-          listGuest,
-          location,
-          allDay: false,
-          description,
-          start: new Date(dateTimeStart),
-          end: new Date(dateTimeEnd),
-        };
-        setEvents([...events, dateEvents]);
-        break;
-      case eventType.TASKS:
-        const dateTasks = {
-          id: events.length + 1,
-          typeEvents,
-          allDay: false,
-          title,
-          description,
-          start: new Date(dateTimeStart),
-          end: new Date(dateTimeEnd),
-        };
-        setEvents([...events, dateTasks]);
-        break;
-      default:
-        console.log(typeEvents);
-        break;
-    }
-    console.log(typeEvents);
+  const route = 'todos';
+  const baseURL = `http://localhost:3020/${route}`;
+  const updateDateForm = async (props: updateDateFormProps) => {
+    // switch (typeEvents) {
+    //   case eventType.EVENTS:
+    //     const dateEvents = {
+    //       id: events.length + 1,
+    //       typeEvents,
+    //       title,
+    //       listGuest,
+    //       location,
+    //       allDay: false,
+    //       description,
+    //       start: new Date(dateTimeStart),
+    //       end: new Date(dateTimeEnd),
+    //     };
+    //     setEvents([...events, dateEvents]);
+    //     break;
+    //   case eventType.TASKS:
+    //     const dateTasks = {
+    //       id: events.length + 1,
+    //       typeEvents,
+    //       allDay: false,
+    //       title,
+    //       description,
+    //       start: new Date(dateTimeStart),
+    //       end: new Date(dateTimeEnd),
+    //     };
+    //     setEvents([...events, dateTasks]);
+    //     break;
+    //   default:
+    //     console.log(typeEvents);
+    //     break;
+    // }
+    const response = await axios({
+      baseURL,
+      method: 'post',
+      data: props,
+      url: '/',
+    });
+    console.log(response.data);
   };
 
   const addNewEvent = ({

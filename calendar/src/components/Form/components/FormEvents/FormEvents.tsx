@@ -24,7 +24,7 @@ export const FormEvents = ({ t }: any) => {
             id="datetime-local"
             type="datetime-local"
             label={t('Start_Date')}
-            defaultValue={new Date()}
+            defaultValue="2017-05-24"
             InputLabelProps={{
               shrink: true,
             }}
@@ -34,7 +34,7 @@ export const FormEvents = ({ t }: any) => {
             id="datetime-local"
             type="datetime-local"
             label={t('End_Date')}
-            defaultValue={'2017-05-24T10:30'}
+            defaultValue="2017-05-24"
             InputLabelProps={{
               shrink: true,
             }}
