@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import { EventsScheduleProps } from './Schedule.types';
-import { FormElement } from '../Form/Forms';
+import { FormElement } from '../Form/Form';
 import moment from 'moment';
 
 moment.locale('en-GB');
@@ -15,6 +15,8 @@ export const EventsSchedule: React.FC<EventsScheduleProps> = ({
   setEvents,
   holidays,
   isHolidaysSelected,
+  viewFormat,
+  setViewFormat,
 }) => {
   const [isModalActive, setIsModalActive] = useState(false);
 
@@ -65,7 +67,9 @@ export const EventsSchedule: React.FC<EventsScheduleProps> = ({
         popup
         step={15}
         timeslots={8}
-        toolbar
+        toolbar={false}
+        view={viewFormat}
+        onView={setViewFormat}
       />
       {isModalActive && <FormElement changeModalActive={changeModalActive} />}
     </div>

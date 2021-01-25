@@ -4,7 +4,8 @@ import { Widgets } from './components/Widgets/Widgets';
 import { EventsSchedule } from './components/Schedule/Schedule';
 import moment, { Moment } from 'moment';
 import examplesOfEvents from './events';
-import { Events } from './App.types';
+import { Events, TimeFormats } from './App.types';
+import { Formats } from './formats';
 import './App.css';
 
 export const App = () => {
@@ -12,17 +13,27 @@ export const App = () => {
   const [holidays, setHolidays] = useState<Events[]>([]);
   const [isHolidaysSelected, setIsHolidaysSelected] = useState<boolean>(false);
   const [date, changeDate] = useState<Moment | null>(moment());
+  const [showBlock, setShowBlock] = useState<boolean>(true);
+  const [viewFormat, setViewFormat] = useState<TimeFormats>(Formats.MONTH);
   return (
     <div className="App">
-      <Header />
-      <Widgets
+      <Header
+        showBlock={showBlock}
+        setShowBlock={setShowBlock}
         date={date}
         changeDate={changeDate}
-        holidays={holidays}
-        setHolidays={setHolidays}
-        isHolidaysSelected={isHolidaysSelected}
-        setIsHolidaysSelected={setIsHolidaysSelected}
+        setViewFormat={setViewFormat}
       />
+      {showBlock && (
+        <Widgets
+          date={date}
+          changeDate={changeDate}
+          holidays={holidays}
+          setHolidays={setHolidays}
+          isHolidaysSelected={isHolidaysSelected}
+          setIsHolidaysSelected={setIsHolidaysSelected}
+        />
+      )}
       <div className="App-content">
         <EventsSchedule
           date={date}
@@ -31,6 +42,8 @@ export const App = () => {
           setEvents={setEvents}
           holidays={holidays}
           isHolidaysSelected={isHolidaysSelected}
+          viewFormat={viewFormat}
+          setViewFormat={setViewFormat}
         />
       </div>
     </div>

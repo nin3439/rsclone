@@ -1,6 +1,6 @@
 .header {
   width: 100%;
-  height: 6.9vh;
+  height: 10vh;
   background-color: #7fffd4;
 }
 
@@ -15,4 +15,26 @@
   width: 20%;
   justify-content: center;
   flex-direction: row;
+}
+
+.calendarImage {
+  width: 40px;
+}
+
+.formControl {
+  width: 150px;
+}
+
+.calendarName {
+  font-size: 22px;
+  line-height: 24px;
+  vertical-align: middle;
+}
+
+.calendarDate {
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 28px;
+  color: #3c4043;
 }
