@@ -1,9 +1,7 @@
 import Button from '@material-ui/core/Button';
-import React, { useState } from 'react';
-import { FormElement } from '../Form/Form';
+import React from 'react';
 import { Calendar } from './components/Calendar/Calendar';
 import { MyCalendars } from './components/MyCalendars/MyCalendars';
-import { WidgetsProps } from './Widgets.types';
 import styles from './styles/Widgets.module.scss';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
@@ -19,7 +17,6 @@ export const Widgets: React.FC = () => {
   };
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const isModalActive = useSelector((state: any) => state.utils.isModalActive);
   const changeModalActive = () => {
     dispatch(updateActiveModal());
   };

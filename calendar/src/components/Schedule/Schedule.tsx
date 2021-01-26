@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
-import { useTranslation } from 'react-i18next';
 import 'moment/locale/en-gb';
 import 'moment/locale/ru';
 import 'moment/locale/de';
@@ -8,7 +7,6 @@ import 'moment/locale/pt';
 import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
 import { FormElement } from '../Form/Form';
-import { EventsScheduleProps } from './Schedule.types';
 import i18n from '../../i18ns';
 import {
   setEvents,
@@ -22,11 +20,11 @@ import {
 
 const localizer = momentLocalizer(moment);
 export const EventsSchedule: React.FC = () => {
-  const { t } = useTranslation();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(updateAllEvents());
     console.log('Gjlrk.xtybt ');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const viewFormat = useSelector((state: any) => state.utils.viewFormat);
   const setViewFormat = (view: string) => {

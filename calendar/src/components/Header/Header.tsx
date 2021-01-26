@@ -15,6 +15,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { Formats } from '../../formats';
 import { Languages } from '../../constants';
+
 import {
   updateDate,
   updateShowBlock,
@@ -22,7 +23,6 @@ import {
 } from '../../redux/reducers/UtilsReducers';
 
 export const Header: React.FC = () => {
-  moment.locale(`${i18n.language}`);
   const dispatch = useDispatch();
   const setViewFormat = (view: string) => {
     dispatch(updateViewFormat(view));
@@ -41,6 +41,7 @@ export const Header: React.FC = () => {
       console.log(ln);
 
       i18n.changeLanguage(ln);
+
       console.log(i18n.language);
     };
   };
@@ -92,7 +93,7 @@ export const Header: React.FC = () => {
         </Tooltip>
 
         <span className={classes.calendarDate}>
-          {moment().format(calendarMouthYear)}
+          {moment(date).format(calendarMouthYear)}
         </span>
 
         <Tooltip title="search">
