@@ -39,11 +39,7 @@ export const Header: React.FC = () => {
   const calendarMouthYear = 'MMMM YYYY';
   const changeLanguage = (ln: string) => {
     return () => {
-      console.log(ln);
-
       i18n.changeLanguage(ln);
-
-      console.log(i18n.language);
     };
   };
   return (

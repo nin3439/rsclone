@@ -9,7 +9,6 @@ export const TextInput = ({
   defaultValue,
   ...props
 }: InputProps) => {
-  debugger;
   const [field, meta] = useField(name);
   return (
     <>
