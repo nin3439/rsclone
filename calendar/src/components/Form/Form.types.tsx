@@ -5,9 +5,9 @@ export type FormProps = {
 
 export type FormValuesProps = {
   title: string;
-  listGuest: string;
-  location: string;
+  listGuest?: string;
+  location?: string;
   description: string;
-  dateTimeStart: string;
-  dateTimeEnd: string;
+  start: string;
+  end?: string;
 };

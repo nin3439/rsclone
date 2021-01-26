@@ -6,26 +6,27 @@ import { MyCalendars } from './components/MyCalendars/MyCalendars';
 import { WidgetsProps } from './Widgets.types';
 import styles from './styles/Widgets.module.scss';
 import { useTranslation } from 'react-i18next';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  updateActiveModal,
+  updateDate,
+} from '../../redux/reducers/UtilsReducers';
 
-export const Widgets: React.FC<WidgetsProps> = ({
-  date,
-  changeDate,
-  holidays,
-  setHolidays,
-  isHolidaysSelected,
-  setIsHolidaysSelected,
-}) => {
+export const Widgets: React.FC = () => {
+  const date = useSelector((state: any) => state.utils.date);
+  const changeDate = (dateValue: any) => {
+    dispatch(updateDate(dateValue));
+  };
   const { t } = useTranslation();
-  const [activeModal, setActiveModal] = useState(false);
-  const changeModalActive = (): void => {
-    setActiveModal(false);
+  const dispatch = useDispatch();
+  const isModalActive = useSelector((state: any) => state.utils.isModalActive);
+  const changeModalActive = () => {
+    dispatch(updateActiveModal());
   };
   return (
     <div className={styles.sidebar}>
       <Button
-        onClick={() => {
-          setActiveModal(true);
-        }}
+        onClick={changeModalActive}
         className={styles.button}
         variant="contained"
         color="primary"
@@ -33,13 +34,7 @@ export const Widgets: React.FC<WidgetsProps> = ({
         {t('create')}
       </Button>
       <Calendar date={date} changeDate={changeDate} />
-      {activeModal && <FormElement changeModalActive={changeModalActive} />}
-      <MyCalendars
-        holidays={holidays}
-        setHolidays={setHolidays}
-        isHolidaysSelected={isHolidaysSelected}
-        setIsHolidaysSelected={setIsHolidaysSelected}
-      />
+      <MyCalendars />
     </div>
   );
 };

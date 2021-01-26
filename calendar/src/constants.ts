@@ -3,3 +3,10 @@ export const eventType = {
   TASKS: 'tasks',
   REMINDERS: 'reminders',
 };
+
+export const Languages = {
+  EN: 'en',
+  RU: 'ru',
+  PT: 'pt',
+  DE: 'de',
+};

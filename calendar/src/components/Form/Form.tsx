@@ -7,6 +7,7 @@ import { Box } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
 import { useStyles } from './materialUIStyles';
+import { eventType } from '../../constants';
 
 export const FormElement: React.FC<FormProps> = ({
   changeModalActive,
@@ -14,7 +15,18 @@ export const FormElement: React.FC<FormProps> = ({
 }) => {
   const { t } = useTranslation();
   const classMaterial: any = useStyles();
-  const [switchParameter, setSwitch] = useState('events');
+  const [switchParameter, setSwitch] = useState(eventType.EVENTS);
+  const checkForm = (
+    event: string,
+    values: FormValuesProps
+  ): FormValuesProps => {
+    if (event === eventType.EVENTS) return values;
+    let { title, description, start } = values;
+
+    if (event === eventType.TASKS)
+      return { title, description, start, end: start };
+    return { title, description, start };
+  };
 
   return (
     <Box
@@ -31,8 +43,8 @@ export const FormElement: React.FC<FormProps> = ({
             listGuest: '',
             location: '',
             description: '', // added for our select
-            dateTimeStart: '',
-            dateTimeEnd: '',
+            start: '',
+            end: '',
           }}
           validationSchema={Yup.object({
             title: Yup.string().max(44, 'Must be 44 characters or less'),
@@ -40,7 +52,9 @@ export const FormElement: React.FC<FormProps> = ({
           onSubmit={(values: FormValuesProps, { setSubmitting }) => {
             setTimeout(() => {
               const typeEvents = switchParameter;
-              updateDateForm({ typeEvents, ...values });
+              const validateForm = checkForm(switchParameter, values);
+              debugger;
+              updateDateForm({ typeEvents, ...validateForm });
               // console.log(JSON.stringify({ typeEvents, ...values }, null, 2));
               setSubmitting(false);
               changeModalActive();

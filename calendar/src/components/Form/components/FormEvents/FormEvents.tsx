@@ -20,7 +20,7 @@ export const FormEvents = ({ t }: any) => {
         <AccessTime />
         <Box className={classMaterial.timeBox}>
           <TextInput
-            name="dateTimeStart"
+            name="start"
             id="datetime-local"
             type="datetime-local"
             label={t('Start_Date')}
@@ -30,7 +30,7 @@ export const FormEvents = ({ t }: any) => {
             }}
           />
           <TextInput
-            name="dateTimeEnd"
+            name="end"
             id="datetime-local"
             type="datetime-local"
             label={t('End_Date')}
