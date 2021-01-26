@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { eventType } from '../../constants';
-const UPDATE_EVENTS = 'UPDATE_EVENTS';
-const SET_EVENT = 'SET_EVENT';
-const SET_HOLIDAYS_BELARUS = 'SET_HOLIDAYS_BELARUS';
+import { Content } from './constantsActionType';
+
 const route = 'todos';
 const baseURL = `http://rs-back.herokuapp.com/${route}`;
 const urlBelarus =
@@ -38,14 +37,12 @@ const initialState = {
 
 export const content = (state = initialState, action) => {
   switch (action.type) {
-    case UPDATE_EVENTS:
-      debugger;
+    case Content.UPDATE_EVENTS:
       return { ...state, events: [...action.events] };
-    case SET_EVENT:
+    case Content.ADD_EVENT:
       return { ...state, events: [...state.events, action.event] };
-    case SET_HOLIDAYS_BELARUS:
-      const newHolidaysArr = action.holidays.map((holiday) => {
-        debugger;
+    case Content.SET_HOLIDAYS_BELARUS:
+      const newHolidays = action.holidays.map((holiday) => {
         const year = new Date().getFullYear();
         const month = new Date(holiday.date).getMonth();
         const day = new Date(holiday.date).getDate();
@@ -58,7 +55,7 @@ export const content = (state = initialState, action) => {
       });
       return {
         ...state,
-        holidaysBelarus: [...state.holidaysBelarus, ...newHolidaysArr],
+        holidaysBelarus: [...state.holidaysBelarus, ...newHolidays],
       };
     default:
       return state;
@@ -68,7 +65,6 @@ export const content = (state = initialState, action) => {
 export const updateAllEvents = () => {
   return (dispatch, getState) => {
     axios.get(baseURL).then(({ data }) => {
-      debugger;
       dispatch(updateEvents(data));
     });
   };
@@ -94,8 +90,8 @@ export const updateHolidaysBelarus = () => {
   };
 };
 const setHolydaysBelarus = (holidays) => ({
-  type: SET_HOLIDAYS_BELARUS,
+  type: Content.SET_HOLIDAYS_BELARUS,
   holidays,
 });
-const setEvent = (event) => ({ type: SET_EVENT, event });
-const updateEvents = (events) => ({ type: UPDATE_EVENTS, events });
+const setEvent = (event) => ({ type: Content.ADD_EVENT, event });
+const updateEvents = (events) => ({ type: Content.UPDATE_EVENTS, events });

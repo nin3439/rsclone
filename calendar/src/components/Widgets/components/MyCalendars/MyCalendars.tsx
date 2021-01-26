@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import classes from './styles/MyCalendars.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateHolidaysBelarus } from '../../../../redux/reducers/ContentReducer';
-import { updateSelectedHoliday } from '../../../../redux/reducers/UtilsReducers';
+import { updateSelectedHoliday } from '../../../../redux/reducers/ParametrReducers';
 
 export const MyCalendars: React.FC = () => {
   const dispatch = useDispatch();

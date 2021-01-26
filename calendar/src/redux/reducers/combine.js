@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { content } from './ContentReducer';
-import { utils } from './UtilsReducers';
+import { utils } from './ParametrReducers';
 const createRootReducer = () =>
   combineReducers({
     content,

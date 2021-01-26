@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   updateActiveModal,
   updateDate,
-} from '../../redux/reducers/UtilsReducers';
+} from '../../redux/reducers/ParametrReducers';
 
 export const Widgets: React.FC = () => {
   const date = useSelector((state: any) => state.utils.date);

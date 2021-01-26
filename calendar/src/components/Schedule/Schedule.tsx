@@ -16,14 +16,13 @@ import {
   updateActiveModal,
   updateDate,
   updateViewFormat,
-} from '../../redux/reducers/UtilsReducers';
+} from '../../redux/reducers/ParametrReducers';
 
 const localizer = momentLocalizer(moment);
-export const EventsSchedule: React.FC = () => {
+export const Schedule: React.FC = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(updateAllEvents());
-    console.log('Gjlrk.xtybt ');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const viewFormat = useSelector((state: any) => state.utils.viewFormat);
