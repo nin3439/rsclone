@@ -53,7 +53,6 @@ export const FormElement: React.FC<FormProps> = ({
             setTimeout(() => {
               const typeEvents = switchParameter;
               const validateForm = checkForm(switchParameter, values);
-              debugger;
               updateDateForm({ typeEvents, ...validateForm });
               // console.log(JSON.stringify({ typeEvents, ...values }, null, 2));
               setSubmitting(false);

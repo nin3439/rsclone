@@ -14,20 +14,20 @@ import {
   updateDate,
   updateViewFormat,
 } from '../../redux/updateState';
+
 export const Schedule: React.FC = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(updateAllEvents());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  // const viewFormat = useSelector((state: any) => state.utils.viewFormat);
+  const localizer = momentLocalizer(moment);
   const setViewFormat = (view: string) => {
     dispatch(updateViewFormat(view));
   };
   const { events, holidaysBelarus } = useSelector(
     (state: any) => state.content
   );
-  // const isModalActive = useSelector((state: any) => state.utils.isModalActive);
   const changeModalActive = () => {
     dispatch(updateActiveModal());
   };
@@ -51,10 +51,7 @@ export const Schedule: React.FC = () => {
   const updateDateForm = (data: any) => {
     dispatch(setEvents(data));
   };
-
   moment().locale(`${language}`);
-  const localizer = momentLocalizer(moment);
-
   return (
     <div>
       <Calendar

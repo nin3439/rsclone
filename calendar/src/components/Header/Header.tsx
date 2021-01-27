@@ -31,7 +31,7 @@ export const Header: React.FC = () => {
   const setShowBLock = () => {
     dispatch(updateShowBlock());
   };
-  const date = useSelector((state: any) => state.stateControl.date);
+  const { date, language } = useSelector((state: any) => state.stateControl);
   const changeDate = (dateValue: any) => {
     dispatch(updateDate(dateValue));
   };
@@ -89,7 +89,7 @@ export const Header: React.FC = () => {
         </Tooltip>
 
         <span className={classes.calendarDate}>
-          {moment().format(calendarMouthYear)}
+          {moment().locale(language).format(calendarMouthYear)}
         </span>
 
         <Tooltip title="search">
