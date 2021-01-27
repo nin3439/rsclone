@@ -1,60 +1,62 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
-import { EventsScheduleProps } from './Schedule.types';
-import { FormElement } from '../Form/Form';
+import 'moment/locale/en-gb';
+import 'moment/locale/ru';
+import 'moment/locale/de';
+import 'moment/locale/pt';
 import moment from 'moment';
+import { useSelector, useDispatch } from 'react-redux';
+import { FormElement } from '../Form/Form';
+import { setEvents, updateAllEvents } from '../../API';
+import {
+  updateActiveModal,
+  updateDate,
+  updateViewFormat,
+} from '../../redux/updateState';
 
-moment.locale('en-GB');
-
-const localizer = momentLocalizer(moment);
-
-export const EventsSchedule: React.FC<EventsScheduleProps> = ({
-  date,
-  changeDate,
-  events,
-  setEvents,
-  holidays,
-  isHolidaysSelected,
-  viewFormat,
-  setViewFormat,
-}) => {
-  const [isModalActive, setIsModalActive] = useState(false);
-
+export const Schedule: React.FC = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(updateAllEvents());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const localizer = momentLocalizer(moment);
+  const setViewFormat = (view: string) => {
+    dispatch(updateViewFormat(view));
+  };
+  const { events, holidaysBelarus } = useSelector(
+    (state: any) => state.content
+  );
+  const changeModalActive = () => {
+    dispatch(updateActiveModal());
+  };
+  const {
+    date,
+    isHolidaysSelected,
+    viewFormat,
+    isModalActive,
+    language,
+  } = useSelector((state: any) => state.stateControl);
+  const changeDate = (dateValue: any) => {
+    dispatch(updateDate(dateValue));
+  };
   const getAllEvents = () => {
     if (isHolidaysSelected) {
-      return [...events, ...holidays];
+      return [...events, ...holidaysBelarus];
     } else {
       return events;
     }
   };
-
-  const changeModalActive = () => {
-    setIsModalActive(false);
+  const updateDateForm = (data: any) => {
+    dispatch(setEvents(data));
   };
-
-  const addNewEvent = ({
-    start,
-    end,
-  }: {
-    start: Date | string;
-    end: Date | string;
-  }) => {
-    setIsModalActive(true);
-    setEvents([
-      ...events,
-      {
-        start,
-        end,
-      },
-    ]);
-  };
+  moment().locale(`${language}`);
   return (
     <div>
       <Calendar
-        //culture
         style={{ height: '90vh' }}
         localizer={localizer}
-        events={getAllEvents()}
+        culture={language}
         startAccessor="start"
         date={date?.toDate()}
         endAccessor="end"
@@ -62,16 +64,22 @@ export const EventsSchedule: React.FC<EventsScheduleProps> = ({
         onNavigate={(e) => {
           changeDate(moment(e));
         }}
-        onSelectSlot={addNewEvent}
-        onSelectEvent={(event) => alert(event.title)}
+        onSelectSlot={changeModalActive}
+        onSelectEvent={(event) => console.log(event)}
         popup
         step={15}
         timeslots={8}
         toolbar={false}
         view={viewFormat}
         onView={setViewFormat}
+        events={getAllEvents()}
       />
-      {isModalActive && <FormElement changeModalActive={changeModalActive} />}
+      {isModalActive && (
+        <FormElement
+          updateDateForm={updateDateForm}
+          changeModalActive={changeModalActive}
+        />
+      )}
     </div>
   );
 };

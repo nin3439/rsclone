@@ -1,29 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Form } from 'formik';
 import { FormEvents } from '../FormEvents/FormEvents';
 import { FormTask } from '../formTask/FormTask';
 import { FormReminders } from '../FormReminder/FormReminder';
 import { TextInput } from '../textInput/TextInput';
-import { eventType } from './constants';
+import { eventType } from '../../../../constants';
 import { Button, Box } from '@material-ui/core';
 import { useStyles } from './materialUIStyles';
 
-export const FormSwitch = () => {
+export const FormSwitch = ({ t, setSwitch, switchParameter }: any) => {
   const classMaterial: any = useStyles();
-  const [switchParameter, setSwitch] = useState('events');
   const changeswitchParameter = (param: string) => {
     if (param !== switchParameter) setSwitch(param);
   };
   const changeForm = (switchParam: string) => {
     switch (switchParameter) {
       case eventType.EVENTS:
-        return <FormEvents />;
+        return <FormEvents t={t} />;
       case eventType.TASKS:
-        return <FormTask />;
+        return <FormTask t={t} />;
       case eventType.REMINDERS:
-        return <FormReminders />;
+        return <FormReminders t={t} />;
       default:
-        return <FormEvents />;
+        return <FormEvents t={t} />;
     }
   };
   return (
@@ -34,7 +33,7 @@ export const FormSwitch = () => {
           style={classMaterial.inputTitle}
           name="title"
           type="text"
-          placeholder="Add title"
+          placeholder={t('Add_title')}
         />
         <Box className={classMaterial.categoryBox}>
           <Button
@@ -43,7 +42,7 @@ export const FormSwitch = () => {
             }}
             color="primary"
           >
-            Event
+            {t('event')}
           </Button>
           <Button
             onClick={() => {
@@ -51,7 +50,7 @@ export const FormSwitch = () => {
             }}
             color="primary"
           >
-            Task
+            {t('task')}
           </Button>
           <Button
             onClick={() => {
@@ -59,7 +58,7 @@ export const FormSwitch = () => {
             }}
             color="primary"
           >
-            Reminder
+            {t('reminder')}
           </Button>
         </Box>
         {changeForm(switchParameter)}

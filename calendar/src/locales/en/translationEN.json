@@ -1,4 +1,22 @@
 {
-  "greeting": "Hi, I'm",
-   "create": "create"
+  "create": "create",
+  "save": "save",
+  "task": "task",
+  "reminder": "reminder",
+  "event": "Event",
+  "Today": "Today",
+  "Back": "Back",
+  "Next": "Next",
+  "Month": "Month",
+  "Week": "Week",
+  "Day": "Day",
+  "Agenda": "Agenda",
+  "End_Date": "End Date",
+  "Start_Date": "Start Date",
+  "Add_guests": "Add guests",
+  "indicate_location": "indicate the location",
+  "add_description": "add a description",
+  "Other_parameters": "Other parameters",
+  "Select_Interval": "Select Interval",
+  "Add_title": "Add title"
 }

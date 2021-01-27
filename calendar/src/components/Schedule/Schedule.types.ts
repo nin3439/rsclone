@@ -9,12 +9,19 @@ export type Events = {
 export type TimeFormats = 'month' | 'week' | 'work_week' | 'day' | 'agenda';
 
 export type EventsScheduleProps = {
-  date: Moment | null;
-  changeDate: (date: Moment | null) => void;
-  holidays: Events[];
-  events: any[];
-  setEvents: (events: any[]) => void;
+  // date: Moment | null;
+  // changeDate: (date: Moment | null) => void;
+  // holidays: Events[];
   isHolidaysSelected: boolean;
-  viewFormat: TimeFormats;
-  setViewFormat: (view: TimeFormats) => void;
+  t: any;
+};
+
+export type updateDateFormProps = {
+  typeEvents?: string;
+  title?: string;
+  listGuest?: string;
+  location?: string;
+  description?: string;
+  start?: string;
+  end?: string;
 };
