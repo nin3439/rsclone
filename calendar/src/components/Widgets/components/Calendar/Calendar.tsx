@@ -1,14 +1,14 @@
 import React from 'react';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
-import { CalendarProps } from './Calendar.types';
 import MomentUtils from '@date-io/moment';
-import i18n from '../../../../i18ns';
+import { useSelector } from 'react-redux';
 import moment from 'moment';
-
+import { CalendarProps } from './Calendar.types';
 export const Calendar = ({ date, changeDate }: CalendarProps) => {
-  moment.locale(`${i18n.language}`);
+  const { language } = useSelector((state: any) => state.stateControl);
+  moment.locale(language);
   return (
-    <MuiPickersUtilsProvider locale={i18n.language} utils={MomentUtils}>
+    <MuiPickersUtilsProvider locale={language} utils={MomentUtils}>
       <DatePicker
         variant="static"
         value={date}

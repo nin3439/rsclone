@@ -1,8 +1,7 @@
 import React from 'react';
-import i18n from '../../i18ns';
-import classes from './Header.module.scss';
 import moment from 'moment';
-import { HeaderProps } from './Header.types';
+import { useSelector, useDispatch } from 'react-redux';
+
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
@@ -14,31 +13,40 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { Formats } from '../../formats';
+import { Languages } from '../../constants';
+import i18n from '../../i18ns';
+import {
+  updateDate,
+  updateShowBlock,
+  updateViewFormat,
+  updateLanguage,
+} from '../../redux/updateState.js';
+import classes from './Header.module.scss';
 
-export const Header: React.FC<HeaderProps> = ({
-  showBlock,
-  setShowBlock,
-  date,
-  changeDate,
-  setViewFormat,
-}) => {
+export const Header: React.FC = () => {
+  const dispatch = useDispatch();
+  const setViewFormat = (view: string) => {
+    dispatch(updateViewFormat(view));
+  };
+  const setShowBLock = () => {
+    dispatch(updateShowBlock());
+  };
+  const { date, language } = useSelector((state: any) => state.stateControl);
+  const changeDate = (dateValue: any) => {
+    dispatch(updateDate(dateValue));
+  };
   const calendarTodayDate = 'dddd, Do MMMM';
   const calendarMouthYear = 'MMMM YYYY';
-  const changeLanguage = (ln: string) => {
-    return () => {
-      debugger;
-      console.log(ln);
-
-      i18n.changeLanguage(ln);
-      console.log(i18n.language);
-    };
+  const changeLanguage = (ln: string): void => {
+    dispatch(updateLanguage(ln));
+    i18n.changeLanguage(ln);
   };
   return (
     <div className={classes.header}>
       <div>
         <Tooltip title="Menu">
           <IconButton>
-            <MenuIcon onClick={() => setShowBlock(!showBlock)} />
+            <MenuIcon onClick={setShowBLock} />
           </IconButton>
         </Tooltip>
 
@@ -81,7 +89,7 @@ export const Header: React.FC<HeaderProps> = ({
         </Tooltip>
 
         <span className={classes.calendarDate}>
-          {moment().format(calendarMouthYear)}
+          {moment().locale(language).format(calendarMouthYear)}
         </span>
 
         <Tooltip title="search">
@@ -96,7 +104,11 @@ export const Header: React.FC<HeaderProps> = ({
             className={classes.selectEmpty}
             inputProps={{ 'aria-label': 'Without label' }}
           >
-            <MenuItem onClick={() => setViewFormat(Formats.MONTH)}>
+            <MenuItem
+              onClick={(e) => {
+                setViewFormat(Formats.MONTH);
+              }}
+            >
               Month
             </MenuItem>
             <MenuItem onClick={() => setViewFormat(Formats.WEEK)}>
@@ -109,10 +121,35 @@ export const Header: React.FC<HeaderProps> = ({
           </Select>
         </FormControl>
 
-        <button onClick={changeLanguage('en')}>EN</button>
-        <button onClick={changeLanguage('ru')}>RU</button>
-        <button onClick={changeLanguage('pt')}>PT</button>
-        <button onClick={changeLanguage('de')}>DE</button>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            changeLanguage(Languages.EN);
+          }}
+        >
+          {Languages.EN}
+        </button>
+        <button
+          onClick={() => {
+            changeLanguage(Languages.RU);
+          }}
+        >
+          {Languages.RU}
+        </button>
+        <button
+          onClick={() => {
+            changeLanguage(Languages.PT);
+          }}
+        >
+          {Languages.PT}
+        </button>
+        <button
+          onClick={() => {
+            changeLanguage(Languages.DE);
+          }}
+        >
+          {Languages.DE}
+        </button>
       </div>
     </div>
   );

@@ -5,8 +5,8 @@ export type Events = {
 };
 
 export type MyCalendarsProps = {
-  holidays: Events[];
-  setHolidays: (holidays: Events[]) => void;
+  // holidays: Events[];
+  // setHolidays: (holidays: Events[]) => void;
   isHolidaysSelected: boolean;
   setIsHolidaysSelected: (isHolidaysSelected: boolean) => void;
 };

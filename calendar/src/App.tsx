@@ -1,53 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { Header } from './components/Header/Header';
 import { Widgets } from './components/Widgets/Widgets';
-import { EventsSchedule } from './components/Schedule/Schedule';
-import moment, { Moment } from 'moment';
-import examplesOfEvents from './events';
-import { Events, TimeFormats } from './App.types';
-import { Formats } from './formats';
+import { Schedule } from './components/Schedule/Schedule';
+
 import './App.css';
-import { useTranslation } from 'react-i18next';
-debugger;
 export const App = () => {
-  const [events, setEvents] = useState(examplesOfEvents);
-  const [holidays, setHolidays] = useState<Events[]>([]);
-  const [isHolidaysSelected, setIsHolidaysSelected] = useState<boolean>(false);
-  const [date, changeDate] = useState<Moment | null>(moment());
-  const [showBlock, setShowBlock] = useState<boolean>(true);
-  const [viewFormat, setViewFormat] = useState<TimeFormats>(Formats.MONTH);
-  const { t } = useTranslation();
+  const showBlock = useSelector((state: any) => state.stateControl.showBlock);
   return (
     <div className="App">
-      <Header
-        showBlock={showBlock}
-        setShowBlock={setShowBlock}
-        date={date}
-        changeDate={changeDate}
-        setViewFormat={setViewFormat}
-      />
-      {showBlock && (
-        <Widgets
-          date={date}
-          changeDate={changeDate}
-          holidays={holidays}
-          setHolidays={setHolidays}
-          isHolidaysSelected={isHolidaysSelected}
-          setIsHolidaysSelected={setIsHolidaysSelected}
-        />
-      )}
+      <Header />
+      {showBlock && <Widgets />}
       <div className="App-content">
-        <EventsSchedule
-          date={date}
-          changeDate={changeDate}
-          events={events}
-          setEvents={setEvents}
-          holidays={holidays}
-          isHolidaysSelected={isHolidaysSelected}
-          viewFormat={viewFormat}
-          setViewFormat={setViewFormat}
-          t={t}
-        />
+        <Schedule />
       </div>
     </div>
   );

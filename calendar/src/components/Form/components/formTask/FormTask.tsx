@@ -12,7 +12,7 @@ export const FormTask = ({ t }: any) => {
         <AccessTime />
         <Box className={classMaterial.timeBox}>
           <TextInput
-            name="dateTimeStart"
+            name="start"
             id="datetime-local"
             type="datetime-local"
             label={t('Start_Date')}
