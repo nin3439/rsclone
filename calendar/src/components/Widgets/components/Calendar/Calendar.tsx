@@ -7,9 +7,9 @@ import { useSelector } from 'react-redux';
 import moment from 'moment';
 export const Calendar = ({ date, changeDate }: CalendarProps) => {
   const { language } = useSelector((state: any) => state.stateControl);
-  moment().locale(language);
+  moment().locale(`${language}`);
   return (
-    <MuiPickersUtilsProvider locale={`${language}`} utils={MomentUtils}>
+    <MuiPickersUtilsProvider locale={language} utils={MomentUtils}>
       <DatePicker
         variant="static"
         value={date}
