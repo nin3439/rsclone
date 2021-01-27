@@ -1,11 +1,6 @@
-import axios from 'axios';
 import { eventType } from '../../constants';
-import { Content } from './constantsActionType';
+import { Content } from '../constantsActionType';
 
-const route = 'todos';
-const baseURL = `http://rs-back.herokuapp.com/${route}`;
-const urlBelarus =
-  'https://holidayapi.com/v1/holidays?pretty&key=79470c0f-95f1-4988-9261-54417f3e6da3&country=BY&year=2020';
 const now = new Date();
 const initialState = {
   events: [
@@ -61,37 +56,3 @@ export const content = (state = initialState, action) => {
       return state;
   }
 };
-
-export const updateAllEvents = () => {
-  return (dispatch, getState) => {
-    axios.get(baseURL).then(({ data }) => {
-      dispatch(updateEvents(data));
-    });
-  };
-};
-
-export const setEvents = (data) => {
-  return (dispatch, getState) => {
-    axios({
-      baseURL,
-      method: 'post',
-      data,
-      url: '/',
-    }).then(({ data }) => {
-      dispatch(setEvent(data));
-    });
-  };
-};
-export const updateHolidaysBelarus = () => {
-  return (dispatch, getState) => {
-    axios.get(urlBelarus).then(({ data }) => {
-      dispatch(setHolydaysBelarus(data.holidays));
-    });
-  };
-};
-const setHolydaysBelarus = (holidays) => ({
-  type: Content.SET_HOLIDAYS_BELARUS,
-  holidays,
-});
-const setEvent = (event) => ({ type: Content.ADD_EVENT, event });
-const updateEvents = (events) => ({ type: Content.UPDATE_EVENTS, events });

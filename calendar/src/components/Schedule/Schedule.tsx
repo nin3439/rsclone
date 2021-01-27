@@ -8,35 +8,37 @@ import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
 import { FormElement } from '../Form/Form';
 import i18n from '../../i18ns';
-import {
-  setEvents,
-  updateAllEvents,
-} from '../../redux/reducers/ContentReducer';
+import { setEvents, updateAllEvents } from '../../API';
 import {
   updateActiveModal,
   updateDate,
   updateViewFormat,
-} from '../../redux/reducers/ParametrReducers';
+} from '../../redux/updateState';
 
-const localizer = momentLocalizer(moment);
 export const Schedule: React.FC = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(updateAllEvents());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const viewFormat = useSelector((state: any) => state.utils.viewFormat);
+  // const viewFormat = useSelector((state: any) => state.utils.viewFormat);
   const setViewFormat = (view: string) => {
     dispatch(updateViewFormat(view));
   };
   const { events, holidaysBelarus } = useSelector(
     (state: any) => state.content
   );
-  const isModalActive = useSelector((state: any) => state.utils.isModalActive);
+  // const isModalActive = useSelector((state: any) => state.utils.isModalActive);
   const changeModalActive = () => {
     dispatch(updateActiveModal());
   };
-  const { date, isHolidaysSelected } = useSelector((state: any) => state.utils);
+  const {
+    date,
+    isHolidaysSelected,
+    viewFormat,
+    isModalActive,
+    language,
+  } = useSelector((state: any) => state.stateControl);
   const changeDate = (dateValue: any) => {
     dispatch(updateDate(dateValue));
   };
@@ -47,16 +49,17 @@ export const Schedule: React.FC = () => {
       return events;
     }
   };
-  moment(date).locale(`${i18n.language}`);
   const updateDateForm = (data: any) => {
     dispatch(setEvents(data));
   };
+  console.log(moment().locale(`${language}`), momentLocalizer(moment));
+  const localizer = momentLocalizer(moment);
   return (
     <div>
       <Calendar
         style={{ height: '90vh' }}
         localizer={localizer}
-        culture={i18n.language}
+        culture={language}
         startAccessor="start"
         date={date?.toDate()}
         endAccessor="end"

@@ -5,13 +5,10 @@ import { MyCalendars } from './components/MyCalendars/MyCalendars';
 import styles from './styles/Widgets.module.scss';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  updateActiveModal,
-  updateDate,
-} from '../../redux/reducers/ParametrReducers';
+import { updateActiveModal, updateDate } from '../../redux/updateState';
 
 export const Widgets: React.FC = () => {
-  const date = useSelector((state: any) => state.utils.date);
+  const { date } = useSelector((state: any) => state.stateControl);
   const changeDate = (dateValue: any) => {
     dispatch(updateDate(dateValue));
   };

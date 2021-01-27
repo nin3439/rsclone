@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import classes from './styles/MyCalendars.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateHolidaysBelarus } from '../../../../redux/reducers/ContentReducer';
-import { updateSelectedHoliday } from '../../../../redux/reducers/ParametrReducers';
+import { updateHolidaysBelarus } from '../../../../API';
+import { updateSelectedHoliday } from '../../../../redux/updateState';
 
 export const MyCalendars: React.FC = () => {
   const dispatch = useDispatch();
@@ -11,7 +11,7 @@ export const MyCalendars: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const isHolidaysSelected = useSelector(
-    (state: any) => state.utils.isHolidaysSelected
+    (state: any) => state.stateControl.isHolidaysSelected
   );
   const toggleHolidays = () => {
     dispatch(updateSelectedHoliday());

@@ -19,8 +19,8 @@ import {
   updateDate,
   updateShowBlock,
   updateViewFormat,
-} from '../../redux/reducers/ParametrReducers';
-
+  updateLanguage,
+} from '../../redux/updateState.js';
 import classes from './Header.module.scss';
 
 export const Header: React.FC = () => {
@@ -31,16 +31,15 @@ export const Header: React.FC = () => {
   const setShowBLock = () => {
     dispatch(updateShowBlock());
   };
-  const date = useSelector((state: any) => state.utils.date);
+  const date = useSelector((state: any) => state.stateControl.date);
   const changeDate = (dateValue: any) => {
     dispatch(updateDate(dateValue));
   };
   const calendarTodayDate = 'dddd, Do MMMM';
   const calendarMouthYear = 'MMMM YYYY';
-  const changeLanguage = (ln: string) => {
-    return () => {
-      i18n.changeLanguage(ln);
-    };
+  const changeLanguage = (ln: string): void => {
+    dispatch(updateLanguage(ln));
+    i18n.changeLanguage(ln);
   };
   return (
     <div className={classes.header}>
@@ -90,7 +89,7 @@ export const Header: React.FC = () => {
         </Tooltip>
 
         <span className={classes.calendarDate}>
-          {moment(date).format(calendarMouthYear)}
+          {moment().format(calendarMouthYear)}
         </span>
 
         <Tooltip title="search">
@@ -122,10 +121,35 @@ export const Header: React.FC = () => {
           </Select>
         </FormControl>
 
-        <button onClick={changeLanguage(Languages.EN)}>{Languages.EN}</button>
-        <button onClick={changeLanguage(Languages.RU)}>{Languages.RU}</button>
-        <button onClick={changeLanguage(Languages.PT)}>{Languages.PT}</button>
-        <button onClick={changeLanguage(Languages.DE)}>{Languages.DE}</button>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            changeLanguage(Languages.EN);
+          }}
+        >
+          {Languages.EN}
+        </button>
+        <button
+          onClick={() => {
+            changeLanguage(Languages.RU);
+          }}
+        >
+          {Languages.RU}
+        </button>
+        <button
+          onClick={() => {
+            changeLanguage(Languages.PT);
+          }}
+        >
+          {Languages.PT}
+        </button>
+        <button
+          onClick={() => {
+            changeLanguage(Languages.DE);
+          }}
+        >
+          {Languages.DE}
+        </button>
       </div>
     </div>
   );

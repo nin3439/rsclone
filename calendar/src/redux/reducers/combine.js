@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import { content } from './ContentReducer';
-import { utils } from './ParametrReducers';
+import { stateControl } from './StateContolReducers';
 const createRootReducer = () =>
   combineReducers({
     content,
-    utils,
+    stateControl,
   });
 export default createRootReducer;
