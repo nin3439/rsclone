@@ -7,7 +7,6 @@ import 'moment/locale/pt';
 import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
 import { FormElement } from '../Form/Form';
-import i18n from '../../i18ns';
 import { setEvents, updateAllEvents } from '../../API';
 import {
   updateActiveModal,
