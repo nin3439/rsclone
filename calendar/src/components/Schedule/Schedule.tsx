@@ -14,7 +14,6 @@ import {
   updateDate,
   updateViewFormat,
 } from '../../redux/updateState';
-
 export const Schedule: React.FC = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -52,8 +51,10 @@ export const Schedule: React.FC = () => {
   const updateDateForm = (data: any) => {
     dispatch(setEvents(data));
   };
-  console.log(moment().locale(`${language}`), momentLocalizer(moment));
+
+  moment().locale(`${language}`);
   const localizer = momentLocalizer(moment);
+
   return (
     <div>
       <Calendar
