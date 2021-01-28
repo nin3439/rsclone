@@ -15,7 +15,6 @@ export const changeLanguage = (lang) => ({
 });
 export const changeActiveModal = () => ({ type: Parametr.CHANGE_ACTIVE_MODAL });
 
-
 export const updateActiveModal = () => {
   return (dispatch, getState) => {
     dispatch(changeActiveModal());
