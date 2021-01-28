@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import classes from './styles/MyCalendars.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateHolidaysBelarus } from '../../../../API';
-import { updateSelectedHoliday } from '../../../../redux/updateState';
+import { updateHolidaysBelarus } from '../../../../redux/actions/contentAction';
+import { updateSelectedHoliday } from '../../../../redux/actions/StateContolAction';
 
 export const MyCalendars: React.FC = () => {
   const dispatch = useDispatch();

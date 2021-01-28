@@ -7,12 +7,12 @@ import 'moment/locale/pt';
 import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
 import { FormElement } from '../Form/Form';
-import { setEvents, updateAllEvents } from '../../API';
+import { setEvents, updateAllEvents } from '../../redux/actions/contentAction';
 import {
   updateActiveModal,
   updateDate,
   updateViewFormat,
-} from '../../redux/updateState';
+} from '../../redux/actions/StateContolAction';
 
 export const Schedule: React.FC = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ export const Schedule: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const localizer = momentLocalizer(moment);
-  const setViewFormat = (view: string) => {
+  const setViewFormat = (view: any) => {
     dispatch(updateViewFormat(view));
   };
   const { events, holidaysBelarus } = useSelector(
@@ -50,6 +50,7 @@ export const Schedule: React.FC = () => {
   const updateDateForm = (data: any) => {
     dispatch(setEvents(data));
   };
+
   moment().locale(`${language}`);
   return (
     <div>
