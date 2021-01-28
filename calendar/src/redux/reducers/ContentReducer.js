@@ -33,9 +33,25 @@ const initialState = {
 export const content = (state = initialState, action) => {
   switch (action.type) {
     case Content.UPDATE_EVENTS:
-      return { ...state, events: [...action.events] };
+      const newEvents = [
+        ...action.events.map((event) => {
+          return {
+            ...event,
+            start: new Date(event.start),
+            end: new Date(event.end),
+          };
+        }),
+      ];
+      return { ...state, events: [...newEvents] };
+
     case Content.ADD_EVENT:
-      return { ...state, events: [...state.events, action.event] };
+      const newEvent = {
+        ...action.event,
+        start: new Date(action.event.start),
+        end: new Date(action.event.end),
+      };
+      return { ...state, events: [...state.events, newEvent] };
+
     case Content.SET_HOLIDAYS_BELARUS:
       const newHolidays = action.holidays.map((holiday) => {
         const year = new Date().getFullYear();
@@ -52,6 +68,7 @@ export const content = (state = initialState, action) => {
         ...state,
         holidaysBelarus: [...state.holidaysBelarus, ...newHolidays],
       };
+
     default:
       return state;
   }

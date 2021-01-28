@@ -17,10 +17,12 @@ export const stateControl = (state = initialState, action) => {
     case Parametr.CHANGE_ACTIVE_MODAL:
       return { ...state, isModalActive: !state.isModalActive };
     case Parametr.CHANGE_VIEW_FORMAT:
+      debugger;
       return { ...state, viewFormat: action.view };
     case Parametr.CHANGE_SHOW_BLOCK:
       return { ...state, showBlock: !state.showBlock };
     case Parametr.CHANGE_DATE:
+      debugger;
       return { ...state, date: action.date };
     case Parametr.CHANGE_SELECTED_HOLIDAY:
       return { ...state, isHolidaysSelected: !state.isHolidaysSelected };

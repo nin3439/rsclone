@@ -20,7 +20,7 @@ import {
   updateShowBlock,
   updateViewFormat,
   updateLanguage,
-} from '../../redux/updateState.js';
+} from '../../redux/actions/StateContolAction';
 import classes from './Header.module.scss';
 
 export const Header: React.FC = () => {
@@ -111,11 +111,25 @@ export const Header: React.FC = () => {
             >
               Month
             </MenuItem>
-            <MenuItem onClick={() => setViewFormat(Formats.WEEK)}>
+            <MenuItem
+              onClick={() => {
+                setViewFormat(Formats.WEEK);
+              }}
+            >
               Week
             </MenuItem>
-            <MenuItem onClick={() => setViewFormat(Formats.DAY)}>Day</MenuItem>
-            <MenuItem onClick={() => setViewFormat(Formats.AGENDA)}>
+            <MenuItem
+              onClick={() => {
+                setViewFormat(Formats.DAY);
+              }}
+            >
+              Day
+            </MenuItem>
+            <MenuItem
+              onClick={() => {
+                setViewFormat(Formats.AGENDA);
+              }}
+            >
               Agenta
             </MenuItem>
           </Select>
