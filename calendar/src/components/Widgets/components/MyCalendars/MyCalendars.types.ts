@@ -1,3 +1,5 @@
+import { Moment } from 'moment';
+
 export type Events = {
   start: Date | string;
   end: Date | string;
@@ -9,4 +11,5 @@ export type MyCalendarsProps = {
   // setHolidays: (holidays: Events[]) => void;
   isHolidaysSelected: boolean;
   setIsHolidaysSelected: (isHolidaysSelected: boolean) => void;
+  date: Moment | null;
 };

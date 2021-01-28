@@ -13,6 +13,8 @@ import {
   updateDate,
   updateViewFormat,
 } from '../../redux/actions/StateContolAction';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
+import classes from './styles/Schedule.module.scss';
 
 export const Schedule: React.FC = () => {
   const dispatch = useDispatch();
@@ -55,6 +57,7 @@ export const Schedule: React.FC = () => {
   return (
     <div>
       <Calendar
+        className={classes.popa}
         style={{ height: '90vh' }}
         localizer={localizer}
         culture={language}

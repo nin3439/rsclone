@@ -37,9 +37,15 @@ export const Header: React.FC = () => {
   };
   const calendarTodayDate = 'dddd, Do MMMM';
   const calendarMouthYear = 'MMMM YYYY';
-  const changeLanguage = (ln: string): void => {
-    dispatch(updateLanguage(ln));
-    i18n.changeLanguage(ln);
+
+  const handleChangeView = (event: any) => {
+    setViewFormat(event.target.value);
+    console.log(event);
+  };
+  const changeLanguage = (ln: string) => {
+    return () => {
+      i18n.changeLanguage(ln);
+    };
   };
   return (
     <div className={classes.header}>
@@ -89,7 +95,7 @@ export const Header: React.FC = () => {
         </Tooltip>
 
         <span className={classes.calendarDate}>
-          {moment().locale(language).format(calendarMouthYear)}
+          {date!.locale(language).format(calendarMouthYear)}
         </span>
 
         <Tooltip title="search">
@@ -100,37 +106,35 @@ export const Header: React.FC = () => {
 
         <FormControl variant="outlined" className={classes.formControl}>
           <Select
-            displayEmpty={false}
+            value={Formats}
+            onChange={handleChangeView}
+            displayEmpty
             className={classes.selectEmpty}
             inputProps={{ 'aria-label': 'Without label' }}
           >
             <MenuItem
-              onClick={(e) => {
-                setViewFormat(Formats.MONTH);
-              }}
+              value={Formats.MONTH}
+              onClick={(e) => setViewFormat(Formats.MONTH)}
             >
               Month
             </MenuItem>
             <MenuItem
-              onClick={() => {
-                setViewFormat(Formats.WEEK);
-              }}
+              value={Formats.WEEK}
+              onClick={() => setViewFormat(Formats.WEEK)}
             >
               Week
             </MenuItem>
             <MenuItem
-              onClick={() => {
-                setViewFormat(Formats.DAY);
-              }}
+              value={Formats.DAY}
+              onClick={() => setViewFormat(Formats.DAY)}
             >
               Day
             </MenuItem>
             <MenuItem
-              onClick={() => {
-                setViewFormat(Formats.AGENDA);
-              }}
+              value={Formats.AGENDA}
+              onClick={() => setViewFormat(Formats.AGENDA)}
             >
-              Agenta
+              Agenda
             </MenuItem>
           </Select>
         </FormControl>
