@@ -1,7 +1,11 @@
-import { getAllEvents, getHolidaysBelarus, postEvent } from '../../API';
+import {
+  getAllEvents,
+  postEvent,
+  getHolidaysBelarus,
+} from '../../api/eventsApi';
 import { Content } from '../constantsActionType';
 
-export const setHolydaysBelarus = (holidays) => ({
+export const setHolidaysBelarus = (holidays) => ({
   type: Content.SET_HOLIDAYS_BELARUS,
   holidays,
 });
@@ -29,8 +33,15 @@ export const setEvents = (data) => {
 
 export const updateHolidaysBelarus = () => {
   return (dispatch, getState) => {
-    getHolidaysBelarus().then(({ data }) => {
-      dispatch(setHolydaysBelarus(data.holidays));
-    });
+    const state = getState();
+    const isHolidaysSelected = state.stateControl.isHolidaysSelected;
+    const selectedYear = state.stateControl.date.format('YYYY');
+    if (isHolidaysSelected) {
+      getHolidaysBelarus(selectedYear).then(({ data }) => {
+        dispatch(setHolidaysBelarus(data.response.holidays));
+      });
+    } else {
+      dispatch(setHolidaysBelarus([]));
+    }
   };
 };

@@ -1,4 +1,4 @@
-import { TimeFormats } from './App.types';
+import { TimeFormats } from '../App.types';
 
 export const Formats = {
   MONTH: 'month' as TimeFormats,

@@ -1,4 +1,4 @@
-import { eventType } from '../../constants';
+import { eventType } from '../../constants/constants';
 import { Content } from '../constantsActionType';
 
 const now = new Date();
@@ -27,7 +27,7 @@ const initialState = {
       end: now,
     },
   ],
-  holidaysBelarus: [],
+  holidays: [],
 };
 
 export const content = (state = initialState, action) => {
@@ -54,21 +54,17 @@ export const content = (state = initialState, action) => {
 
     case Content.SET_HOLIDAYS_BELARUS:
       const newHolidays = action.holidays.map((holiday) => {
-        const year = new Date().getFullYear();
-        const month = new Date(holiday.date).getMonth();
-        const day = new Date(holiday.date).getDate();
         return {
           title: holiday.name,
-          start: new Date(year, month, day),
-          end: new Date(year, month, day),
+          start: holiday.date.iso,
+          end: holiday.date.iso,
           allDay: true,
         };
       });
       return {
         ...state,
-        holidaysBelarus: [...state.holidaysBelarus, ...newHolidays],
+        holidays: [...newHolidays],
       };
-
     default:
       return state;
   }

@@ -4,7 +4,7 @@ import { FormEvents } from '../FormEvents/FormEvents';
 import { FormTask } from '../formTask/FormTask';
 import { FormReminders } from '../FormReminder/FormReminder';
 import { TextInput } from '../textInput/TextInput';
-import { eventType } from '../../../../constants';
+import { eventType } from '../../../../constants/constants';
 import { Button, Box } from '@material-ui/core';
 import { useStyles } from './materialUIStyles';
 
