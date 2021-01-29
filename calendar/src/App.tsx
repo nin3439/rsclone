@@ -3,15 +3,14 @@ import { useSelector } from 'react-redux';
 import { Header } from './components/Header/Header';
 import { Widgets } from './components/Widgets/Widgets';
 import { Schedule } from './components/Schedule/Schedule';
-
-import './App.css';
+import classes from './App.module.scss';
 export const App = () => {
   const showBlock = useSelector((state: any) => state.stateControl.showBlock);
   return (
-    <div className="App">
+    <div className={classes.app}>
       <Header />
       {showBlock && <Widgets />}
-      <div className="App-content">
+      <div className={showBlock ? classes.width70 : classes.width100}>
         <Schedule />
       </div>
     </div>

@@ -1,5 +1,7 @@
-import { getAllEvents, getHolidaysBelarus, postEvent } from '../../API';
+import axios from 'axios';
+import { getAllEvents, postEvent } from '../../API';
 import { Content } from '../constantsActionType';
+const belarusHolidaysUrl = `https://calendarific.com/api/v2/holidays?api_key=49b59051224e551a4d502bb47e736b778ff4fab9&country=BY`;
 
 export const setHolidaysBelarus = (holidays) => ({
   type: Content.SET_HOLIDAYS_BELARUS,
@@ -27,13 +29,13 @@ export const setEvents = (data) => {
   };
 };
 
-export const updateHolidaysBelarus = () => {
-  return (dispatch, getState) => {
-    getHolidaysBelarus().then(({ data }) => {
-      dispatch(setHolydaysBelarus(data.holidays));
-    });
-  };
-};
+// export const updateHolidaysBelarus = () => {
+//   return (dispatch, getState) => {
+//     getHolidaysBelarus().then(({ data }) => {
+//       dispatch(setHolydaysBelarus(data.holidays));
+//     });
+//   };
+// };
 
 export const updateHolidaysBelarus = () => {
   return (dispatch, getState) => {

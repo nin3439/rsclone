@@ -1,14 +1,21 @@
 import React, { useEffect } from 'react';
-import classes from './styles/MyCalendars.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateHolidaysBelarus } from '../../../../redux/actions/contentAction';
 import { updateSelectedHoliday } from '../../../../redux/actions/StateContolAction';
+import {
+  Typography,
+  FormControlLabel,
+  FormGroup,
+  Checkbox,
+} from '@material-ui/core/';
+import { useStyles } from './styles/materialUIStyles';
 
 export const MyCalendars: React.FC = () => {
   const dispatch = useDispatch();
   const { isHolidaysSelected, date } = useSelector(
     (state: any) => state.stateControl
   );
+  const classesMaterial = useStyles();
 
   useEffect(() => {
     if (isHolidaysSelected) {
@@ -21,28 +28,42 @@ export const MyCalendars: React.FC = () => {
     dispatch(updateSelectedHoliday());
   };
   return (
-    <div className={classes['mycalendars-wrapper']}>
-      <p className={classes.paragraph}>My Calendars</p>
-      <label>
-        <input
-          type="checkbox"
-          onChange={toggleHolidays}
-          checked={isHolidaysSelected}
+    <div className={classesMaterial.root}>
+      <Typography
+        className={classesMaterial.title}
+        color="textSecondary"
+        gutterBottom
+      >
+        My Calendars
+      </Typography>
+      <FormGroup>
+        <FormControlLabel
+          className={classesMaterial.pos}
+          control={
+            <Checkbox
+              checked={isHolidaysSelected}
+              onChange={toggleHolidays}
+              color="primary"
+            />
+          }
+          label="Belarus's Holidays"
         />
-        Belarus's Holidays
-      </label>
-      <label>
-        <input type="checkbox" />
-        Birthdays
-      </label>
-      <label>
-        <input type="checkbox" />
-        Tasks
-      </label>
-      <label>
-        <input type="checkbox" />
-        Reminders
-      </label>
+        <FormControlLabel
+          className={classesMaterial.pos}
+          control={<Checkbox color="default" />}
+          label="Birthdays"
+        />
+        <FormControlLabel
+          className={classesMaterial.pos}
+          control={<Checkbox color="secondary" />}
+          label="Tasks"
+        />
+        <FormControlLabel
+          className={classesMaterial.pos}
+          control={<Checkbox color="default" />}
+          label="Reminders"
+        />
+      </FormGroup>
     </div>
   );
 };
