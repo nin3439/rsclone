@@ -4,7 +4,6 @@ const baseURL = `https://rs-back.herokuapp.com/${route}`;
 export const getAllEvents = () => {
   return axios.get(baseURL);
 };
-
 export const postEvent = (data) => {
   return axios({
     baseURL,
