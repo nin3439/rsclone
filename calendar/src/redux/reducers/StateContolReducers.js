@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { Formats } from '../../formats';
+import { Formats } from '../../constants/formats';
 import { Parametr } from '../constantsActionType';
 
 let initialState = {

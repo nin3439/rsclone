@@ -1,4 +1,8 @@
-import { getAllEvents, postEvent, getHolidaysBelarus } from '../../API';
+import {
+  getAllEvents,
+  postEvent,
+  getHolidaysBelarus,
+} from '../../api/eventsApi';
 import { Content } from '../constantsActionType';
 
 export const setHolidaysBelarus = (holidays) => ({

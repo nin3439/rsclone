@@ -1,8 +1,8 @@
 import React from 'react';
 import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
-import { Formats } from '../../formats';
-import { Languages } from '../../constants';
+import { Formats } from '../../constants/formats';
+import { Languages } from '../../constants/constants';
 import i18n from '../../i18ns';
 import {
   updateDate,

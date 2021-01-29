@@ -1,4 +1,4 @@
-import { eventType } from '../../constants';
+import { eventType } from '../../constants/constants';
 import { Content } from '../constantsActionType';
 
 const now = new Date();
