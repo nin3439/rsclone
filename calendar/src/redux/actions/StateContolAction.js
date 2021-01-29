@@ -45,6 +45,7 @@ export const updateSelectedHoliday = () => {
 
 export const updateLanguage = (lang) => {
   return (dispatch, getState) => {
+    debugger;
     dispatch(changeLanguage(lang));
   };
 };

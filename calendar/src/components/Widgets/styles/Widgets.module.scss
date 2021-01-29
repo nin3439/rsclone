@@ -1,10 +1,15 @@
-.sidebar {
-  width: 30%;
-  height: 93.1vh;
-  background-color: #ffe4c4;
+.widgets {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 23%;
+  height: 90vh;
+  border-top: 1px solid rgba(192, 191, 191, 0.5);
 }
 
-.button {
-  margin-top: 10px;
-  margin-bottom: 20px;
+.btn {
+  width: 120px;
+  height: 43px;
+  margin: 0 20px;
+  border-radius: 16px;
 }

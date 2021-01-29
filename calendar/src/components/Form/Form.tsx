@@ -7,7 +7,7 @@ import { Box } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
 import { useStyles } from './materialUIStyles';
-import { eventType } from '../../constants';
+import { eventType } from '../../constants/constants';
 
 export const FormElement: React.FC<FormProps> = ({
   changeModalActive,
