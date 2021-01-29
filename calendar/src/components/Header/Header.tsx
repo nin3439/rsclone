@@ -8,6 +8,7 @@ import {
   updateDate,
   updateShowBlock,
   updateViewFormat,
+  updateLanguage,
 } from '../../redux/actions/StateContolAction';
 import {
   Menu,
@@ -47,9 +48,8 @@ export const Header: React.FC = () => {
     setViewFormat(event.target.value);
   };
   const changeLanguage = (ln: string) => {
-    return () => {
-      i18n.changeLanguage(ln);
-    };
+    dispatch(updateLanguage(ln));
+    i18n.changeLanguage(ln);
   };
   return (
     <div className={classes.header}>
@@ -76,7 +76,7 @@ export const Header: React.FC = () => {
       <Tooltip title="Previous Month">
         <Button
           onClick={() => {
-            changeDate(moment(date).subtract(31, 'days'));
+            changeDate(moment(date).subtract(1, 'months'));
           }}
         >
           <ArrowBackIos />
@@ -86,7 +86,7 @@ export const Header: React.FC = () => {
       <Tooltip title="Next Month">
         <Button
           onClick={() => {
-            changeDate(moment(date).add(31, 'days'));
+            changeDate(moment(date).add(1, 'months'));
           }}
         >
           <ArrowForwardIos />
