@@ -8,7 +8,6 @@ import {
   updateDate,
   updateShowBlock,
   updateViewFormat,
-  updateLanguage,
 } from '../../redux/actions/StateContolAction';
 import {
   Menu,
