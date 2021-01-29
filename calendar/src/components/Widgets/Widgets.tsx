@@ -31,14 +31,7 @@ export const Widgets: React.FC = () => {
         {t('create')}
       </Button>
       <Calendar date={date} changeDate={changeDate} />
-      {/* {activeModal && <FormElement changeModalActive={changeModalActive} />} */}
-      <MyCalendars
-      // holidays={holidays}
-      // setHolidays={setHolidays}
-      // isHolidaysSelected={isHolidaysSelected}
-      // setIsHolidaysSelected={setIsHolidaysSelected}
-      // date={date}
-      />
+      <MyCalendars />
     </div>
   );
 };

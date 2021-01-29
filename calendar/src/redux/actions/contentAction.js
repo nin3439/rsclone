@@ -1,7 +1,7 @@
 import { getAllEvents, getHolidaysBelarus, postEvent } from '../../API';
 import { Content } from '../constantsActionType';
 
-export const setHolydaysBelarus = (holidays) => ({
+export const setHolidaysBelarus = (holidays) => ({
   type: Content.SET_HOLIDAYS_BELARUS,
   holidays,
 });
@@ -32,5 +32,21 @@ export const updateHolidaysBelarus = () => {
     getHolidaysBelarus().then(({ data }) => {
       dispatch(setHolydaysBelarus(data.holidays));
     });
+  };
+};
+
+export const updateHolidaysBelarus = () => {
+  return (dispatch, getState) => {
+    const state = getState();
+    const isHolidaysSelected = state.stateControl.isHolidaysSelected;
+    const selectedYear = state.stateControl.date.format('YYYY');
+    const url = `${belarusHolidaysUrl}&year=${selectedYear}`;
+    if (isHolidaysSelected) {
+      axios.get(url).then(({ data }) => {
+        dispatch(setHolidaysBelarus(data.response.holidays));
+      });
+    } else {
+      dispatch(setHolidaysBelarus([]));
+    }
   };
 };

@@ -31,7 +31,9 @@ export const Header: React.FC = () => {
   const setShowBLock = () => {
     dispatch(updateShowBlock());
   };
-  const { date, language } = useSelector((state: any) => state.stateControl);
+  const { date, language, viewFormat } = useSelector(
+    (state: any) => state.stateControl
+  );
   const changeDate = (dateValue: any) => {
     dispatch(updateDate(dateValue));
   };
@@ -106,7 +108,7 @@ export const Header: React.FC = () => {
 
         <FormControl variant="outlined" className={classes.formControl}>
           <Select
-            value={Formats}
+            value={viewFormat}
             onChange={handleChangeView}
             displayEmpty
             className={classes.selectEmpty}
@@ -114,7 +116,7 @@ export const Header: React.FC = () => {
           >
             <MenuItem
               value={Formats.MONTH}
-              onClick={(e) => setViewFormat(Formats.MONTH)}
+              onClick={() => setViewFormat(Formats.MONTH)}
             >
               Month
             </MenuItem>

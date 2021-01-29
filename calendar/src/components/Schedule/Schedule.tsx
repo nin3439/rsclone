@@ -26,9 +26,7 @@ export const Schedule: React.FC = () => {
   const setViewFormat = (view: any) => {
     dispatch(updateViewFormat(view));
   };
-  const { events, holidaysBelarus } = useSelector(
-    (state: any) => state.content
-  );
+  const { events, holidays } = useSelector((state: any) => state.content);
   const changeModalActive = () => {
     dispatch(updateActiveModal());
   };
@@ -44,7 +42,7 @@ export const Schedule: React.FC = () => {
   };
   const getAllEvents = () => {
     if (isHolidaysSelected) {
-      return [...events, ...holidaysBelarus];
+      return [...events, ...holidays];
     } else {
       return events;
     }

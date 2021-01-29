@@ -5,7 +5,6 @@ import { Parametr } from '../constantsActionType';
 let initialState = {
   showBlock: true,
   date: moment(),
-  holidays: [],
   isHolidaysSelected: false,
   viewFormat: Formats.MONTH,
   isModalActive: false,
