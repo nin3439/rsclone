@@ -5,7 +5,6 @@ import { FormSwitch } from './components/FormSwitch/FormSwitch';
 import { FormProps, FormValuesProps } from './Form.types';
 import { Box } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
-import { useTranslation } from 'react-i18next';
 import { useStyles } from './materialUIStyles';
 import { eventType } from '../../constants/constants';
 
@@ -13,7 +12,6 @@ export const FormElement: React.FC<FormProps> = ({
   changeModalActive,
   updateDateForm,
 }) => {
-  const { t } = useTranslation();
   const classMaterial: any = useStyles();
   const [switchParameter, setSwitch] = useState(eventType.EVENTS);
   const checkForm = (
@@ -60,11 +58,7 @@ export const FormElement: React.FC<FormProps> = ({
             }, 400);
           }}
         >
-          <FormSwitch
-            switchParameter={switchParameter}
-            setSwitch={setSwitch}
-            t={t}
-          />
+          <FormSwitch switchParameter={switchParameter} setSwitch={setSwitch} />
         </Formik>
       </Box>
     </Box>

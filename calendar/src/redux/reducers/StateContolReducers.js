@@ -9,6 +9,8 @@ let initialState = {
   viewFormat: Formats.MONTH,
   isModalActive: false,
   language: 'en',
+  startDataOnClick: new Date(),
+  endDataOnClick: new Date(),
 };
 
 export const stateControl = (state = initialState, action) => {
@@ -25,6 +27,12 @@ export const stateControl = (state = initialState, action) => {
       return { ...state, isHolidaysSelected: !state.isHolidaysSelected };
     case Parametr.CHANGE_LANGUAGE:
       return { ...state, language: action.lang };
+    case Parametr.CHANGE_DATE_ONCLICK:
+      return {
+        ...state,
+        startDataOnClick: action.date.start,
+        endDataOnClick: action.date.end,
+      };
     default:
       return state;
   }

@@ -3,8 +3,10 @@ import { TextInput } from '../textInput/TextInput';
 import { Button, Box } from '@material-ui/core';
 import { AccessTime, SubjectOutlined } from '@material-ui/icons';
 import { useStyles } from './materialUIStyles';
+import { useTranslation } from 'react-i18next';
 
-export const FormTask = ({ t }: any) => {
+export const FormTask = () => {
+  const { t } = useTranslation();
   const classMaterial: any = useStyles();
   return (
     <Box>

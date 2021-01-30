@@ -5,10 +5,10 @@ import { Formats } from '../../constants/formats';
 import { Languages } from '../../constants/constants';
 import i18n from '../../i18ns';
 import {
-  updateDate,
-  updateLanguage,
-  updateShowBlock,
-  updateViewFormat,
+  changeLanguage,
+  changeDateCalendar,
+  changeShowBlock,
+  changeViewFormat,
 } from '../../redux/actions/StateContolAction';
 import {
   Menu,
@@ -30,16 +30,16 @@ import classes from './styles/Header.module.scss';
 export const Header: React.FC = () => {
   const dispatch = useDispatch();
   const setViewFormat = (view: string) => {
-    dispatch(updateViewFormat(view));
+    dispatch(changeViewFormat(view));
   };
   const setShowBLock = () => {
-    dispatch(updateShowBlock());
+    dispatch(changeShowBlock());
   };
   const { date, language, viewFormat } = useSelector(
     (state: any) => state.stateControl
   );
   const changeDate = (dateValue: any) => {
-    dispatch(updateDate(dateValue));
+    dispatch(changeDateCalendar(dateValue));
   };
   const calendarTodayDate = 'dddd, Do MMMM';
   const calendarMouthYear = 'MMMM YYYY';
@@ -47,8 +47,8 @@ export const Header: React.FC = () => {
   const handleChangeView = (event: any) => {
     setViewFormat(event.target.value);
   };
-  const changeLanguage = (ln: string) => {
-    dispatch(updateLanguage(ln));
+  const changeLanguages = (ln: string) => {
+    dispatch(changeLanguage(ln));
     i18n.changeLanguage(ln);
   };
   return (
@@ -140,21 +140,21 @@ export const Header: React.FC = () => {
 
       <button
         onClick={() => {
-          changeLanguage(Languages.EN);
+          changeLanguages(Languages.EN);
         }}
       >
         {Languages.EN}
       </button>
       <button
         onClick={() => {
-          changeLanguage(Languages.RU);
+          changeLanguages(Languages.RU);
         }}
       >
         {Languages.RU}
       </button>
       <button
         onClick={() => {
-          changeLanguage(Languages.PT);
+          changeLanguages(Languages.PT);
         }}
       >
         {Languages.PT}
@@ -162,7 +162,7 @@ export const Header: React.FC = () => {
       <button
         onClick={() => {
           debugger;
-          changeLanguage(Languages.DE);
+          changeLanguages(Languages.DE);
         }}
       >
         {Languages.DE}

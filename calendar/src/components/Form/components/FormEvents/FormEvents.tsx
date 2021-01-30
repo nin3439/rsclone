@@ -9,7 +9,9 @@ import {
 } from '@material-ui/icons';
 
 import { useStyles } from './materialUIStyles';
-export const FormEvents = ({ t }: any) => {
+import { useTranslation } from 'react-i18next';
+export const FormEvents = () => {
+  const { t } = useTranslation();
   const classMaterial: Record<
     'btnSubmit' | 'box' | 'input' | 'timeBox' | 'formButtons',
     string
@@ -21,7 +23,7 @@ export const FormEvents = ({ t }: any) => {
         <Box className={classMaterial.timeBox}>
           <TextInput
             name="start"
-            id="datetime-local"
+            id="datetime-local-start"
             type="datetime-local"
             label={t('Start_Date')}
             defaultValue="2017-05-24"
@@ -31,7 +33,7 @@ export const FormEvents = ({ t }: any) => {
           />
           <TextInput
             name="end"
-            id="datetime-local"
+            id="datetime-local-end"
             type="datetime-local"
             label={t('End_Date')}
             defaultValue="2017-05-24"

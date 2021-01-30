@@ -9,9 +9,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { FormElement } from '../Form/Form';
 import { setEvents, updateAllEvents } from '../../redux/actions/contentAction';
 import {
-  updateActiveModal,
-  updateDate,
-  updateViewFormat,
+  changeActiveModal,
+  changeDateCalendar,
+  changeViewFormat,
 } from '../../redux/actions/StateContolAction';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import classes from './styles/Schedule.module.scss';
@@ -24,11 +24,12 @@ export const Schedule: React.FC = () => {
   }, []);
   const localizer = momentLocalizer(moment);
   const setViewFormat = (view: any) => {
-    dispatch(updateViewFormat(view));
+    dispatch(changeViewFormat(view));
   };
   const { events, holidays } = useSelector((state: any) => state.content);
-  const changeModalActive = () => {
-    dispatch(updateActiveModal());
+  const changeModalWindow = (event?: any): void => {
+    console.log(event);
+    dispatch(changeActiveModal());
   };
   const {
     date,
@@ -38,7 +39,7 @@ export const Schedule: React.FC = () => {
     language,
   } = useSelector((state: any) => state.stateControl);
   const changeDate = (dateValue: any) => {
-    dispatch(updateDate(dateValue));
+    dispatch(changeDateCalendar(dateValue));
   };
   const getAllEvents = () => {
     if (isHolidaysSelected) {
@@ -66,7 +67,9 @@ export const Schedule: React.FC = () => {
         onNavigate={(e) => {
           changeDate(moment(e));
         }}
-        onSelectSlot={changeModalActive}
+        onSelectSlot={(event) => {
+          changeModalWindow(event);
+        }}
         onSelectEvent={(event) => console.log(event)}
         popup
         step={15}
@@ -79,7 +82,7 @@ export const Schedule: React.FC = () => {
       {isModalActive && (
         <FormElement
           updateDateForm={updateDateForm}
-          changeModalActive={changeModalActive}
+          changeModalActive={changeModalWindow}
         />
       )}
     </div>

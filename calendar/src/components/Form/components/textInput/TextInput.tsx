@@ -14,7 +14,7 @@ export const TextInput = ({
     <>
       <TextField
         {...props}
-        defaultValue={defaultValue}
+        defaultValue={new Date(defaultValue)}
         className={style}
         {...field}
         name={name}

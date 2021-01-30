@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateHolidaysBelarus } from '../../../../redux/actions/contentAction';
-import { updateSelectedHoliday } from '../../../../redux/actions/StateContolAction';
+import { changeSelectedHoliday } from '../../../../redux/actions/StateContolAction';
 import {
   Typography,
   FormControlLabel,
@@ -25,7 +25,7 @@ export const MyCalendars: React.FC = () => {
   }, [date.format('YYYY'), isHolidaysSelected]);
 
   const toggleHolidays = () => {
-    dispatch(updateSelectedHoliday());
+    dispatch(changeSelectedHoliday());
   };
   return (
     <div className={classesMaterial.root}>
