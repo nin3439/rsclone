@@ -1,12 +1,12 @@
 import moment from 'moment';
-import { Formats } from '../../constants/formats';
+import { calendarFormats } from '../../constants/formats';
 import { Parametr } from '../constantsActionType';
 
 let initialState = {
   showBlock: true,
   date: moment(),
   isHolidaysSelected: false,
-  viewFormat: Formats.MONTH,
+  viewFormat: calendarFormats.MONTH,
   isModalActive: false,
   language: 'en',
 };

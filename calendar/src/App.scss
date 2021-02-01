@@ -1,0 +1,35 @@
+body {
+  margin: 0 auto;
+  padding: 0;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  font-family: Roboto, sans-serif;
+  color: #3c4043;
+}
+
+.content {
+  display: flex;
+  height: 90vh;
+}
+
+.schedule {
+  flex: 1;
+}
+// .block-enter {
+//   opacity: 0;
+// }
+.block-enter-active {
+  // opacity: 1;
+  transition: all 500ms;
+}
+// .block-exit {
+//   opacity: 1;
+// }
+.block-exit-active {
+  transition: all 500ms;
+}

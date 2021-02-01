@@ -1,6 +1,7 @@
 import React from 'react';
 import { Calendar } from './components/Calendar/Calendar';
 import { MyCalendars } from './components/MyCalendars/MyCalendars';
+import { Footer } from './components/Footer/Footer';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -37,6 +38,7 @@ export const Widgets: React.FC = () => {
       </Button>
       <Calendar date={date} changeDate={changeDate} />
       <MyCalendars />
+      <Footer />
     </div>
   );
 };

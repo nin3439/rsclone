@@ -1,7 +1,8 @@
 import React from 'react';
 import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
-import { Formats } from '../../constants/formats';
+import { useTranslation } from 'react-i18next';
+import { calendarFormats } from '../../constants/formats';
 import { Languages } from '../../constants/constants';
 import i18n from '../../i18ns';
 import {
@@ -29,12 +30,14 @@ import classes from './styles/Header.module.scss';
 
 export const Header: React.FC = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const setViewFormat = (view: string) => {
     dispatch(updateViewFormat(view));
   };
   const setShowBLock = () => {
     dispatch(updateShowBlock());
   };
+
   const { date, language, viewFormat } = useSelector(
     (state: any) => state.stateControl
   );
@@ -51,6 +54,19 @@ export const Header: React.FC = () => {
     dispatch(updateLanguage(ln));
     i18n.changeLanguage(ln);
   };
+
+  const changeViewDate = () => {
+    console.log();
+    let dateView;
+    switch (viewFormat) {
+      case calendarFormats.DAY:
+        dateView = date!.locale(language).format('dddd MMM D');
+        break;
+      default:
+        dateView = date!.locale(language).format(calendarMouthYear);
+    }
+    return dateView;
+  };
   return (
     <div className={classes.header}>
       <Tooltip title="Menu">
@@ -60,7 +76,7 @@ export const Header: React.FC = () => {
       </Tooltip>
 
       <Today />
-      <span className={classes.calendarName}>Calendar</span>
+      <span className={classes.calendarName}>{t('Calendar')}</span>
 
       <Tooltip title={moment().format(calendarTodayDate)}>
         <Button
@@ -73,29 +89,41 @@ export const Header: React.FC = () => {
         </Button>
       </Tooltip>
 
-      <Tooltip title="Previous Month">
+      <Tooltip title="Previous">
         <Button
           onClick={() => {
-            changeDate(moment(date).subtract(1, 'months'));
+            switch (viewFormat) {
+              case calendarFormats.WEEK:
+                return changeDate(moment(date).subtract(7, 'days'));
+              case calendarFormats.DAY:
+                return changeDate(moment(date).subtract(1, 'day'));
+              default:
+                changeDate(moment(date).subtract(1, 'months'));
+            }
           }}
         >
           <ArrowBackIos />
         </Button>
       </Tooltip>
 
-      <Tooltip title="Next Month">
+      <Tooltip title="Next">
         <Button
           onClick={() => {
-            changeDate(moment(date).add(1, 'months'));
+            switch (viewFormat) {
+              case calendarFormats.WEEK:
+                return changeDate(moment(date).add(7, 'days'));
+              case calendarFormats.DAY:
+                return changeDate(moment(date).add(1, 'day'));
+              default:
+                changeDate(moment(date).add(1, 'months'));
+            }
           }}
         >
           <ArrowForwardIos />
         </Button>
       </Tooltip>
 
-      <span className={classes.calendarDate}>
-        {date!.locale(language).format(calendarMouthYear)}
-      </span>
+      <span className={classes.calendarDate}>{changeViewDate()}</span>
 
       <Tooltip title="Search">
         <Button>
@@ -112,26 +140,26 @@ export const Header: React.FC = () => {
           inputProps={{ 'aria-label': 'Without label' }}
         >
           <MenuItem
-            value={Formats.MONTH}
-            onClick={() => setViewFormat(Formats.MONTH)}
+            value={calendarFormats.MONTH}
+            onClick={() => setViewFormat(calendarFormats.MONTH)}
           >
             Month
           </MenuItem>
           <MenuItem
-            value={Formats.WEEK}
-            onClick={() => setViewFormat(Formats.WEEK)}
+            value={calendarFormats.WEEK}
+            onClick={() => setViewFormat(calendarFormats.WEEK)}
           >
             Week
           </MenuItem>
           <MenuItem
-            value={Formats.DAY}
-            onClick={() => setViewFormat(Formats.DAY)}
+            value={calendarFormats.DAY}
+            onClick={() => setViewFormat(calendarFormats.DAY)}
           >
             Day
           </MenuItem>
           <MenuItem
-            value={Formats.AGENDA}
-            onClick={() => setViewFormat(Formats.AGENDA)}
+            value={calendarFormats.AGENDA}
+            onClick={() => setViewFormat(calendarFormats.AGENDA)}
           >
             Agenda
           </MenuItem>
@@ -166,6 +194,13 @@ export const Header: React.FC = () => {
         }}
       >
         {Languages.DE}
+      </button>
+      <button
+        onClick={() => {
+          changeLanguage(Languages.IT);
+        }}
+      >
+        {Languages.IT}
       </button>
     </div>
   );

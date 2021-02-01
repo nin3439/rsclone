@@ -2,6 +2,7 @@ export type Events = {
   start: Date | string;
   end: Date | string;
   title: string;
+  typeEvents: string;
 };
 
 export type TimeFormats = 'month' | 'week' | 'work_week' | 'day' | 'agenda';
@@ -9,7 +10,7 @@ export type TimeFormats = 'month' | 'week' | 'work_week' | 'day' | 'agenda';
 export type EventsScheduleProps = {
   // date: Moment | null;
   // changeDate: (date: Moment | null) => void;
-  // holidays: Events[];
+  holidays: Events[];
   isHolidaysSelected: boolean;
   t: any;
 };

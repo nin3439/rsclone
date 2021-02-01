@@ -1,0 +1,26 @@
+.type-reminders {
+  background-color: #ff9800;
+  box-shadow: 0 4px 20px 0px rgba(#000, 0.14),
+    0 7px 10px -5px rgba(#ff9800, 0.4);
+}
+.type-tasks {
+  background-color: #f50057;
+  box-shadow: 0 4px 20px 0px rgba(#000, 0.14),
+    0 7px 10px -5px rgba(#f50057, 0.4);
+}
+
+.type-holidaysBelarus {
+  background-color: #00bcd4;
+  box-shadow: 0 4px 20px 0px rgba(#000, 0.14),
+    0 7px 10px -5px rgba(#00bcd4, 0.4);
+}
+
+.type-events {
+  background-color: #3f51b5;
+  box-shadow: 0 4px 20px 0px rgba(#000, 0.14),
+    0 7px 10px -5px rgba(#3f51b5, 0.4);
+}
+
+.events:focus {
+  outline: none;
+}
