@@ -52,20 +52,10 @@ export const Schedule: React.FC = () => {
   const updateDateForm = (data: any) => {
     dispatch(setEvents(data));
   };
-  console.log(date);
   moment().locale(`${language}`);
   return (
     <div>
       <Calendar
-        formats={{
-          agendaHeaderFormat: ({ start, end }) => {
-            return (
-              moment.utc(start).format('DD/MM/YYYY') +
-              ' - ' +
-              moment.utc(end).format('DD/MM/YYYY')
-            );
-          },
-        }}
         className="schedule"
         localizer={localizer}
         culture={language}

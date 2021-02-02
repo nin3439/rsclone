@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { calendarFormats } from '../../constants/formats';
+import { calendarFormats, dateFormats } from '../../constants/formats';
 import { Languages } from '../../constants/constants';
 import i18n from '../../i18ns';
 import {
@@ -54,8 +54,6 @@ export const Header: React.FC = () => {
   const changeDate = (dateValue: any) => {
     dispatch(updateDate(dateValue));
   };
-  const calendarTodayDate = 'dddd, Do MMMM';
-  const calendarMouthYear = 'MMMM YYYY';
 
   const handleChangeView = (event: any) => {
     setViewFormat(event.target.value);
@@ -88,19 +86,22 @@ export const Header: React.FC = () => {
     let dateView;
     switch (viewFormat) {
       case calendarFormats.DAY:
-        dateView = date!.locale(language).format('dddd MMM D');
+        dateView = date!.locale(language).format(dateFormats.DAY);
         break;
       case calendarFormats.WEEK:
         dateView = `${date!
           .locale(language)
           .startOf('week')
-          .format('dddd MMM D')}-${date!
+          .format(dateFormats.WEEK)} - ${date!
           .locale(language)
           .endOf('week')
-          .format('dddd MMM D')}`;
+          .format(dateFormats.WEEK)}`;
+        break;
+      case calendarFormats.AGENDA:
+        dateView = date!.locale(language).format(dateFormats.AGENDA);
         break;
       default:
-        dateView = date!.locale(language).format(calendarMouthYear);
+        dateView = date!.locale(language).format(dateFormats.MONTH);
     }
     return dateView;
   };
@@ -157,7 +158,7 @@ export const Header: React.FC = () => {
 
         <Today />
         <span className="calendar-name">{t('Calendar')}</span>
-        <Tooltip title={moment().format(calendarTodayDate)}>
+        <Tooltip title={moment().format(dateFormats.TODAY)}>
           <Button
             variant="outlined"
             onClick={() => {
@@ -217,8 +218,6 @@ export const Header: React.FC = () => {
             <Search />
           </Button>
         </Tooltip>
-        {/* 
-        <FormControl variant="outlined" className="form-control-view"> */}
         <Select
           value={viewFormat}
           onChange={handleChangeView}
@@ -251,7 +250,6 @@ export const Header: React.FC = () => {
             Agenda
           </MenuItem>
         </Select>
-        {/* </FormControl> */}
 
         <Tooltip title="Settings">
           <IconButton

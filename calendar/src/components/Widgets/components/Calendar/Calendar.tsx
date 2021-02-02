@@ -2,7 +2,6 @@ import React from 'react';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import MomentUtils from '@date-io/moment';
 import { useSelector } from 'react-redux';
-// import moment from 'moment';
 import { CalendarProps } from './Calendar.types';
 import './styles/Calendar.scss';
 
