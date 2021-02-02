@@ -1,0 +1,46 @@
+body {
+  margin: 0 auto;
+  padding: 0;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  font-family: Roboto, sans-serif;
+  color: #3c4043;
+}
+
+.content {
+  display: flex;
+  height: 90vh;
+  padding: 0 3px;
+}
+
+.schedule {
+  flex: 1;
+}
+
+.block-enter-done {
+  width: 310px;
+  transition: all 500ms;
+}
+.block-enter-active {
+  width: 310px;
+  transition: all 500ms;
+}
+.block-exit-done {
+  width: 0;
+  transition: all 500ms;
+}
+.block-exit-active {
+  width: 0;
+  transition: all 500ms;
+}
+
+@media (min-height: 900px) {
+  .content {
+    height: 94vh;
+  }
+}

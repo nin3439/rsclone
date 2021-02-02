@@ -1,0 +1,28 @@
+{
+  "create": "erstellen",
+  "save": "sparen",
+  "task": "aufgabe",
+  "reminder": "reminder",
+  "event": "erinnerung",
+  "Today": "Heute",
+  "Back": "Zurück",
+  "Next": "Nächster",
+  "Month": "Monat",
+  "Week": "Woche  ",
+  "Day": "Tag",
+  "Agenda": "Agenda",
+  "End_Date": "Endtermin",
+  "Start_Date": "Anfangsdatum",
+  "Add_guests": "Gäste hinzufügen",
+  "indicate_location": "Geben Sie den Ort an",
+  "add_description": "Fügen Sie eine Beschreibung hinzu",
+  "Other_parameters": "Andere Parameter",
+  "Select_Interval": "Wählen Sie Intervall",
+  "Add_title": "Titel hinzufügen",
+  "Belarus's_holidays": "Weißrusslands Ferien",
+  "Tasks": "Aufgaben",
+  "Reminders": "Erinnerungen",
+  "Calendar": "Kalender",
+  "My_Calendars": "Meine kalender"
+  
+}

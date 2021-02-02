@@ -55,6 +55,7 @@ export const content = (state = initialState, action) => {
     case Content.SET_HOLIDAYS_BELARUS:
       const newHolidays = action.holidays.map((holiday) => {
         return {
+          typeEvents: eventType.HOLIDAYS_BELARUS,
           title: holiday.name,
           start: holiday.date.iso,
           end: holiday.date.iso,

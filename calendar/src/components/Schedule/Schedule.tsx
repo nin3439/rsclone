@@ -14,7 +14,8 @@ import {
   updateViewFormat,
 } from '../../redux/actions/StateContolAction';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import classes from './styles/Schedule.module.scss';
+import './styles/Schedule.scss';
+import { Events } from './Schedule.types';
 
 export const Schedule: React.FC = () => {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ export const Schedule: React.FC = () => {
     dispatch(updateViewFormat(view));
   };
   const { events, holidays } = useSelector((state: any) => state.content);
+
   const changeModalActive = () => {
     dispatch(updateActiveModal());
   };
@@ -50,13 +52,11 @@ export const Schedule: React.FC = () => {
   const updateDateForm = (data: any) => {
     dispatch(setEvents(data));
   };
-
   moment().locale(`${language}`);
   return (
     <div>
       <Calendar
-        className={classes.popa}
-        style={{ height: '90vh' }}
+        className="schedule"
         localizer={localizer}
         culture={language}
         startAccessor="start"
@@ -68,13 +68,16 @@ export const Schedule: React.FC = () => {
         }}
         onSelectSlot={changeModalActive}
         onSelectEvent={(event) => console.log(event)}
-        popup
         step={15}
-        timeslots={8}
+        popup
+        timeslots={4}
         toolbar={false}
         view={viewFormat}
         onView={setViewFormat}
         events={getAllEvents()}
+        eventPropGetter={(event: Events) => ({
+          className: `type-${event.typeEvents} events`,
+        })}
       />
       {isModalActive && (
         <FormElement

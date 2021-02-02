@@ -14,6 +14,10 @@ export const changeLanguage = (lang) => ({
   lang,
 });
 export const changeActiveModal = () => ({ type: Parametr.CHANGE_ACTIVE_MODAL });
+export const changeSettingsOpen = (boolean) => ({
+  type: Parametr.CHANGE_SETTINGS_OPEN,
+  boolean,
+});
 
 export const updateActiveModal = () => {
   return (dispatch, getState) => {
@@ -46,5 +50,11 @@ export const updateSelectedHoliday = () => {
 export const updateLanguage = (lang) => {
   return (dispatch, getState) => {
     dispatch(changeLanguage(lang));
+  };
+};
+
+export const updateSettingsOpen = (boolean) => {
+  return (dispatch, getState) => {
+    dispatch(changeSettingsOpen(boolean));
   };
 };

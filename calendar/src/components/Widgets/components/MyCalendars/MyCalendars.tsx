@@ -8,10 +8,12 @@ import {
   FormGroup,
   Checkbox,
 } from '@material-ui/core/';
+import { useTranslation } from 'react-i18next';
 import { useStyles } from './styles/materialUIStyles';
 
 export const MyCalendars: React.FC = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const { isHolidaysSelected, date } = useSelector(
     (state: any) => state.stateControl
   );
@@ -34,34 +36,43 @@ export const MyCalendars: React.FC = () => {
         color="textSecondary"
         gutterBottom
       >
-        My Calendars
+        {t('My_Calendars')}
       </Typography>
       <FormGroup>
         <FormControlLabel
           className={classesMaterial.pos}
           control={
             <Checkbox
-              checked={isHolidaysSelected}
-              onChange={toggleHolidays}
-              color="primary"
+              style={{
+                color: '#f50057',
+              }}
             />
           }
-          label="Belarus's Holidays"
+          label={t('Tasks')}
         />
         <FormControlLabel
           className={classesMaterial.pos}
-          control={<Checkbox color="default" />}
-          label="Birthdays"
+          control={
+            <Checkbox
+              style={{
+                color: '#ff9800',
+              }}
+            />
+          }
+          label={t('Reminders')}
         />
         <FormControlLabel
           className={classesMaterial.pos}
-          control={<Checkbox color="secondary" />}
-          label="Tasks"
-        />
-        <FormControlLabel
-          className={classesMaterial.pos}
-          control={<Checkbox color="default" />}
-          label="Reminders"
+          control={
+            <Checkbox
+              checked={isHolidaysSelected}
+              onChange={toggleHolidays}
+              style={{
+                color: '#00bcd4',
+              }}
+            />
+          }
+          label={t("Belarus's_holidays")}
         />
       </FormGroup>
     </div>

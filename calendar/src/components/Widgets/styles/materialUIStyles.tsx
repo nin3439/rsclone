@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
-export const useStyles = makeStyles((theme) => ({
+export const useStyles = makeStyles(() => ({
   root: {
     width: 120,
     marginTop: 15,
@@ -8,9 +8,13 @@ export const useStyles = makeStyles((theme) => ({
     height: 45,
     borderRadius: '16px',
     border: '2px solid #3f51b5',
-    '&hover': {
+    boxShadow:
+      '0 1px 1px 0 rgb(60 64 67 / 30%), 0 2px 4px 2px rgb(60 64 67 / 15%)',
+    '&:hover': {
       boxShadow:
-        '0 1px 3px 0 rgb(60 64 67 / 30%), 0 4px 8px 3px rgb(60 64 67 / 15%)',
+        '0 2px 5px 0 rgb(60 64 67 / 30%), 0 5px 9px 4px rgb(60 64 67 / 15%)',
+      border: '2px solid #3f51b5',
+      backgroundColor: 'rgb(60 64 67 / 3%)',
     },
   },
 }));

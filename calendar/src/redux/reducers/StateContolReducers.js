@@ -1,14 +1,15 @@
 import moment from 'moment';
-import { Formats } from '../../constants/formats';
+import { calendarFormats } from '../../constants/formats';
 import { Parametr } from '../constantsActionType';
 
 let initialState = {
   showBlock: true,
   date: moment(),
   isHolidaysSelected: false,
-  viewFormat: Formats.MONTH,
+  viewFormat: calendarFormats.MONTH,
   isModalActive: false,
   language: 'en',
+  isSettingsOpen: false,
 };
 
 export const stateControl = (state = initialState, action) => {
@@ -25,6 +26,8 @@ export const stateControl = (state = initialState, action) => {
       return { ...state, isHolidaysSelected: !state.isHolidaysSelected };
     case Parametr.CHANGE_LANGUAGE:
       return { ...state, language: action.lang };
+    case Parametr.CHANGE_SETTINGS_OPEN:
+      return { ...state, isSettingsOpen: action.boolean };
     default:
       return state;
   }

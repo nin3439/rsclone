@@ -1,6 +1,7 @@
 import React from 'react';
 import { Calendar } from './components/Calendar/Calendar';
 import { MyCalendars } from './components/MyCalendars/MyCalendars';
+import { Footer } from './components/Footer/Footer';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -24,19 +25,22 @@ export const Widgets: React.FC = () => {
     dispatch(updateActiveModal());
   };
   return (
-    <div className={classes.widgets}>
-      <Button
-        onClick={changeModalActive}
-        className={classesMaterial.root}
-        variant="outlined"
-        color="primary"
-        size="large"
-        startIcon={<Add />}
-      >
-        {t('create')}
-      </Button>
-      <Calendar date={date} changeDate={changeDate} />
-      <MyCalendars />
+    <div className={classes.wrapper}>
+      <div className={classes.widgets}>
+        <Button
+          onClick={changeModalActive}
+          className={classesMaterial.root}
+          variant="outlined"
+          color="primary"
+          size="large"
+          startIcon={<Add />}
+        >
+          {t('create')}
+        </Button>
+        <Calendar date={date} changeDate={changeDate} />
+        <MyCalendars />
+      </div>
+      <Footer />
     </div>
   );
 };

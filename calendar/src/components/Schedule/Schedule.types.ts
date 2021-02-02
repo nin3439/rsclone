@@ -1,15 +1,18 @@
+import { Moment } from 'moment';
+
 export type Events = {
   start: Date | string;
   end: Date | string;
   title: string;
+  typeEvents: string;
 };
 
 export type TimeFormats = 'month' | 'week' | 'work_week' | 'day' | 'agenda';
 
 export type EventsScheduleProps = {
-  // date: Moment | null;
-  // changeDate: (date: Moment | null) => void;
-  // holidays: Events[];
+  date: Moment | null;
+  changeDate: (date: Moment | null) => void;
+  holidays: Events[];
   isHolidaysSelected: boolean;
   t: any;
 };
