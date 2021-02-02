@@ -12,12 +12,12 @@ export const App = () => {
     <div className="app">
       <Header />
       <div className="content">
-        {showBlock && <Widgets />}
         <CSSTransition in={showBlock} timeout={500} classNames="block">
-          <div className="schedule">
-            <Schedule />
-          </div>
+          <Widgets />
         </CSSTransition>
+        <div className="schedule">
+          <Schedule />
+        </div>
       </div>
     </div>
   );

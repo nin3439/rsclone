@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -10,6 +10,7 @@ import {
   updateShowBlock,
   updateViewFormat,
   updateLanguage,
+  updateSettingsOpen,
 } from '../../redux/actions/StateContolAction';
 import {
   Menu,
@@ -17,6 +18,7 @@ import {
   Today,
   ArrowForwardIos,
   Search,
+  Settings,
 } from '@material-ui/icons';
 import {
   IconButton,
@@ -25,12 +27,20 @@ import {
   MenuItem,
   FormControl,
   Select,
+  InputLabel,
+  Dialog,
+  DialogContent,
+  Checkbox,
+  FormControlLabel,
 } from '@material-ui/core/';
-import classes from './styles/Header.module.scss';
+import { useStyles } from './styles/materialUIStyles';
+import './styles/Header.scss';
 
 export const Header: React.FC = () => {
   const dispatch = useDispatch();
+  const classMaterial: any = useStyles();
   const { t } = useTranslation();
+  const [sound, setSound] = useState(true);
   const setViewFormat = (view: string) => {
     dispatch(updateViewFormat(view));
   };
@@ -38,7 +48,7 @@ export const Header: React.FC = () => {
     dispatch(updateShowBlock());
   };
 
-  const { date, language, viewFormat } = useSelector(
+  const { date, language, viewFormat, isSettingsOpen } = useSelector(
     (state: any) => state.stateControl
   );
   const changeDate = (dateValue: any) => {
@@ -54,6 +64,24 @@ export const Header: React.FC = () => {
     dispatch(updateLanguage(ln));
     i18n.changeLanguage(ln);
   };
+  const openSettings = () => {
+    dispatch(updateSettingsOpen(true));
+  };
+
+  const closeSettings = () => {
+    dispatch(updateSettingsOpen(false));
+  };
+
+  const playSound = () => {
+    if (!sound) return;
+    const audio = new Audio();
+    audio.src = `https://zvukipro.com/uploads/files/2019-09/1568274526_c8fd8d10309e3e0.mp3`;
+    audio.play();
+  };
+
+  const toggleSound = () => {
+    setSound(!sound);
+  };
 
   const changeViewDate = () => {
     console.log();
@@ -62,82 +90,141 @@ export const Header: React.FC = () => {
       case calendarFormats.DAY:
         dateView = date!.locale(language).format('dddd MMM D');
         break;
+      case calendarFormats.WEEK:
+        dateView = `${date!
+          .locale(language)
+          .startOf('week')
+          .format('dddd MMM D')}-${date!
+          .locale(language)
+          .endOf('week')
+          .format('dddd MMM D')}`;
+        break;
       default:
         dateView = date!.locale(language).format(calendarMouthYear);
     }
     return dateView;
   };
+  const SimpleDialog = () => {
+    return (
+      <Dialog
+        aria-labelledby="settings"
+        open={isSettingsOpen}
+        onClose={closeSettings}
+      >
+        <DialogContent className={classMaterial.dialog}>
+          <FormControl className="form-control">
+            <InputLabel>Language</InputLabel>
+            <Select
+              value={language}
+              onChange={(event: any) => changeLanguage(event.target.value)}
+            >
+              <MenuItem value={Languages.EN}>English</MenuItem>
+              <MenuItem value={Languages.RU}>Русский</MenuItem>
+              <MenuItem value={Languages.DE}>Deutsche</MenuItem>
+              <MenuItem value={Languages.IT}>Italiano</MenuItem>
+              <MenuItem value={Languages.PT}>Português</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControlLabel
+            className={classMaterial.label}
+            control={
+              <Checkbox
+                checked={sound}
+                color="primary"
+                onChange={toggleSound}
+              />
+            }
+            label={t('Sound')}
+            labelPlacement="start"
+          />
+        </DialogContent>
+      </Dialog>
+    );
+  };
   return (
-    <div className={classes.header}>
-      <Tooltip title="Menu">
-        <IconButton>
-          <Menu onClick={setShowBLock} />
-        </IconButton>
-      </Tooltip>
+    <div className="header">
+      <div className="menu-calendar-wrapper">
+        <Tooltip title="Menu">
+          <IconButton>
+            <Menu
+              onClick={() => {
+                setShowBLock();
+                playSound();
+              }}
+            />
+          </IconButton>
+        </Tooltip>
 
-      <Today />
-      <span className={classes.calendarName}>{t('Calendar')}</span>
+        <Today />
+        <span className="calendar-name">{t('Calendar')}</span>
+        <Tooltip title={moment().format(calendarTodayDate)}>
+          <Button
+            variant="outlined"
+            onClick={() => {
+              changeDate(moment());
+              playSound();
+            }}
+          >
+            Today
+          </Button>
+        </Tooltip>
 
-      <Tooltip title={moment().format(calendarTodayDate)}>
-        <Button
-          variant="outlined"
-          onClick={() => {
-            changeDate(moment());
-          }}
-        >
-          Today
-        </Button>
-      </Tooltip>
-
-      <Tooltip title="Previous">
-        <Button
-          onClick={() => {
-            switch (viewFormat) {
-              case calendarFormats.WEEK:
-                return changeDate(moment(date).subtract(7, 'days'));
-              case calendarFormats.DAY:
-                return changeDate(moment(date).subtract(1, 'day'));
-              default:
-                changeDate(moment(date).subtract(1, 'months'));
-            }
-          }}
-        >
-          <ArrowBackIos />
-        </Button>
-      </Tooltip>
-
-      <Tooltip title="Next">
-        <Button
-          onClick={() => {
-            switch (viewFormat) {
-              case calendarFormats.WEEK:
-                return changeDate(moment(date).add(7, 'days'));
-              case calendarFormats.DAY:
-                return changeDate(moment(date).add(1, 'day'));
-              default:
-                changeDate(moment(date).add(1, 'months'));
-            }
-          }}
-        >
-          <ArrowForwardIos />
-        </Button>
-      </Tooltip>
-
-      <span className={classes.calendarDate}>{changeViewDate()}</span>
-
-      <Tooltip title="Search">
-        <Button>
-          <Search />
-        </Button>
-      </Tooltip>
-
-      <FormControl variant="outlined" className={classes.formControl}>
+        <Tooltip title="Previous">
+          <Button
+            onClick={() => {
+              switch (viewFormat) {
+                case calendarFormats.WEEK:
+                  return changeDate(moment(date).subtract(7, 'days'));
+                case calendarFormats.DAY:
+                  return changeDate(moment(date).subtract(1, 'day'));
+                default:
+                  changeDate(moment(date).subtract(1, 'months'));
+              }
+              playSound();
+            }}
+          >
+            <ArrowBackIos />
+          </Button>
+        </Tooltip>
+        <Tooltip title="Next">
+          <Button
+            onClick={() => {
+              switch (viewFormat) {
+                case calendarFormats.WEEK:
+                  return changeDate(moment(date).add(7, 'days'));
+                case calendarFormats.DAY:
+                  return changeDate(moment(date).add(1, 'day'));
+                default:
+                  changeDate(moment(date).add(1, 'months'));
+              }
+              playSound();
+            }}
+          >
+            <ArrowForwardIos />
+          </Button>
+        </Tooltip>
+      </div>
+      <div className="date-wrapper">
+        <span className="calendar-date">{changeViewDate()}</span>
+      </div>
+      <div className="search-settings-wrapper">
+        <Tooltip title="Search">
+          <Button
+            onClick={() => {
+              playSound();
+            }}
+          >
+            <Search />
+          </Button>
+        </Tooltip>
+        {/* 
+        <FormControl variant="outlined" className="form-control-view"> */}
         <Select
           value={viewFormat}
           onChange={handleChangeView}
           displayEmpty
-          className={classes.selectEmpty}
           inputProps={{ 'aria-label': 'Without label' }}
+          variant="outlined"
         >
           <MenuItem
             value={calendarFormats.MONTH}
@@ -164,44 +251,20 @@ export const Header: React.FC = () => {
             Agenda
           </MenuItem>
         </Select>
-      </FormControl>
+        {/* </FormControl> */}
 
-      <button
-        onClick={(e) => {
-          e.stopPropagation();
-          changeLanguage(Languages.EN);
-        }}
-      >
-        {Languages.EN}
-      </button>
-      <button
-        onClick={() => {
-          changeLanguage(Languages.RU);
-        }}
-      >
-        {Languages.RU}
-      </button>
-      <button
-        onClick={() => {
-          changeLanguage(Languages.PT);
-        }}
-      >
-        {Languages.PT}
-      </button>
-      <button
-        onClick={() => {
-          changeLanguage(Languages.DE);
-        }}
-      >
-        {Languages.DE}
-      </button>
-      <button
-        onClick={() => {
-          changeLanguage(Languages.IT);
-        }}
-      >
-        {Languages.IT}
-      </button>
+        <Tooltip title="Settings">
+          <IconButton
+            onClick={() => {
+              openSettings();
+              playSound();
+            }}
+          >
+            <Settings />
+          </IconButton>
+        </Tooltip>
+        <SimpleDialog />
+      </div>
     </div>
   );
 };

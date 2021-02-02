@@ -9,6 +9,7 @@ let initialState = {
   viewFormat: calendarFormats.MONTH,
   isModalActive: false,
   language: 'en',
+  isSettingsOpen: false,
 };
 
 export const stateControl = (state = initialState, action) => {
@@ -25,6 +26,8 @@ export const stateControl = (state = initialState, action) => {
       return { ...state, isHolidaysSelected: !state.isHolidaysSelected };
     case Parametr.CHANGE_LANGUAGE:
       return { ...state, language: action.lang };
+    case Parametr.CHANGE_SETTINGS_OPEN:
+      return { ...state, isSettingsOpen: action.boolean };
     default:
       return state;
   }

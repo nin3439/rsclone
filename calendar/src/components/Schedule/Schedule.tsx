@@ -52,7 +52,7 @@ export const Schedule: React.FC = () => {
   const updateDateForm = (data: any) => {
     dispatch(setEvents(data));
   };
-
+  console.log(date);
   moment().locale(`${language}`);
   return (
     <div>
@@ -66,7 +66,7 @@ export const Schedule: React.FC = () => {
             );
           },
         }}
-        style={{ height: '90vh' }}
+        className="schedule"
         localizer={localizer}
         culture={language}
         startAccessor="start"
@@ -78,8 +78,8 @@ export const Schedule: React.FC = () => {
         }}
         onSelectSlot={changeModalActive}
         onSelectEvent={(event) => console.log(event)}
-        popup
         step={15}
+        popup
         timeslots={4}
         toolbar={false}
         view={viewFormat}
