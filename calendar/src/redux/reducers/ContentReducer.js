@@ -1,7 +1,5 @@
 import { eventType } from '../../constants/Language';
 import { Content } from '../../constants/constantsActionType';
-import { momentUpdate } from '../../constants/dateTimeLocal';
-import moment from 'moment';
 const now = new Date();
 const initialState = {
   events: [

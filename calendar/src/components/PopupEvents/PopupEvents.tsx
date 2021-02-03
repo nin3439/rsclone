@@ -1,4 +1,4 @@
-import { Box, Divider, TextField, Tooltip } from '@material-ui/core';
+import { Box, Tooltip } from '@material-ui/core';
 import {
   AccessTime,
   Close,
@@ -9,7 +9,7 @@ import {
   CreateOutlined,
 } from '@material-ui/icons';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   changeActiveModal,
@@ -17,7 +17,6 @@ import {
 } from '../../redux/actions/StateContolAction';
 import { useStyles } from './styles/materialUiStyles';
 import moment from 'moment';
-import axios from 'axios';
 import {
   removeEvent,
   updateSelectedEvents,

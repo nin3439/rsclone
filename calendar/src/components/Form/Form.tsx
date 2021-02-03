@@ -10,7 +10,6 @@ import { eventType } from '../../constants/Language';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 import { updateEvent } from '../../redux/actions/contentAction';
-import { changeDateOnClick } from '../../redux/actions/StateContolAction';
 
 export const FormElement: React.FC<FormProps> = ({
   changeModalActive,

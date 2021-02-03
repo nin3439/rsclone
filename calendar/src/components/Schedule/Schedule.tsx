@@ -4,6 +4,7 @@ import 'moment/locale/en-gb';
 import 'moment/locale/ru';
 import 'moment/locale/de';
 import 'moment/locale/pt';
+import 'moment/locale/it';
 import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
 import { FormElement } from '../Form/Form';

@@ -23,40 +23,6 @@ export const changeSettingsOpen = (boolean) => ({
   boolean,
 });
 
-export const updateActiveModal = () => {
-  return (dispatch, getState) => {
-    dispatch(changeActiveModal());
-  };
-};
-export const updateViewFormat = (view) => {
-  return (dispatch, getState) => {
-    dispatch(changeViewFormat(view));
-  };
-};
-
-export const updateShowBlock = () => {
-  return (dispatch, getState) => {
-    dispatch(changeShowBlock());
-  };
-};
-// export const updateDate = (data) => {
-//   return (dispatch, getState) => {
-//     dispatch(changeDate(data));
-//   };
-// };
-
-export const updateSelectedHoliday = () => {
-  return (dispatch, getState) => {
-    dispatch(changeSelectedHoliday());
-  };
-};
-
-export const updateLanguage = (lang) => {
-  return (dispatch, getState) => {
-    dispatch(changeLanguage(lang));
-  };
-};
-
 export const updateSettingsOpen = (boolean) => {
   return (dispatch, getState) => {
     dispatch(changeSettingsOpen(boolean));

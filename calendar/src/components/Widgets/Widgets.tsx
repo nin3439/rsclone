@@ -26,19 +26,22 @@ export const Widgets: React.FC = () => {
     dispatch(changeActiveModal());
   };
   return (
-    <div className={classes.widgets}>
-      <Button
-        onClick={changeModalWindow}
-        className={classesMaterial.root}
-        variant="outlined"
-        color="primary"
-        size="large"
-        startIcon={<Add />}
-      >
-        {t('create')}
-      </Button>
-      <Calendar date={date} changeDate={changeDate} />
-      <MyCalendars />
+    <div className={classes.wrapper}>
+      <div className={classes.widgets}>
+        <Button
+          onClick={changeModalWindow}
+          className={classesMaterial.root}
+          variant="outlined"
+          color="primary"
+          size="large"
+          startIcon={<Add />}
+        >
+          {t('create')}
+        </Button>
+        <Calendar date={date} changeDate={changeDate} />
+        <MyCalendars />
+      </div>
+      <Footer />
     </div>
   );
 };

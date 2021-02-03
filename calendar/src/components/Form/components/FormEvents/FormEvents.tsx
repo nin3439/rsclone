@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { TextInput } from '../textInput/TextInput';
 import { Button, Box } from '@material-ui/core';
 import {
@@ -10,8 +10,6 @@ import {
 
 import { useStyles } from './materialUIStyles';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
-import moment from 'moment';
 export const FormEvents = () => {
   const { t } = useTranslation();
   const classMaterial: Record<

@@ -6,7 +6,7 @@ import {
 } from '../../api/eventsApi';
 import { Content } from '../../constants/constantsActionType';
 import { remove } from '../../api/eventsApi';
-import { changeActiveModal, changeActivePopup } from './StateContolAction';
+import { changeActivePopup } from './StateContolAction';
 
 export const setHolidaysBelarus = (holidays) => ({
   type: Content.SET_HOLIDAYS_BELARUS,
