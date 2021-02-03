@@ -6,7 +6,6 @@ const belarusHolidaysUrl = `https://calendarific.com/api/v2/holidays?api_key=49b
 export const getAllEvents = () => {
   return axios.get(baseURL);
 };
-
 export const postEvent = (data) => {
   return axios({
     baseURL,
@@ -18,4 +17,15 @@ export const postEvent = (data) => {
 
 export const getHolidaysBelarus = (year) => {
   return axios.get(`${belarusHolidaysUrl}${year}`);
+};
+export const remove = (id) => {
+  return axios.delete(`${baseURL}/${id}`);
+};
+export const putEvent = (data, id) => {
+  return axios({
+    baseURL,
+    method: 'put',
+    data,
+    url: `/${id}`,
+  });
 };

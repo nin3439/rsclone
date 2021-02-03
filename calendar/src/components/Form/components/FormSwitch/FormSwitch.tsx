@@ -4,63 +4,69 @@ import { FormEvents } from '../FormEvents/FormEvents';
 import { FormTask } from '../formTask/FormTask';
 import { FormReminders } from '../FormReminder/FormReminder';
 import { TextInput } from '../textInput/TextInput';
-import { eventType } from '../../../../constants/constants';
+import { eventType } from '../../../../constants/Language';
 import { Button, Box } from '@material-ui/core';
 import { useStyles } from './materialUIStyles';
+import { useTranslation } from 'react-i18next';
 
-export const FormSwitch = ({ t, setSwitch, switchParameter }: any) => {
+export const FormSwitch = ({ id, setSwitch, switchParameter }: any) => {
   const classMaterial: any = useStyles();
+  const { t } = useTranslation();
   const changeswitchParameter = (param: string) => {
     if (param !== switchParameter) setSwitch(param);
   };
   const changeForm = (switchParam: string) => {
     switch (switchParameter) {
       case eventType.EVENTS:
-        return <FormEvents t={t} />;
+        return <FormEvents />;
       case eventType.TASKS:
-        return <FormTask t={t} />;
+        return <FormTask />;
       case eventType.REMINDERS:
-        return <FormReminders t={t} />;
+        return <FormReminders />;
       default:
-        return <FormEvents t={t} />;
+        return <FormEvents />;
     }
   };
   return (
     <Form>
       <Box className={classMaterial.form} onClick={(e) => e.stopPropagation}>
         <TextInput
-          id="standard-basic"
           style={classMaterial.inputTitle}
           name="title"
           type="text"
           placeholder={t('Add_title')}
         />
-        <Box className={classMaterial.categoryBox}>
-          <Button
-            onClick={() => {
-              changeswitchParameter('events');
-            }}
-            color="primary"
-          >
-            {t('event')}
-          </Button>
-          <Button
-            onClick={() => {
-              changeswitchParameter('tasks');
-            }}
-            color="primary"
-          >
-            {t('task')}
-          </Button>
-          <Button
-            onClick={() => {
-              changeswitchParameter('reminders');
-            }}
-            color="primary"
-          >
-            {t('reminder')}
-          </Button>
-        </Box>
+        {!id && (
+          <>
+            {' '}
+            <Box className={classMaterial.categoryBox}>
+              <Button
+                onClick={() => {
+                  changeswitchParameter('events');
+                }}
+                color="primary"
+              >
+                {t('event')}
+              </Button>
+              <Button
+                onClick={() => {
+                  changeswitchParameter('tasks');
+                }}
+                color="primary"
+              >
+                {t('task')}
+              </Button>
+              <Button
+                onClick={() => {
+                  changeswitchParameter('reminders');
+                }}
+                color="primary"
+              >
+                {t('reminder')}
+              </Button>
+            </Box>
+          </>
+        )}
         {changeForm(switchParameter)}
       </Box>
     </Form>

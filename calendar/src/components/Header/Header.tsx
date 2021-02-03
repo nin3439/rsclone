@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
-import { useTranslation } from 'react-i18next';
 import { calendarFormats, dateFormats } from '../../constants/formats';
-import { Languages } from '../../constants/constants';
+import { Languages } from '../../constants/Language';
 import i18n from '../../i18ns';
+import { useTranslation } from 'react-i18next';
 import {
-  updateDate,
-  updateShowBlock,
-  updateViewFormat,
-  updateLanguage,
+  changeLanguage,
+  changeDateCalendar,
+  changeShowBlock,
+  changeViewFormat,
   updateSettingsOpen,
 } from '../../redux/actions/StateContolAction';
 import {
@@ -42,24 +42,24 @@ export const Header: React.FC = () => {
   const { t } = useTranslation();
   const [sound, setSound] = useState(true);
   const setViewFormat = (view: string) => {
-    dispatch(updateViewFormat(view));
+    dispatch(changeViewFormat(view));
   };
   const setShowBLock = () => {
-    dispatch(updateShowBlock());
+    dispatch(changeShowBlock());
   };
 
   const { date, language, viewFormat, isSettingsOpen } = useSelector(
     (state: any) => state.stateControl
   );
   const changeDate = (dateValue: any) => {
-    dispatch(updateDate(dateValue));
+    dispatch(changeDateCalendar(dateValue));
   };
 
   const handleChangeView = (event: any) => {
     setViewFormat(event.target.value);
   };
-  const changeLanguage = (ln: string) => {
-    dispatch(updateLanguage(ln));
+  const changeLanguages = (ln: string) => {
+    dispatch(changeLanguage(ln));
     i18n.changeLanguage(ln);
   };
   const openSettings = () => {
@@ -250,7 +250,6 @@ export const Header: React.FC = () => {
             Agenda
           </MenuItem>
         </Select>
-
         <Tooltip title="Settings">
           <IconButton
             onClick={() => {

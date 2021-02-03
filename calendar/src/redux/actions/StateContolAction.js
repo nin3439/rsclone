@@ -1,9 +1,12 @@
-import { Parametr } from '../constantsActionType';
+import { Parametr } from '../../constants/constantsActionType';
 
 export const changeSelectedHoliday = () => ({
   type: Parametr.CHANGE_SELECTED_HOLIDAY,
 });
-export const changeDate = (date) => ({ type: Parametr.CHANGE_DATE, date });
+export const changeDateCalendar = (date) => ({
+  type: Parametr.CHANGE_DATE,
+  date,
+});
 export const changeShowBlock = () => ({ type: Parametr.CHANGE_SHOW_BLOCK });
 export const changeViewFormat = (view) => ({
   type: Parametr.CHANGE_VIEW_FORMAT,
@@ -14,6 +17,7 @@ export const changeLanguage = (lang) => ({
   lang,
 });
 export const changeActiveModal = () => ({ type: Parametr.CHANGE_ACTIVE_MODAL });
+
 export const changeSettingsOpen = (boolean) => ({
   type: Parametr.CHANGE_SETTINGS_OPEN,
   boolean,
@@ -35,11 +39,11 @@ export const updateShowBlock = () => {
     dispatch(changeShowBlock());
   };
 };
-export const updateDate = (data) => {
-  return (dispatch, getState) => {
-    dispatch(changeDate(data));
-  };
-};
+// export const updateDate = (data) => {
+//   return (dispatch, getState) => {
+//     dispatch(changeDate(data));
+//   };
+// };
 
 export const updateSelectedHoliday = () => {
   return (dispatch, getState) => {
@@ -58,3 +62,8 @@ export const updateSettingsOpen = (boolean) => {
     dispatch(changeSettingsOpen(boolean));
   };
 };
+export const changeDateOnClick = (date) => ({
+  type: Parametr.CHANGE_DATE_ONCLICK,
+  date,
+});
+export const changeActivePopup = () => ({ type: Parametr.CHANGE_ACTIVE_POPUP });
