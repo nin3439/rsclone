@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
-import { useTranslation } from 'react-i18next';
 import { calendarFormats, dateFormats } from '../../constants/formats';
-import { Languages } from '../../constants/constants';
+import { Languages } from '../../constants/Language';
 import i18n from '../../i18ns';
+import { useTranslation } from 'react-i18next';
 import {
-  updateDate,
-  updateShowBlock,
-  updateViewFormat,
-  updateLanguage,
+  changeLanguage,
+  changeDateCalendar,
+  changeShowBlock,
+  changeViewFormat,
   updateSettingsOpen,
 } from '../../redux/actions/StateContolAction';
 import {
@@ -39,27 +39,27 @@ import './styles/Header.scss';
 export const Header: React.FC = () => {
   const dispatch = useDispatch();
   const classMaterial: any = useStyles();
-  const { t } = useTranslation();
+  const { t }: any = useTranslation();
   const [sound, setSound] = useState(true);
   const setViewFormat = (view: string) => {
-    dispatch(updateViewFormat(view));
+    dispatch(changeViewFormat(view));
   };
   const setShowBLock = () => {
-    dispatch(updateShowBlock());
+    dispatch(changeShowBlock());
   };
 
   const { date, language, viewFormat, isSettingsOpen } = useSelector(
     (state: any) => state.stateControl
   );
   const changeDate = (dateValue: any) => {
-    dispatch(updateDate(dateValue));
+    dispatch(changeDateCalendar(dateValue));
   };
 
   const handleChangeView = (event: any) => {
     setViewFormat(event.target.value);
   };
-  const changeLanguage = (ln: string) => {
-    dispatch(updateLanguage(ln));
+  const changeLanguages = (ln: string) => {
+    dispatch(changeLanguage(ln));
     i18n.changeLanguage(ln);
   };
   const openSettings = () => {
@@ -117,7 +117,7 @@ export const Header: React.FC = () => {
             <InputLabel>Language</InputLabel>
             <Select
               value={language}
-              onChange={(event: any) => changeLanguage(event.target.value)}
+              onChange={(event: any) => changeLanguages(event.target.value)}
             >
               <MenuItem value={Languages.EN}>English</MenuItem>
               <MenuItem value={Languages.RU}>Русский</MenuItem>
@@ -145,7 +145,7 @@ export const Header: React.FC = () => {
   return (
     <div className="header">
       <div className="menu-calendar-wrapper">
-        <Tooltip title="Menu">
+        <Tooltip title={t('Menu')}>
           <IconButton>
             <Menu
               onClick={() => {
@@ -166,11 +166,11 @@ export const Header: React.FC = () => {
               playSound();
             }}
           >
-            Today
+            {t('Today')}
           </Button>
         </Tooltip>
 
-        <Tooltip title="Previous">
+        <Tooltip title={t('Previous')}>
           <Button
             onClick={() => {
               switch (viewFormat) {
@@ -187,7 +187,7 @@ export const Header: React.FC = () => {
             <ArrowBackIos />
           </Button>
         </Tooltip>
-        <Tooltip title="Next">
+        <Tooltip title={t('Next')}>
           <Button
             onClick={() => {
               switch (viewFormat) {
@@ -209,7 +209,7 @@ export const Header: React.FC = () => {
         <span className="calendar-date">{changeViewDate()}</span>
       </div>
       <div className="search-settings-wrapper">
-        <Tooltip title="Search">
+        <Tooltip title={t('Search')}>
           <Button
             onClick={() => {
               playSound();
@@ -229,29 +229,28 @@ export const Header: React.FC = () => {
             value={calendarFormats.MONTH}
             onClick={() => setViewFormat(calendarFormats.MONTH)}
           >
-            Month
+            {t('Month')}
           </MenuItem>
           <MenuItem
             value={calendarFormats.WEEK}
             onClick={() => setViewFormat(calendarFormats.WEEK)}
           >
-            Week
+            {t('Week')}
           </MenuItem>
           <MenuItem
             value={calendarFormats.DAY}
             onClick={() => setViewFormat(calendarFormats.DAY)}
           >
-            Day
+            {t('Day')}
           </MenuItem>
           <MenuItem
             value={calendarFormats.AGENDA}
             onClick={() => setViewFormat(calendarFormats.AGENDA)}
           >
-            Agenda
+            {t('Agenda')}
           </MenuItem>
         </Select>
-
-        <Tooltip title="Settings">
+        <Tooltip title={t('Settings')}>
           <IconButton
             onClick={() => {
               openSettings();

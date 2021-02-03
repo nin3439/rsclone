@@ -3,8 +3,10 @@ import { TextInput } from '../textInput/TextInput';
 import { Button, Box } from '@material-ui/core';
 import { AccessTime, SubjectOutlined } from '@material-ui/icons';
 import { useStyles } from './materialUIStyles';
+import { useTranslation } from 'react-i18next';
 
-export const FormTask = ({ t }: any) => {
+export const FormTask = () => {
+  const { t } = useTranslation();
   const classMaterial: any = useStyles();
   return (
     <Box>
@@ -13,7 +15,6 @@ export const FormTask = ({ t }: any) => {
         <Box className={classMaterial.timeBox}>
           <TextInput
             name="start"
-            id="datetime-local"
             type="datetime-local"
             label={t('Start_Date')}
             defaultValue={new Date()}
@@ -26,7 +27,6 @@ export const FormTask = ({ t }: any) => {
       <Box className={classMaterial.box}>
         <SubjectOutlined />
         <TextInput
-          id="filled-basic"
           style={classMaterial.input}
           name="description"
           type="text"

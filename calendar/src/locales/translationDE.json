@@ -23,6 +23,9 @@
   "Tasks": "Aufgaben",
   "Reminders": "Erinnerungen",
   "Calendar": "Kalender",
-  "My_Calendars": "Meine kalender"
-  
+  "My_Calendars": "Meine kalender",
+  "Menu":"Menü",
+  "Previous": "Zurück",
+  "Search": "Suche",
+  "Settings":"Einstellungen"
 }

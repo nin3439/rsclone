@@ -1,6 +1,5 @@
-import { eventType } from '../../constants/constants';
-import { Content } from '../constantsActionType';
-
+import { eventType } from '../../constants/Language';
+import { Content } from '../../constants/constantsActionType';
 const now = new Date();
 const initialState = {
   events: [
@@ -28,11 +27,12 @@ const initialState = {
     },
   ],
   holidays: [],
+  dataSelectedEvents: {},
 };
 
 export const content = (state = initialState, action) => {
   switch (action.type) {
-    case Content.UPDATE_EVENTS:
+    case Content.GET_EVENTS: {
       const newEvents = [
         ...action.events.map((event) => {
           return {
@@ -43,16 +43,16 @@ export const content = (state = initialState, action) => {
         }),
       ];
       return { ...state, events: [...newEvents] };
-
-    case Content.ADD_EVENT:
+    }
+    case Content.CREATE_EVENT: {
       const newEvent = {
         ...action.event,
         start: new Date(action.event.start),
         end: new Date(action.event.end),
       };
       return { ...state, events: [...state.events, newEvent] };
-
-    case Content.SET_HOLIDAYS_BELARUS:
+    }
+    case Content.SET_HOLIDAYS_BELARUS: {
       const newHolidays = action.holidays.map((holiday) => {
         return {
           typeEvents: eventType.HOLIDAYS_BELARUS,
@@ -66,6 +66,37 @@ export const content = (state = initialState, action) => {
         ...state,
         holidays: [...newHolidays],
       };
+    }
+    case Content.UPDATE_SELECTED_EVENTS: {
+      return {
+        ...state,
+        dataSelectedEvents: action.data,
+      };
+    }
+    case Content.REMOVE_EVENT: {
+      debugger;
+      const newEvent = state.events.filter((e) => e.id !== action.id);
+      return {
+        ...state,
+        events: [...newEvent],
+      };
+    }
+    case Content.UPDATE_EVENT: {
+      debugger;
+      const newEvent = state.events.map((e) =>
+        e.id !== action.id
+          ? e
+          : {
+              ...action.event,
+              start: new Date(action.event.start),
+              end: new Date(action.event.end),
+            }
+      );
+      return {
+        ...state,
+        events: [...newEvent],
+      };
+    }
     default:
       return state;
   }

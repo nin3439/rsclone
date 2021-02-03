@@ -4,33 +4,41 @@ import 'moment/locale/en-gb';
 import 'moment/locale/ru';
 import 'moment/locale/de';
 import 'moment/locale/pt';
+import 'moment/locale/it';
 import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
 import { FormElement } from '../Form/Form';
-import { setEvents, updateAllEvents } from '../../redux/actions/contentAction';
 import {
-  updateActiveModal,
-  updateDate,
-  updateViewFormat,
+  setEvents,
+  updateAllEvents,
+  updateSelectedEvents,
+} from '../../redux/actions/contentAction';
+import {
+  changeActiveModal,
+  changeActivePopup,
+  changeDateCalendar,
+  changeDateOnClick,
+  changeViewFormat,
 } from '../../redux/actions/StateContolAction';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import './styles/Schedule.scss';
 import { Events } from './Schedule.types';
-
+import { PoupEventsInformation } from '../PopupEvents/PopupEvents';
 export const Schedule: React.FC = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(updateAllEvents());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const localizer = momentLocalizer(moment);
   const setViewFormat = (view: any) => {
-    dispatch(updateViewFormat(view));
+    dispatch(changeViewFormat(view));
   };
   const { events, holidays } = useSelector((state: any) => state.content);
-
-  const changeModalActive = () => {
-    dispatch(updateActiveModal());
+  const changeModalWindow = (): void => {
+    dispatch(changeActiveModal());
+    dispatch(changeDateOnClick({}));
+    debugger;
+    if (isModalActive) dispatch(updateSelectedEvents({}));
   };
   const {
     date,
@@ -38,9 +46,10 @@ export const Schedule: React.FC = () => {
     viewFormat,
     isModalActive,
     language,
+    isPopupActiv,
   } = useSelector((state: any) => state.stateControl);
   const changeDate = (dateValue: any) => {
-    dispatch(updateDate(dateValue));
+    dispatch(changeDateCalendar(dateValue));
   };
   const getAllEvents = () => {
     if (isHolidaysSelected) {
@@ -52,7 +61,12 @@ export const Schedule: React.FC = () => {
   const updateDateForm = (data: any) => {
     dispatch(setEvents(data));
   };
+  const selectedSlot = (e: any) => {
+    dispatch(updateSelectedEvents(e));
+    dispatch(changeActivePopup());
+  };
   moment().locale(`${language}`);
+  const localizer = momentLocalizer(moment);
   return (
     <div>
       <Calendar
@@ -66,10 +80,13 @@ export const Schedule: React.FC = () => {
         onNavigate={(e) => {
           changeDate(moment(e));
         }}
-        onSelectSlot={changeModalActive}
-        onSelectEvent={(event) => console.log(event)}
-        step={15}
+        onSelectSlot={(event) => {
+          dispatch(changeDateOnClick(event));
+          changeModalWindow();
+        }}
+        onSelectEvent={(event) => selectedSlot(event)}
         popup
+        step={15}
         timeslots={4}
         toolbar={false}
         view={viewFormat}
@@ -82,9 +99,10 @@ export const Schedule: React.FC = () => {
       {isModalActive && (
         <FormElement
           updateDateForm={updateDateForm}
-          changeModalActive={changeModalActive}
+          changeModalActive={changeModalWindow}
         />
       )}
+      {isPopupActiv && <PoupEventsInformation />}
     </div>
   );
 };

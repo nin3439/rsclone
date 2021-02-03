@@ -4,8 +4,10 @@ import { Button, Box } from '@material-ui/core';
 import { AccessTime } from '@material-ui/icons';
 
 import { useStyles } from './materialUIStyles';
+import { useTranslation } from 'react-i18next';
 
-export const FormReminders = ({ t }: any) => {
+export const FormReminders = () => {
+  const { t } = useTranslation();
   const classMaterial: any = useStyles();
   return (
     <Box>
@@ -14,10 +16,8 @@ export const FormReminders = ({ t }: any) => {
         <Box className={classMaterial.timeBox}>
           <TextInput
             name="start"
-            id="datetime-local"
             type="datetime-local"
             label={t('Start_Date')}
-            defaultValue={new Date()}
             InputLabelProps={{
               shrink: true,
             }}
