@@ -2,8 +2,8 @@
   "create": "erstellen",
   "save": "sparen",
   "task": "aufgabe",
-  "reminder": "reminder",
-  "event": "erinnerung",
+  "reminder": "Erinnerung",
+  "event": "Veranstaltung",
   "Today": "Heute",
   "Previous": "Zurück",
   "Next": "Folgenden",
@@ -28,5 +28,8 @@
   "Search": "Suche",
   "Settings":"Einstellungen",
   "Sound": "Klang",
-  "Language": "Sprache"
+  "Language": "Sprache",
+  "Edit": "Edit",
+  "Delete": "Löschen",
+  "Close": "Schließen"
 }

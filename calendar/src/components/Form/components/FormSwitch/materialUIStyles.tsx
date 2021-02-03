@@ -3,25 +3,24 @@ import { makeStyles } from '@material-ui/core';
 export const useStyles = makeStyles((theme) => ({
   inputTitle: {
     fontFamily: 'Roboto,RobotoDraft,Helvetica,Arial,sans-serif',
-    fontSize: theme.spacing(3),
-    width: '83%',
-    marginTop: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    alignSelf: 'flex-end',
+    fontSize: '24px',
+    width: '87%',
+    marginTop: '8px',
+    alignSelf: 'center',
   },
   form: {
     width: '552px',
-    height: ' 514px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     backgroundColor: '#fff',
-    cursor: 'pointer',
+    borderRadius: '4px',
   },
-
   categoryBox: {
-    width: '85%',
-    alignSelf: 'flex-end',
+    width: '84%',
+    alignSelf: 'center',
+    display: 'flex',
+    columnGap: '15px',
   },
 }));

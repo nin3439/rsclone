@@ -9,9 +9,9 @@ export const FormTask = () => {
   const { t } = useTranslation();
   const classMaterial: any = useStyles();
   return (
-    <Box>
+    <div className={classMaterial.wrapper}>
       <Box className={classMaterial.box}>
-        <AccessTime />
+        <AccessTime className={classMaterial.icons} color="action" />
         <Box className={classMaterial.timeBox}>
           <TextInput
             id="start"
@@ -26,7 +26,7 @@ export const FormTask = () => {
         </Box>
       </Box>
       <Box className={classMaterial.box}>
-        <SubjectOutlined />
+        <SubjectOutlined className={classMaterial.icons} color="action" />
         <TextInput
           style={classMaterial.input}
           name="description"
@@ -45,6 +45,6 @@ export const FormTask = () => {
           {t('save')}
         </Button>
       </Box>
-    </Box>
+    </div>
   );
 };

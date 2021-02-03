@@ -14,26 +14,33 @@ export const useStyles = makeStyles((theme) => ({
     transform: 'scale(0)',
     zIndex: 1000,
   },
-
   active: {
     transform: 'scale(1)',
   },
-
   modal: {
     width: '552px',
-    height: ' 552px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'center',
-    borderRadius: 'borderRadius',
+    borderRadius: '4px',
   },
   close: {
     width: '100%',
-    height: '36px',
-    backgroundColor: ' #f1f3f4',
+    height: '43px',
+    backgroundColor: '#edeeef',
     display: 'flex',
     justifyContent: 'flex-end',
     alignItems: 'center',
+    borderRadius: '4px',
+    marginBottom: '-5px',
+  },
+  iconClose: {
+    padding: '5px',
+    margin: '3px 5px',
+    '&:hover': {
+      background: '#dddddd80',
+      borderRadius: '50%',
+    },
   },
 }));

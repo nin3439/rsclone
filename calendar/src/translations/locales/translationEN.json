@@ -28,5 +28,8 @@
   "Search": "Search",
   "Settings":"Settings",
   "Sound": "Sound",
-  "Language": "Language"
+  "Language": "Language",
+  "Edit": "Edit",
+  "Delete": "Delete",
+  "Close": "Close"
 }

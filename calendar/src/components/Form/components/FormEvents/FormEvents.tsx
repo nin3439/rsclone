@@ -13,13 +13,19 @@ import { useTranslation } from 'react-i18next';
 export const FormEvents = () => {
   const { t } = useTranslation();
   const classMaterial: Record<
-    'btnSubmit' | 'box' | 'input' | 'timeBox' | 'formButtons',
+    | 'btnSubmit'
+    | 'box'
+    | 'input'
+    | 'timeBox'
+    | 'formButtons'
+    | 'icons'
+    | 'footer',
     string
   > = useStyles();
   return (
     <>
       <Box className={classMaterial.box}>
-        <AccessTime />
+        <AccessTime className={classMaterial.icons} color="action" />
         <Box className={classMaterial.timeBox}>
           <TextInput
             id="start"
@@ -43,7 +49,7 @@ export const FormEvents = () => {
         </Box>
       </Box>
       <Box className={classMaterial.box}>
-        <PeopleOutlineRounded />
+        <PeopleOutlineRounded className={classMaterial.icons} color="action" />
         <TextInput
           id="listGuest"
           name="listGuest"
@@ -53,7 +59,7 @@ export const FormEvents = () => {
         />
       </Box>
       <Box className={classMaterial.box}>
-        <LocationOnOutlined />
+        <LocationOnOutlined className={classMaterial.icons} color="action" />
         <TextInput
           id="location"
           style={classMaterial.input}
@@ -64,7 +70,7 @@ export const FormEvents = () => {
       </Box>
 
       <Box className={classMaterial.box}>
-        <SubjectOutlined />
+        <SubjectOutlined className={classMaterial.icons} color="action" />
         <TextInput
           id="description"
           style={classMaterial.input}
@@ -73,8 +79,7 @@ export const FormEvents = () => {
           placeholder={t('add_description')}
         />
       </Box>
-      <Box className={classMaterial.formButtons}>
-        <Button>{t('Other_parameters')}</Button>
+      <Box className={classMaterial.box}>
         <Button
           className={classMaterial.btnSubmit}
           size="large"
