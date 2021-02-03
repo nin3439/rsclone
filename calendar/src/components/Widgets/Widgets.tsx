@@ -10,6 +10,7 @@ import {
 } from '../../redux/actions/StateContolAction';
 import Button from '@material-ui/core/Button';
 import { Add } from '@material-ui/icons/';
+import { playSound } from '../../utils/playSound';
 import classes from './styles/Widgets.module.scss';
 import { useStyles } from './styles/materialUIStyles';
 
@@ -29,7 +30,10 @@ export const Widgets: React.FC = () => {
     <div className={classes.wrapper}>
       <div className={classes.widgets}>
         <Button
-          onClick={changeModalWindow}
+          onClick={() => {
+            changeModalWindow();
+            playSound();
+          }}
           className={classesMaterial.root}
           variant="outlined"
           color="primary"

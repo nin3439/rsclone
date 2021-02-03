@@ -2,6 +2,7 @@ import moment from 'moment';
 import { calendarFormats } from '../../constants/formats';
 import { Parametr } from '../../constants/constantsActionType';
 import { momentUpdate } from '../../constants/dateTimeLocal';
+
 let initialState = {
   showBlock: true,
   date: moment(),
@@ -39,7 +40,6 @@ export const stateControl = (state = initialState, action) => {
       return { ...state, isSettingsOpen: action.boolean };
 
     case Parametr.CHANGE_DATE_ONCLICK:
-      debugger;
       return {
         ...state,
         startDataOnClick: action.date.start

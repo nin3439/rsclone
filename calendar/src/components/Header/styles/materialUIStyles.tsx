@@ -16,4 +16,9 @@ export const useStyles = makeStyles((theme) => ({
     marginLeft: '0px',
     marginRight: '12px',
   },
+  select: {
+    '& input': {
+      padding: '9.5px 14px',
+    },
+  },
 }));

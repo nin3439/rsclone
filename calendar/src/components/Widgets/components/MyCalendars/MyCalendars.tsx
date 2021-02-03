@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateHolidaysBelarus } from '../../../../redux/actions/contentAction';
 import { changeSelectedHoliday } from '../../../../redux/actions/StateContolAction';
+import { playSound } from '../../../../utils/playSound';
 import {
   Typography,
   FormControlLabel,
@@ -43,6 +44,7 @@ export const MyCalendars: React.FC = () => {
           className={classesMaterial.pos}
           control={
             <Checkbox
+              onClick={playSound}
               style={{
                 color: '#f50057',
               }}
@@ -54,6 +56,7 @@ export const MyCalendars: React.FC = () => {
           className={classesMaterial.pos}
           control={
             <Checkbox
+              onClick={playSound}
               style={{
                 color: '#ff9800',
               }}
@@ -65,6 +68,7 @@ export const MyCalendars: React.FC = () => {
           className={classesMaterial.pos}
           control={
             <Checkbox
+              onClick={playSound}
               checked={isHolidaysSelected}
               onChange={toggleHolidays}
               style={{

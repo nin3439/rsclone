@@ -3,16 +3,16 @@ import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
 import { calendarFormats, dateFormats } from '../../constants/formats';
 import { Languages } from '../../constants/Language';
-import i18n from '../../i18ns';
-import SearchIcon from '@material-ui/icons/Search';
 import { SearchBlock } from './components/Search/Search';
 import { useTranslation } from 'react-i18next';
+import i18n from '../../../translations/i18ns';
+import { playSound } from '../../utils/playSound';
 import {
   changeLanguage,
   changeDateCalendar,
   changeShowBlock,
   changeViewFormat,
-  updateSettingsOpen,
+  changeSettingsOpen,
 } from '../../redux/actions/StateContolAction';
 import {
   Menu,
@@ -20,6 +20,7 @@ import {
   Today,
   ArrowForwardIos,
   Settings,
+  Search,
 } from '@material-ui/icons';
 import {
   IconButton,
@@ -66,18 +67,11 @@ export const Header: React.FC = () => {
     i18n.changeLanguage(ln);
   };
   const openSettings = () => {
-    dispatch(updateSettingsOpen(true));
+    dispatch(changeSettingsOpen(true));
   };
 
   const closeSettings = () => {
-    dispatch(updateSettingsOpen(false));
-  };
-
-  const playSound = () => {
-    if (!sound) return;
-    const audio = new Audio();
-    audio.src = `https://zvukipro.com/uploads/files/2019-09/1568274526_c8fd8d10309e3e0.mp3`;
-    audio.play();
+    dispatch(changeSettingsOpen(false));
   };
 
   const toggleSound = () => {
@@ -119,6 +113,7 @@ export const Header: React.FC = () => {
           <FormControl className="form-control">
             <InputLabel>Language</InputLabel>
             <Select
+              onClick={playSound}
               value={language}
               onChange={(event: any) => changeLanguages(event.target.value)}
             >
@@ -133,6 +128,7 @@ export const Header: React.FC = () => {
             className={classMaterial.label}
             control={
               <Checkbox
+                onClick={playSound}
                 checked={sound}
                 color="primary"
                 onChange={toggleSound}
@@ -226,17 +222,23 @@ export const Header: React.FC = () => {
                   playSound();
                 }}
               >
-                <SearchIcon />
+                <Search />
               </Button>
               {openSearch ? <SearchBlock /> : null}
             </div>
           </ClickAwayListener>
         </Tooltip>
         <Select
+          className={classMaterial.select}
           value={viewFormat}
           onChange={handleChangeView}
           displayEmpty
-          inputProps={{ 'aria-label': 'Without label' }}
+          inputProps={{
+            'aria-label': 'Without label',
+            // style: {
+            //   padding: '-9.5px -14px',
+            // },
+          }}
           variant="outlined"
         >
           <MenuItem

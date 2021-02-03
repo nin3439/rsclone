@@ -37,7 +37,6 @@ export const Schedule: React.FC = () => {
   const changeModalWindow = (): void => {
     dispatch(changeActiveModal());
     dispatch(changeDateOnClick({}));
-    debugger;
     if (isModalActive) dispatch(updateSelectedEvents({}));
   };
   const {
@@ -85,7 +84,6 @@ export const Schedule: React.FC = () => {
           changeModalWindow();
         }}
         onSelectEvent={(event) => selectedSlot(event)}
-        popup
         step={15}
         timeslots={4}
         toolbar={false}
