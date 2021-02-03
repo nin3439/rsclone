@@ -29,7 +29,13 @@ export const FormSwitch = ({ id, setSwitch, switchParameter }: any) => {
   };
   return (
     <Form>
-      <Box className={classMaterial.form} onClick={(e) => e.stopPropagation}>
+      <Box
+        className={classMaterial.form}
+        style={{
+          height: `${switchParameter === eventType.EVENTS ? '400px' : '230px'}`,
+        }}
+        onClick={(e) => e.stopPropagation}
+      >
         <TextInput
           id="title"
           style={classMaterial.inputTitle}
@@ -42,6 +48,9 @@ export const FormSwitch = ({ id, setSwitch, switchParameter }: any) => {
             {' '}
             <Box className={classMaterial.categoryBox}>
               <Button
+                variant={
+                  switchParameter === eventType.EVENTS ? 'outlined' : 'text'
+                }
                 onClick={() => {
                   changeswitchParameter('events');
                 }}
@@ -50,6 +59,9 @@ export const FormSwitch = ({ id, setSwitch, switchParameter }: any) => {
                 {t('event')}
               </Button>
               <Button
+                variant={
+                  switchParameter === eventType.TASKS ? 'outlined' : 'text'
+                }
                 onClick={() => {
                   changeswitchParameter('tasks');
                 }}
@@ -58,6 +70,9 @@ export const FormSwitch = ({ id, setSwitch, switchParameter }: any) => {
                 {t('task')}
               </Button>
               <Button
+                variant={
+                  switchParameter === eventType.REMINDERS ? 'outlined' : 'text'
+                }
                 onClick={() => {
                   changeswitchParameter('reminders');
                 }}

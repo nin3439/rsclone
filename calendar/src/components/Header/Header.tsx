@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHotkeys } from 'react-hotkeys-hook';
 import { calendarFormats, dateFormats } from '../../constants/formats';
 import { Languages } from '../../constants/Language';
-import { SearchBlock } from './components/Search/Search';
+import { SearchBlock } from './Search/Search';
 import { useTranslation } from 'react-i18next';
 import i18n from '../../translations/i18ns';
 import { playSound } from '../../utils/playSound';
@@ -218,7 +218,7 @@ export const Header: React.FC = () => {
         <span className="calendar-date">{changeViewDate()}</span>
       </div>
       <div className="search-settings-wrapper">
-        <Tooltip title="search">
+        <Tooltip title={t('Search')}>
           <ClickAwayListener onClickAway={() => setOpenSearch(false)}>
             <div className="searchBlock">
               <IconButton

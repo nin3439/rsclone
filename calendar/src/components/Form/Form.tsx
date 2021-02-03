@@ -50,7 +50,11 @@ export const FormElement: React.FC<FormProps> = ({
     >
       <Box className={classMaterial.modal} onClick={(e) => e.stopPropagation()}>
         <Box className={classMaterial.close}>
-          <Close onClick={changeModalActive} />
+          <Close
+            className={classMaterial.iconClose}
+            color="action"
+            onClick={changeModalActive}
+          />
         </Box>
         <Formik
           initialValues={{
