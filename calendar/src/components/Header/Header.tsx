@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { calendarFormats, dateFormats } from '../../constants/formats';
 import { Languages } from '../../constants/Language';
 import i18n from '../../i18ns';
+import SearchIcon from '@material-ui/icons/Search';
+import { SearchBlock } from './components/Search/Search';
 import { useTranslation } from 'react-i18next';
 import {
   changeLanguage,
@@ -17,7 +19,6 @@ import {
   ArrowBackIos,
   Today,
   ArrowForwardIos,
-  Search,
   Settings,
 } from '@material-ui/icons';
 import {
@@ -32,11 +33,13 @@ import {
   DialogContent,
   Checkbox,
   FormControlLabel,
+  ClickAwayListener,
 } from '@material-ui/core/';
 import { useStyles } from './styles/materialUIStyles';
 import './styles/Header.scss';
 
 export const Header: React.FC = () => {
+  const [openSearch, setOpenSearch] = useState(false);
   const dispatch = useDispatch();
   const classMaterial: any = useStyles();
   const { t }: any = useTranslation();
@@ -209,14 +212,25 @@ export const Header: React.FC = () => {
         <span className="calendar-date">{changeViewDate()}</span>
       </div>
       <div className="search-settings-wrapper">
-        <Tooltip title={t('Search')}>
-          <Button
-            onClick={() => {
+        <Tooltip title="search">
+          <ClickAwayListener
+            onClickAway={() => {
+              setOpenSearch(false);
               playSound();
             }}
           >
-            <Search />
-          </Button>
+            <div className="searchBlock">
+              <Button
+                onClick={() => {
+                  setOpenSearch(!openSearch);
+                  playSound();
+                }}
+              >
+                <SearchIcon />
+              </Button>
+              {openSearch ? <SearchBlock /> : null}
+            </div>
+          </ClickAwayListener>
         </Tooltip>
         <Select
           value={viewFormat}

@@ -1,0 +1,26 @@
+.textField {
+  width: 70vw;
+}
+
+.searchPoint {
+  list-style-type: none;
+  display: block;
+  background-color: #f0f0f0;
+  color: black;
+  font-size: 24px;
+  cursor: pointer;
+  &:hover {
+    background-color: #00bbd4ad;
+  }
+}
+
+.searchPath {
+  margin: 0;
+  padding-left: 0;
+}
+
+.searchLink {
+  text-decoration: none;
+  color: black;
+  font-size: 24px;
+}
