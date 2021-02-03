@@ -27,7 +27,7 @@ export const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     borderRadius: 'borderRadius',
     backgroundColor: '#fff',
-    padding: '0px 10px 10px 10px',
+    padding: '0px 10px 10px',
   },
   close: {
     width: '100%',

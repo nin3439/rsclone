@@ -218,13 +218,8 @@ export const Header: React.FC = () => {
         <span className="calendar-date">{changeViewDate()}</span>
       </div>
       <div className="search-settings-wrapper">
-        <Tooltip title={t('Search')}>
-          <ClickAwayListener
-            onClickAway={() => {
-              setOpenSearch(false);
-              playSound(isSoundOn);
-            }}
-          >
+        <Tooltip title="search">
+          <ClickAwayListener onClickAway={() => setOpenSearch(false)}>
             <div className="searchBlock">
               <IconButton
                 className={classMaterial.iconHover}
