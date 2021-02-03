@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHotkeys } from 'react-hotkeys-hook';
@@ -6,7 +6,7 @@ import { calendarFormats, dateFormats } from '../../constants/formats';
 import { Languages } from '../../constants/Language';
 import { SearchBlock } from './components/Search/Search';
 import { useTranslation } from 'react-i18next';
-import i18n from '../../../translations/i18ns';
+import i18n from '../../translations/i18ns';
 import { playSound } from '../../utils/playSound';
 import {
   changeLanguage,
@@ -222,7 +222,7 @@ export const Header: React.FC = () => {
           <ClickAwayListener
             onClickAway={() => {
               setOpenSearch(false);
-              playSound();
+              playSound(isSoundOn);
             }}
           >
             <div className="searchBlock">
@@ -230,7 +230,7 @@ export const Header: React.FC = () => {
                 className={classMaterial.iconHover}
                 onClick={() => {
                   setOpenSearch(!openSearch);
-                  playSound();
+                  playSound(isSoundOn);
                 }}
               >
                 <Search />
@@ -238,15 +238,6 @@ export const Header: React.FC = () => {
               {openSearch ? <SearchBlock /> : null}
             </div>
           </ClickAwayListener>
-          {/* <Tooltip title={t('Search')}>
-          <IconButton
-            className={classMaterial.iconHover}
-            onClick={() => {
-              playSound(isSoundOn);
-            }}
-          >
-            <Search />
-          </IconButton> */}
         </Tooltip>
         <Select
           className={classMaterial.select}
