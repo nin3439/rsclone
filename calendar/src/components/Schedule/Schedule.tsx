@@ -23,7 +23,7 @@ import {
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import './styles/Schedule.scss';
 import { Events } from './Schedule.types';
-import { PoupEventsInformation } from '../PopupEvents/PopupEvents';
+import { PopupEventsInformation } from '../PopupEvents/PopupEvents';
 export const Schedule: React.FC = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -37,7 +37,6 @@ export const Schedule: React.FC = () => {
   const changeModalWindow = (): void => {
     dispatch(changeActiveModal());
     dispatch(changeDateOnClick({}));
-    debugger;
     if (isModalActive) dispatch(updateSelectedEvents({}));
   };
   const {
@@ -65,7 +64,6 @@ export const Schedule: React.FC = () => {
     dispatch(updateSelectedEvents(e));
     dispatch(changeActivePopup());
   };
-  moment().locale(`${language}`);
   const localizer = momentLocalizer(moment);
   return (
     <div>
@@ -85,7 +83,6 @@ export const Schedule: React.FC = () => {
           changeModalWindow();
         }}
         onSelectEvent={(event) => selectedSlot(event)}
-        popup
         step={15}
         timeslots={4}
         toolbar={false}
@@ -102,7 +99,7 @@ export const Schedule: React.FC = () => {
           changeModalActive={changeModalWindow}
         />
       )}
-      {isPopupActiv && <PoupEventsInformation />}
+      {isPopupActiv && <PopupEventsInformation />}
     </div>
   );
 };

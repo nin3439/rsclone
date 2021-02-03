@@ -22,7 +22,7 @@ import {
   updateSelectedEvents,
 } from '../../redux/actions/contentAction';
 import { eventType } from '../../constants/Language';
-export const PoupEventsInformation = () => {
+export const PopupEventsInformation = () => {
   const {
     id,
     title,

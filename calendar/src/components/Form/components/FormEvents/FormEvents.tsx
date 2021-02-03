@@ -22,6 +22,7 @@ export const FormEvents = () => {
         <AccessTime />
         <Box className={classMaterial.timeBox}>
           <TextInput
+            id="start"
             name="start"
             type="datetime-local"
             label={t('Start_Date')}
@@ -31,6 +32,7 @@ export const FormEvents = () => {
           />
 
           <TextInput
+            id="end"
             name="end"
             type="datetime-local"
             label={t('End_Date')}
@@ -43,6 +45,7 @@ export const FormEvents = () => {
       <Box className={classMaterial.box}>
         <PeopleOutlineRounded />
         <TextInput
+          id="listGuest"
           name="listGuest"
           type="text"
           style={classMaterial.input}
@@ -52,6 +55,7 @@ export const FormEvents = () => {
       <Box className={classMaterial.box}>
         <LocationOnOutlined />
         <TextInput
+          id="location"
           style={classMaterial.input}
           name="location"
           type="text"
@@ -62,6 +66,7 @@ export const FormEvents = () => {
       <Box className={classMaterial.box}>
         <SubjectOutlined />
         <TextInput
+          id="description"
           style={classMaterial.input}
           name="description"
           type="text"

@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHotkeys } from 'react-hotkeys-hook';
 import { calendarFormats, dateFormats } from '../../constants/formats';
 import { Languages } from '../../constants/Language';
-import i18n from '../../i18ns';
-import SearchIcon from '@material-ui/icons/Search';
 import { SearchBlock } from './components/Search/Search';
 import { useTranslation } from 'react-i18next';
+import i18n from '../../translations/i18ns';
+import { playSound } from '../../utils/playSound';
 import {
   changeLanguage,
   changeDateCalendar,
   changeShowBlock,
   changeViewFormat,
-  updateSettingsOpen,
+  changeSettingsOpen,
+  changeSound,
 } from '../../redux/actions/StateContolAction';
 import {
   Menu,
@@ -20,6 +22,7 @@ import {
   Today,
   ArrowForwardIos,
   Settings,
+  Search,
 } from '@material-ui/icons';
 import {
   IconButton,
@@ -43,7 +46,6 @@ export const Header: React.FC = () => {
   const dispatch = useDispatch();
   const classMaterial: any = useStyles();
   const { t }: any = useTranslation();
-  const [sound, setSound] = useState(true);
   const setViewFormat = (view: string) => {
     dispatch(changeViewFormat(view));
   };
@@ -51,7 +53,7 @@ export const Header: React.FC = () => {
     dispatch(changeShowBlock());
   };
 
-  const { date, language, viewFormat, isSettingsOpen } = useSelector(
+  const { date, language, viewFormat, isSettingsOpen, isSoundOn } = useSelector(
     (state: any) => state.stateControl
   );
   const changeDate = (dateValue: any) => {
@@ -66,26 +68,25 @@ export const Header: React.FC = () => {
     i18n.changeLanguage(ln);
   };
   const openSettings = () => {
-    dispatch(updateSettingsOpen(true));
+    dispatch(changeSettingsOpen(true));
   };
 
   const closeSettings = () => {
-    dispatch(updateSettingsOpen(false));
-  };
-
-  const playSound = () => {
-    if (!sound) return;
-    const audio = new Audio();
-    audio.src = `https://zvukipro.com/uploads/files/2019-09/1568274526_c8fd8d10309e3e0.mp3`;
-    audio.play();
+    dispatch(changeSettingsOpen(false));
   };
 
   const toggleSound = () => {
-    setSound(!sound);
+    dispatch(changeSound());
   };
 
+  useHotkeys('ctrl+z', () => toggleSound());
+  useHotkeys('shift+i', () => changeLanguages(Languages.IT));
+  useHotkeys('shift+d', () => changeLanguages(Languages.DE));
+  useHotkeys('shift+e', () => changeLanguages(Languages.EN));
+  useHotkeys('shift+p', () => changeLanguages(Languages.PT));
+  useHotkeys('shift+r', () => changeLanguages(Languages.RU));
+
   const changeViewDate = () => {
-    console.log();
     let dateView;
     switch (viewFormat) {
       case calendarFormats.DAY:
@@ -117,8 +118,9 @@ export const Header: React.FC = () => {
       >
         <DialogContent className={classMaterial.dialog}>
           <FormControl className="form-control">
-            <InputLabel>Language</InputLabel>
+            <InputLabel>{t('Language')}</InputLabel>
             <Select
+              onClick={() => playSound(isSoundOn)}
               value={language}
               onChange={(event: any) => changeLanguages(event.target.value)}
             >
@@ -133,7 +135,8 @@ export const Header: React.FC = () => {
             className={classMaterial.label}
             control={
               <Checkbox
-                checked={sound}
+                onClick={() => playSound(isSoundOn)}
+                checked={isSoundOn}
                 color="primary"
                 onChange={toggleSound}
               />
@@ -149,24 +152,25 @@ export const Header: React.FC = () => {
     <div className="header">
       <div className="menu-calendar-wrapper">
         <Tooltip title={t('Menu')}>
-          <IconButton>
+          <IconButton className={classMaterial.iconHover}>
             <Menu
               onClick={() => {
                 setShowBLock();
-                playSound();
+                playSound(isSoundOn);
               }}
             />
           </IconButton>
         </Tooltip>
 
-        <Today />
+        <Today color="action" />
         <span className="calendar-name">{t('Calendar')}</span>
         <Tooltip title={moment().format(dateFormats.TODAY)}>
           <Button
+            className={classMaterial.buttonHover}
             variant="outlined"
             onClick={() => {
               changeDate(moment());
-              playSound();
+              playSound(isSoundOn);
             }}
           >
             {t('Today')}
@@ -174,7 +178,8 @@ export const Header: React.FC = () => {
         </Tooltip>
 
         <Tooltip title={t('Previous')}>
-          <Button
+          <IconButton
+            className={classMaterial.iconHover}
             onClick={() => {
               switch (viewFormat) {
                 case calendarFormats.WEEK:
@@ -184,14 +189,15 @@ export const Header: React.FC = () => {
                 default:
                   changeDate(moment(date).subtract(1, 'months'));
               }
-              playSound();
+              playSound(isSoundOn);
             }}
           >
-            <ArrowBackIos />
-          </Button>
+            <ArrowBackIos className={classMaterial.arrowLeft} />
+          </IconButton>
         </Tooltip>
         <Tooltip title={t('Next')}>
-          <Button
+          <IconButton
+            className={classMaterial.iconHover}
             onClick={() => {
               switch (viewFormat) {
                 case calendarFormats.WEEK:
@@ -201,11 +207,11 @@ export const Header: React.FC = () => {
                 default:
                   changeDate(moment(date).add(1, 'months'));
               }
-              playSound();
+              playSound(isSoundOn);
             }}
           >
-            <ArrowForwardIos />
-          </Button>
+            <ArrowForwardIos className={classMaterial.arrowRight} />
+          </IconButton>
         </Tooltip>
       </div>
       <div className="date-wrapper">
@@ -215,23 +221,27 @@ export const Header: React.FC = () => {
         <Tooltip title="search">
           <ClickAwayListener onClickAway={() => setOpenSearch(false)}>
             <div className="searchBlock">
-              <Button
+              <IconButton
+                className={classMaterial.iconHover}
                 onClick={() => {
                   setOpenSearch(!openSearch);
-                  playSound();
+                  playSound(isSoundOn);
                 }}
               >
-                <SearchIcon />
-              </Button>
+                <Search />
+              </IconButton>
               {openSearch ? <SearchBlock /> : null}
             </div>
           </ClickAwayListener>
         </Tooltip>
         <Select
+          className={classMaterial.select}
           value={viewFormat}
           onChange={handleChangeView}
           displayEmpty
-          inputProps={{ 'aria-label': 'Without label' }}
+          inputProps={{
+            'aria-label': 'Without label',
+          }}
           variant="outlined"
         >
           <MenuItem
@@ -261,9 +271,10 @@ export const Header: React.FC = () => {
         </Select>
         <Tooltip title={t('Settings')}>
           <IconButton
+            className={classMaterial.iconHover}
             onClick={() => {
               openSettings();
-              playSound();
+              playSound(isSoundOn);
             }}
           >
             <Settings />

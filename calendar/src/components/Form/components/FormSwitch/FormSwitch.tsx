@@ -31,6 +31,7 @@ export const FormSwitch = ({ id, setSwitch, switchParameter }: any) => {
     <Form>
       <Box className={classMaterial.form} onClick={(e) => e.stopPropagation}>
         <TextInput
+          id="title"
           style={classMaterial.inputTitle}
           name="title"
           type="text"
