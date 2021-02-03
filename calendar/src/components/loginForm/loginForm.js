@@ -8,6 +8,12 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  signIn,
+  updateLoginField,
+  updatePasswordField,
+} from '../../redux/reducers/auth';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -31,7 +37,9 @@ const useStyles = makeStyles((theme) => ({
 
 export const SignIn = () => {
   const classes = useStyles();
-
+  const dispatch = useDispatch();
+  const login = useSelector((state) => state.auth.email);
+  const password = useSelector((state) => state.auth.password);
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -53,6 +61,10 @@ export const SignIn = () => {
             name="email"
             autoComplete="email"
             autoFocus
+            value={login}
+            onChange={(e) => {
+              dispatch(updateLoginField(e.target.value));
+            }}
           />
           <TextField
             variant="outlined"
@@ -64,13 +76,20 @@ export const SignIn = () => {
             type="password"
             id="password"
             autoComplete="current-password"
+            value={password}
+            onChange={(e) => {
+              dispatch(updatePasswordField(e.target.value));
+            }}
           />
           <Button
-            type="submit"
+            type="button"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={() => {
+              dispatch(signIn());
+            }}
           >
             Sign In
           </Button>
