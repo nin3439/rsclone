@@ -21,10 +21,10 @@ export const SearchBlock = () => {
   const generateEventList = (array: any) => {
     const listTitleArray = array
       .filter((element: any) => {
-        if (searchValue == null || searchValue == '') return (element = '');
+        if (searchValue == null || searchValue === '') return (element = '');
         else if (element.toLowerCase().includes(searchValue.toLowerCase())) {
           return element;
-        }
+        } else return null;
       })
       .map((element: any) => {
         return (
