@@ -5,8 +5,8 @@
   "reminder": "promemoria",
   "event": "Evento",
   "Today": "Oggi",
-  "Back": "Indietro",
-  "Next": "Prossimo",
+  "Previous": "Precedente",
+  "Next": "Seguire",
   "Month": "Mese",
   "Week": "Settimana",
   "Day": "Giorno",
@@ -25,7 +25,8 @@
   "Tasks": "Compiti",
   "Reminders": "Promemoria",
   "Menu":"Menu",
-  "Previous": "Precedente",
   "Search": "Cerca",
-  "Settings":"Impostazioni"
+  "Settings":"Impostazioni",
+  "Sound": "Suono",
+  "Language": "Linguaggio"
 }

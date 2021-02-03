@@ -23,11 +23,8 @@ export const changeSettingsOpen = (boolean) => ({
   boolean,
 });
 
-export const updateSettingsOpen = (boolean) => {
-  return (dispatch, getState) => {
-    dispatch(changeSettingsOpen(boolean));
-  };
-};
+export const changeSound = () => ({ type: Parametr.CHANGE_SOUND });
+
 export const changeDateOnClick = (date) => ({
   type: Parametr.CHANGE_DATE_ONCLICK,
   date,

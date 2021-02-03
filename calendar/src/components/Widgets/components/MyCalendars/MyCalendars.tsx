@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateHolidaysBelarus } from '../../../../redux/actions/contentAction';
 import { changeSelectedHoliday } from '../../../../redux/actions/StateContolAction';
+import { playSound } from '../../../../utils/playSound';
 import {
   Typography,
   FormControlLabel,
@@ -14,10 +15,10 @@ import { useStyles } from './styles/materialUIStyles';
 export const MyCalendars: React.FC = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const { isHolidaysSelected, date } = useSelector(
+  const { isHolidaysSelected, date, isSoundOn } = useSelector(
     (state: any) => state.stateControl
   );
-  const classesMaterial = useStyles();
+  const classMaterial = useStyles();
 
   useEffect(() => {
     if (isHolidaysSelected) {
@@ -30,9 +31,9 @@ export const MyCalendars: React.FC = () => {
     dispatch(changeSelectedHoliday());
   };
   return (
-    <div className={classesMaterial.root}>
+    <div className={classMaterial.root}>
       <Typography
-        className={classesMaterial.title}
+        className={classMaterial.title}
         color="textSecondary"
         gutterBottom
       >
@@ -40,9 +41,10 @@ export const MyCalendars: React.FC = () => {
       </Typography>
       <FormGroup>
         <FormControlLabel
-          className={classesMaterial.pos}
+          className={classMaterial.pos}
           control={
             <Checkbox
+              onClick={() => playSound(isSoundOn)}
               style={{
                 color: '#f50057',
               }}
@@ -51,9 +53,10 @@ export const MyCalendars: React.FC = () => {
           label={t('Tasks')}
         />
         <FormControlLabel
-          className={classesMaterial.pos}
+          className={classMaterial.pos}
           control={
             <Checkbox
+              onClick={() => playSound(isSoundOn)}
               style={{
                 color: '#ff9800',
               }}
@@ -62,9 +65,10 @@ export const MyCalendars: React.FC = () => {
           label={t('Reminders')}
         />
         <FormControlLabel
-          className={classesMaterial.pos}
+          className={classMaterial.pos}
           control={
             <Checkbox
+              onClick={() => playSound(isSoundOn)}
               checked={isHolidaysSelected}
               onChange={toggleHolidays}
               style={{
