@@ -213,12 +213,7 @@ export const Header: React.FC = () => {
       </div>
       <div className="search-settings-wrapper">
         <Tooltip title="search">
-          <ClickAwayListener
-            onClickAway={() => {
-              setOpenSearch(false);
-              playSound();
-            }}
-          >
+          <ClickAwayListener onClickAway={() => setOpenSearch(false)}>
             <div className="searchBlock">
               <Button
                 onClick={() => {
