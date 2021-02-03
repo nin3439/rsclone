@@ -15,6 +15,7 @@ export const FormReminders = () => {
         <AccessTime />
         <Box className={classMaterial.timeBox}>
           <TextInput
+            id="start"
             name="start"
             type="datetime-local"
             label={t('Start_Date')}

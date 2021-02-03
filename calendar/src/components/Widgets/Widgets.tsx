@@ -11,13 +11,14 @@ import {
 import Button from '@material-ui/core/Button';
 import { Add } from '@material-ui/icons/';
 import { playSound } from '../../utils/playSound';
+import { useHotkeys } from 'react-hotkeys-hook';
 import classes from './styles/Widgets.module.scss';
 import { useStyles } from './styles/materialUIStyles';
 
 export const Widgets: React.FC = () => {
   const classesMaterial = useStyles();
   const dispatch = useDispatch();
-  const { date } = useSelector((state: any) => state.stateControl);
+  const { date, isSoundOn } = useSelector((state: any) => state.stateControl);
   const changeDate = (dateValue: any) => {
     debugger;
     dispatch(changeDateCalendar(dateValue));
@@ -26,13 +27,14 @@ export const Widgets: React.FC = () => {
   const changeModalWindow = () => {
     dispatch(changeActiveModal());
   };
+  useHotkeys('ctrl+c', () => changeModalWindow());
   return (
     <div className={classes.wrapper}>
       <div className={classes.widgets}>
         <Button
           onClick={() => {
             changeModalWindow();
-            playSound();
+            playSound(isSoundOn);
           }}
           className={classesMaterial.root}
           variant="outlined"

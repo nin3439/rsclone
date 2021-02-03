@@ -14,6 +14,7 @@ let initialState = {
   startDataOnClick: '',
   endDataOnClick: '',
   isPopupActiv: false,
+  isSoundOn: true,
 };
 
 export const stateControl = (state = initialState, action) => {
@@ -38,6 +39,9 @@ export const stateControl = (state = initialState, action) => {
 
     case Parametr.CHANGE_SETTINGS_OPEN:
       return { ...state, isSettingsOpen: action.boolean };
+
+    case Parametr.CHANGE_SOUND:
+      return { ...state, isSoundOn: !state.isSoundOn };
 
     case Parametr.CHANGE_DATE_ONCLICK:
       return {

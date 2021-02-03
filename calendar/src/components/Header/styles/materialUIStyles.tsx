@@ -16,9 +16,35 @@ export const useStyles = makeStyles((theme) => ({
     marginLeft: '0px',
     marginRight: '12px',
   },
+  iconHover: {
+    padding: '8px',
+    margin: '0 3px',
+    '&:hover': {
+      background: '#dddddd40',
+      borderRadius: '50%',
+    },
+  },
+  buttonHover: {
+    '&:hover': {
+      backgroundColor: '#dddddd60',
+    },
+  },
   select: {
+    width: '105px',
+    '&:hover': {
+      backgroundColor: '#dddddd60',
+    },
     '& input': {
       padding: '9.5px 14px',
     },
+  },
+  arrowLeft: {
+    width: '17px',
+    height: '17px',
+    paddingLeft: '5px',
+  },
+  arrowRight: {
+    width: '17px',
+    height: '17px',
   },
 }));

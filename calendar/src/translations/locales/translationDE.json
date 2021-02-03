@@ -5,8 +5,8 @@
   "reminder": "reminder",
   "event": "erinnerung",
   "Today": "Heute",
-  "Back": "Zurück",
-  "Next": "Nächster",
+  "Previous": "Zurück",
+  "Next": "Folgenden",
   "Month": "Monat",
   "Week": "Woche  ",
   "Day": "Tag",
@@ -25,7 +25,8 @@
   "Calendar": "Kalender",
   "My_Calendars": "Meine kalender",
   "Menu":"Menü",
-  "Previous": "Zurück",
   "Search": "Suche",
-  "Settings":"Einstellungen"
+  "Settings":"Einstellungen",
+  "Sound": "Klang",
+  "Language": "Sprache"
 }

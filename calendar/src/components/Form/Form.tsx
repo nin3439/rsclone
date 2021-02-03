@@ -27,6 +27,7 @@ export const FormElement: React.FC<FormProps> = ({
   } = useSelector((state: any) => state.content.dataSelectedEvents);
   const classMaterial: any = useStyles();
   const [switchParameter, setSwitch] = useState(typeEvents ?? eventType.EVENTS);
+
   const checkForm = (
     event: string,
     values: FormValuesProps
