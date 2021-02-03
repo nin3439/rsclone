@@ -1,14 +1,22 @@
 import TextField from '@material-ui/core/TextField';
 import classes from './Search.module.scss';
 import './styles/Search.scss';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
+import { updateSelectedEvents } from '../../../../redux/actions/contentAction';
+import { changeActivePopup } from '../../../../redux/actions/StateContolAction';
 
 export const SearchBlock = () => {
-  const [searchValue, setSearch] = useState<null | string>(null);
+  const dispatch = useDispatch();
+  const selectedSlot = (e: any) => {
+    dispatch(updateSelectedEvents(e));
+    dispatch(changeActivePopup());
+  };
+
+  const [searchValue, setSearchValue] = useState('');
   const searchSpace = (event: any) => {
     let keyword = event.target.value;
-    setSearch(keyword);
+    setSearchValue(keyword);
   };
 
   const arrEvents = useSelector((state: any) => state.content.events);
@@ -21,18 +29,17 @@ export const SearchBlock = () => {
   const generateEventList = (array: any) => {
     const listTitleArray = array
       .filter((element: any) => {
-        if (searchValue == null || searchValue === '') return (element = '');
+        if (searchValue === '' || searchValue === 'undefined')
+          return (element = '');
         else if (element.toLowerCase().includes(searchValue.toLowerCase())) {
           return element;
-        } else return null;
+        } else return '';
       })
       .map((element: any) => {
         return (
           <ul className="searchPath">
-            <li className="searchPoint">
-              <a className="searchLink" href={element}>
-                {element}
-              </a>
+            <li className="searchPoint" onClick={selectedSlot}>
+              {element}
             </li>
           </ul>
         );
