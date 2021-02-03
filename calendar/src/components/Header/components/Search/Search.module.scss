@@ -1,0 +1,31 @@
+.searchBlock {
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  transform:translate(-50%, -50%);
+  z-index: 5000;
+  background-color: #f0f0f0;
+  width: 70vw;
+  height: 55px;
+}
+
+.textField {
+  width: 70vw;
+}
+
+.searchPoint {
+  list-style-type: none;
+  display: block;
+  background-color: #f0f0f0;
+}
+
+.searchPath {
+  margin: 0;
+  padding-left: 0;
+}
+
+.searchLink {
+  text-decoration: none;
+  color: black;
+  font-size: 24px;
+}
