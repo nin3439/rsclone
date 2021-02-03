@@ -2,16 +2,19 @@ import {
   getAllEvents,
   postEvent,
   getHolidaysBelarus,
+  putEvent,
 } from '../../api/eventsApi';
-import { Content } from '../constantsActionType';
+import { Content } from '../../constants/constantsActionType';
+import { remove } from '../../api/eventsApi';
+import { changeActiveModal, changeActivePopup } from './StateContolAction';
 
 export const setHolidaysBelarus = (holidays) => ({
   type: Content.SET_HOLIDAYS_BELARUS,
   holidays,
 });
-export const setEvent = (event) => ({ type: Content.ADD_EVENT, event });
+export const createEvent = (event) => ({ type: Content.CREATE_EVENT, event });
 export const updateEvents = (events) => ({
-  type: Content.UPDATE_EVENTS,
+  type: Content.GET_EVENTS,
   events,
 });
 
@@ -26,7 +29,7 @@ export const updateAllEvents = () => {
 export const setEvents = (data) => {
   return (dispatch, getState) => {
     postEvent(data).then(({ data }) => {
-      dispatch(setEvent(data));
+      dispatch(createEvent(data));
     });
   };
 };
@@ -45,3 +48,27 @@ export const updateHolidaysBelarus = () => {
     }
   };
 };
+export const removeEvent = (id) => {
+  return (dispatch, getState) => {
+    remove(id).then(() => {
+      dispatch(updateRemoveEvent(id));
+    });
+    dispatch(changeActivePopup());
+    dispatch(updateSelectedEvents({}));
+  };
+};
+export const updateEvent = (dataEvent, id) => {
+  return (dispatch, getState) => {
+    putEvent(dataEvent, id).then(({ data }) => {
+      debugger;
+      dispatch(changeEvent(id, data));
+    });
+    dispatch(updateSelectedEvents({}));
+  };
+};
+const changeEvent = (id, event) => ({ type: Content.UPDATE_EVENT, id, event });
+const updateRemoveEvent = (id) => ({ type: Content.REMOVE_EVENT, id });
+export const updateSelectedEvents = (data) => ({
+  type: Content.UPDATE_SELECTED_EVENTS,
+  data,
+});

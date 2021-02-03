@@ -1,7 +1,7 @@
 import moment from 'moment';
 import { Formats } from '../../constants/formats';
-import { Parametr } from '../constantsActionType';
-
+import { Parametr } from '../../constants/constantsActionType';
+import { momentUpdate } from '../../constants/dateTimeLocal';
 let initialState = {
   showBlock: true,
   date: moment(),
@@ -9,8 +9,9 @@ let initialState = {
   viewFormat: Formats.MONTH,
   isModalActive: false,
   language: 'en',
-  startDataOnClick: new Date(),
-  endDataOnClick: new Date(),
+  startDataOnClick: '',
+  endDataOnClick: '',
+  isPopupActiv: false,
 };
 
 export const stateControl = (state = initialState, action) => {
@@ -28,11 +29,20 @@ export const stateControl = (state = initialState, action) => {
     case Parametr.CHANGE_LANGUAGE:
       return { ...state, language: action.lang };
     case Parametr.CHANGE_DATE_ONCLICK:
+      debugger;
       return {
         ...state,
-        startDataOnClick: action.date.start,
-        endDataOnClick: action.date.end,
+        startDataOnClick: action.date.start
+          ? momentUpdate(action.date.start)
+          : '',
+        endDataOnClick: action.date.end ? momentUpdate(action.date.end) : '',
       };
+    case Parametr.CHANGE_ACTIVE_POPUP:
+      return {
+        ...state,
+        isPopupActiv: !state.isPopupActiv,
+      };
+
     default:
       return state;
   }

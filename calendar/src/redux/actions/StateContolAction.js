@@ -1,4 +1,4 @@
-import { Parametr } from '../constantsActionType';
+import { Parametr } from '../../constants/constantsActionType';
 
 export const changeSelectedHoliday = () => ({
   type: Parametr.CHANGE_SELECTED_HOLIDAY,
@@ -17,3 +17,8 @@ export const changeLanguage = (lang) => ({
   lang,
 });
 export const changeActiveModal = () => ({ type: Parametr.CHANGE_ACTIVE_MODAL });
+export const changeDateOnClick = (date) => ({
+  type: Parametr.CHANGE_DATE_ONCLICK,
+  date,
+});
+export const changeActivePopup = () => ({ type: Parametr.CHANGE_ACTIVE_POPUP });

@@ -15,7 +15,6 @@ export const FormTask = () => {
         <Box className={classMaterial.timeBox}>
           <TextInput
             name="start"
-            id="datetime-local"
             type="datetime-local"
             label={t('Start_Date')}
             defaultValue={new Date()}
@@ -28,7 +27,6 @@ export const FormTask = () => {
       <Box className={classMaterial.box}>
         <SubjectOutlined />
         <TextInput
-          id="filled-basic"
           style={classMaterial.input}
           name="description"
           type="text"

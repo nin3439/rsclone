@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TextInput } from '../textInput/TextInput';
 import { Button, Box } from '@material-ui/core';
 import {
@@ -10,6 +10,8 @@ import {
 
 import { useStyles } from './materialUIStyles';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import moment from 'moment';
 export const FormEvents = () => {
   const { t } = useTranslation();
   const classMaterial: Record<
@@ -23,20 +25,17 @@ export const FormEvents = () => {
         <Box className={classMaterial.timeBox}>
           <TextInput
             name="start"
-            id="datetime-local-start"
             type="datetime-local"
             label={t('Start_Date')}
-            defaultValue="2017-05-24"
             InputLabelProps={{
               shrink: true,
             }}
           />
+
           <TextInput
             name="end"
-            id="datetime-local-end"
             type="datetime-local"
             label={t('End_Date')}
-            defaultValue="2017-05-24"
             InputLabelProps={{
               shrink: true,
             }}
@@ -46,7 +45,6 @@ export const FormEvents = () => {
       <Box className={classMaterial.box}>
         <PeopleOutlineRounded />
         <TextInput
-          id="filled-basic"
           name="listGuest"
           type="text"
           style={classMaterial.input}
@@ -56,7 +54,6 @@ export const FormEvents = () => {
       <Box className={classMaterial.box}>
         <LocationOnOutlined />
         <TextInput
-          id="filled-basic"
           style={classMaterial.input}
           name="location"
           type="text"
@@ -67,7 +64,6 @@ export const FormEvents = () => {
       <Box className={classMaterial.box}>
         <SubjectOutlined />
         <TextInput
-          id="filled-basic"
           style={classMaterial.input}
           name="description"
           type="text"

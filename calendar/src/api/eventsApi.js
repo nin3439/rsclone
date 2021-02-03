@@ -18,3 +18,14 @@ export const postEvent = (data) => {
 export const getHolidaysBelarus = (year) => {
   return axios.get(`${belarusHolidaysUrl}${year}`);
 };
+export const remove = (id) => {
+  return axios.delete(`${baseURL}/${id}`);
+};
+export const putEvent = (data, id) => {
+  return axios({
+    baseURL,
+    method: 'put',
+    data,
+    url: `/${id}`,
+  });
+};

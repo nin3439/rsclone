@@ -16,10 +16,8 @@ export const FormReminders = () => {
         <Box className={classMaterial.timeBox}>
           <TextInput
             name="start"
-            id="datetime-local"
             type="datetime-local"
             label={t('Start_Date')}
-            defaultValue={new Date()}
             InputLabelProps={{
               shrink: true,
             }}
