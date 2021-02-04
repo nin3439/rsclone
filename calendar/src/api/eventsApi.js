@@ -1,7 +1,6 @@
 import axios from 'axios';
-import { useSelector } from 'react-redux';
 const route = 'todos';
-const baseURL = `http://localhost:5000/${route}`;
+const baseURL = `https://rs-back-mongo.herokuapp.com/${route}`;
 const belarusHolidaysUrl = `https://calendarific.com/api/v2/holidays?api_key=49b59051224e551a4d502bb47e736b778ff4fab9&country=BY&year=`;
 
 export const getAllEvents = (idUser) => {

@@ -5,8 +5,8 @@
   "reminder": "lembrete",
   "event": "event",
   "Today": "Hoje",
-  "Back": "De volta",
-  "Next": "Próxima",
+  "Previous": "Anterior",
+  "Next": "Segue",
   "Month": "Mês",
   "Week": "Semana",
   "Day": "Dia",
@@ -25,7 +25,11 @@
   "Tasks": "Tarefas",
   "Reminders": "Lembretes",
   "Menu":"Menu",
-  "Previous": "Anterior",
   "Search": "Pesquisar",
-  "Settings":"Configurações"
+  "Settings":"Configurações",
+  "Sound": "Som",
+  "Language": "Língua",
+  "Edit": "Editar",
+  "Delete": "Excluir",
+  "Close": "Perto"
 }

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Loader from 'react-loader-spinner';
 import { Header } from './components/Header/Header';
 import { Widgets } from './components/Widgets/Widgets';
 import { Schedule } from './components/Schedule/Schedule';
@@ -29,6 +30,15 @@ export const App = () => {
         </Switch>
       ) : (
         <div className="app">
+          <div className="appLoader">
+            <Loader
+              type="Circles"
+              color="#00BFFF"
+              height={100}
+              width={100}
+              timeout={650}
+            />
+          </div>
           <Header />
           <div className="content">
             <CSSTransition in={showBlock} timeout={500} classNames="block">

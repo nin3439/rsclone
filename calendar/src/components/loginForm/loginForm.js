@@ -9,12 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  changeErrorLogin,
-  signIn,
-  updateLoginField,
-  updatePasswordField,
-} from '../../redux/reducers/auth';
+import { changeErrorLogin } from '../../redux/reducers/auth';
 import { login } from '../../redux/actions/actionAuth';
 import { NavLink } from 'react-router-dom';
 

@@ -5,7 +5,7 @@
   "reminder": "reminder",
   "event": "Event",
   "Today": "Today",
-  "Back": "Back",
+  "Previous": "Previous",
   "Next": "Next",
   "Month": "Month",
   "Week": "Week",
@@ -25,8 +25,11 @@
   "Tasks": "Tasks",
   "Reminders": "Reminders",
   "Menu":"Menu",
-  "Previous": "Previous",
   "Search": "Search",
-  "Settings":"Settings"
-
+  "Settings":"Settings",
+  "Sound": "Sound",
+  "Language": "Language",
+  "Edit": "Edit",
+  "Delete": "Delete",
+  "Close": "Close"
 }

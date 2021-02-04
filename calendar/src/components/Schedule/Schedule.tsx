@@ -23,7 +23,8 @@ import {
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import './styles/Schedule.scss';
 import { Events } from './Schedule.types';
-import { PoupEventsInformation } from '../PopupEvents/PopupEvents';
+import { PopupEventsInformation } from '../PopupEvents/PopupEvents';
+import { eventType } from '../../constants/Language';
 export const Schedule: React.FC = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -33,11 +34,12 @@ export const Schedule: React.FC = () => {
   const setViewFormat = (view: any) => {
     dispatch(changeViewFormat(view));
   };
-  const { events, holidays } = useSelector((state: any) => state.content);
+  const { events, holidays, isSelectedReminders, isSelectedTask } = useSelector(
+    (state: any) => state.content
+  );
   const changeModalWindow = (): void => {
     dispatch(changeActiveModal());
     dispatch(changeDateOnClick({}));
-    debugger;
     if (isModalActive) dispatch(updateSelectedEvents({}));
   };
   const {
@@ -52,10 +54,23 @@ export const Schedule: React.FC = () => {
     dispatch(changeDateCalendar(dateValue));
   };
   const getAllEvents = () => {
+    const chengeEvents = events.filter((event: any) => {
+      if (event.typeEvents === eventType.TASKS && isSelectedTask) {
+        return event;
+      } else if (
+        event.typeEvents === eventType.REMINDERS &&
+        isSelectedReminders
+      ) {
+        return event;
+      } else if (event.typeEvents === eventType.EVENTS) {
+        return event;
+      }
+      return '';
+    });
     if (isHolidaysSelected) {
-      return [...events, ...holidays];
+      return [...chengeEvents, ...holidays];
     } else {
-      return events;
+      return chengeEvents;
     }
   };
   const updateDateForm = (data: any) => {
@@ -65,7 +80,6 @@ export const Schedule: React.FC = () => {
     dispatch(updateSelectedEvents(e));
     dispatch(changeActivePopup());
   };
-  moment().locale(`${language}`);
   const localizer = momentLocalizer(moment);
   return (
     <div>
@@ -85,7 +99,6 @@ export const Schedule: React.FC = () => {
           changeModalWindow();
         }}
         onSelectEvent={(event) => selectedSlot(event)}
-        popup
         step={15}
         timeslots={4}
         toolbar={false}
@@ -102,7 +115,7 @@ export const Schedule: React.FC = () => {
           changeModalActive={changeModalWindow}
         />
       )}
-      {isPopupActiv && <PoupEventsInformation />}
+      {isPopupActiv && <PopupEventsInformation />}
     </div>
   );
 };

@@ -28,6 +28,8 @@ const initialState = {
   ],
   holidays: [],
   dataSelectedEvents: {},
+  isSelectedTask: true,
+  isSelectedReminders: true,
 };
 
 export const content = (state = initialState, action) => {
@@ -83,7 +85,6 @@ export const content = (state = initialState, action) => {
       };
     }
     case Content.UPDATE_EVENT: {
-      debugger;
       const newEvent = state.events.map((e) =>
         e.id !== action.id
           ? e
@@ -97,6 +98,12 @@ export const content = (state = initialState, action) => {
         ...state,
         events: [...newEvent],
       };
+    }
+    case Content.SELECTED_TASK: {
+      return { ...state, isSelectedTask: !state.isSelectedTask };
+    }
+    case Content.SELECTED_REMINDERS: {
+      return { ...state, isSelectedReminders: !state.isSelectedReminders };
     }
     default:
       return state;

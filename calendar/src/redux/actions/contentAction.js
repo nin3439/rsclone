@@ -62,9 +62,7 @@ export const removeEvent = (id) => {
 };
 export const updateEvent = (dataEvent, id) => {
   return (dispatch, getState) => {
-    const userId = getState().auth.currentUser.id;
-    putEvent(dataEvent, id, userId).then(({ data }) => {
-      debugger;
+    putEvent(dataEvent, id).then(({ data }) => {
       dispatch(changeEvent(id, data));
     });
     dispatch(updateSelectedEvents({}));
@@ -75,4 +73,9 @@ const updateRemoveEvent = (id) => ({ type: Content.REMOVE_EVENT, id });
 export const updateSelectedEvents = (data) => ({
   type: Content.UPDATE_SELECTED_EVENTS,
   data,
+});
+
+export const changeSelectedTask = () => ({ type: Content.SELECTED_TASK });
+export const changeSelectedReminders = () => ({
+  type: Content.SELECTED_REMINDERS,
 });

@@ -27,6 +27,7 @@ export const FormElement: React.FC<FormProps> = ({
   } = useSelector((state: any) => state.content.dataSelectedEvents);
   const classMaterial: any = useStyles();
   const [switchParameter, setSwitch] = useState(typeEvents ?? eventType.EVENTS);
+
   const checkForm = (
     event: string,
     values: FormValuesProps
@@ -50,7 +51,11 @@ export const FormElement: React.FC<FormProps> = ({
     >
       <Box className={classMaterial.modal} onClick={(e) => e.stopPropagation()}>
         <Box className={classMaterial.close}>
-          <Close onClick={changeModalActive} />
+          <Close
+            className={classMaterial.iconClose}
+            color="action"
+            onClick={changeModalActive}
+          />
         </Box>
         <Formik
           initialValues={{
