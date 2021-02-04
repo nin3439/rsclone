@@ -10,4 +10,5 @@ export type InputProps = {
   locale?: string;
   onChange?: (e: any) => void;
   InputProps?: Object;
+  id?: string;
 };

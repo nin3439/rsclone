@@ -1,3 +1,9 @@
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  changeActiveModal,
+  changeActivePopup,
+} from '../../redux/actions/StateContolAction';
 import { Box, Tooltip } from '@material-ui/core';
 import {
   AccessTime,
@@ -8,21 +14,15 @@ import {
   DeleteOutlined,
   CreateOutlined,
 } from '@material-ui/icons';
-
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  changeActiveModal,
-  changeActivePopup,
-} from '../../redux/actions/StateContolAction';
 import { useStyles } from './styles/materialUiStyles';
 import moment from 'moment';
 import {
   removeEvent,
   updateSelectedEvents,
 } from '../../redux/actions/contentAction';
+import { useTranslation } from 'react-i18next';
 import { eventType } from '../../constants/Language';
-export const PoupEventsInformation = () => {
+export const PopupEventsInformation = () => {
   const {
     id,
     title,
@@ -42,6 +42,7 @@ export const PoupEventsInformation = () => {
   const remove = () => {
     dispatch(removeEvent(id));
   };
+  const { t }: any = useTranslation();
   const intervalDate = () => {
     const monthStart = moment(start).locale(language).format('D MMMM');
     const monthEnd = moment(end).locale(language).format('D MMMM');
@@ -91,7 +92,6 @@ export const PoupEventsInformation = () => {
         return classMaterial.eventColor;
     }
   };
-
   return (
     <Box
       className={`${classMaterial.overlay} ${classMaterial.active}`}
@@ -101,16 +101,28 @@ export const PoupEventsInformation = () => {
         <Box className={classMaterial.close}>
           {typeEvents !== eventType.HOLIDAYS_BELARUS && (
             <>
-              <Tooltip title="Change">
-                <CreateOutlined onClick={changeModalWindow} />
+              <Tooltip title={t('Edit')}>
+                <CreateOutlined
+                  className={classMaterial.icons}
+                  color="action"
+                  onClick={changeModalWindow}
+                />
               </Tooltip>
-              <Tooltip title="Delete">
-                <DeleteOutlined onClick={remove} />
+              <Tooltip title={t('Delete')}>
+                <DeleteOutlined
+                  className={classMaterial.icons}
+                  color="action"
+                  onClick={remove}
+                />
               </Tooltip>
             </>
           )}
-          <Tooltip title="Close">
-            <Close onClick={closePopup} />
+          <Tooltip title={t('Close')}>
+            <Close
+              className={classMaterial.icons}
+              color="action"
+              onClick={closePopup}
+            />
           </Tooltip>
         </Box>
         <Box className={classMaterial.box}>

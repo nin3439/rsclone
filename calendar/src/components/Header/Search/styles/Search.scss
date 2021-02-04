@@ -1,0 +1,43 @@
+.text-field {
+  width: 70vw;
+}
+
+.search-point {
+  list-style-type: none;
+  display: block;
+  background-color: #fbfbfb;
+  font-size: 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  &:hover {
+    background-color: #f0f0f0;
+  }
+}
+
+.events-wrapper {
+  border-bottom: 1px solid #3f51b5;
+  border-right: 1px solid #3f51b5;
+  border-left: 1px solid #3f51b5;
+  border-radius: 4px;
+}
+
+.search-path {
+  margin: 0;
+  padding-left: 0;
+}
+
+.search-link {
+  text-decoration: none;
+  font-size: 24px;
+}
+
+.search-block {
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  transform: translate(-50%, -86%);
+  z-index: 999;
+  background-color: #fbfbfb;
+  width: 70vw;
+  height: 55px;
+}

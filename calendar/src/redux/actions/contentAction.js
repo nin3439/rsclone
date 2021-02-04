@@ -60,7 +60,6 @@ export const removeEvent = (id) => {
 export const updateEvent = (dataEvent, id) => {
   return (dispatch, getState) => {
     putEvent(dataEvent, id).then(({ data }) => {
-      debugger;
       dispatch(changeEvent(id, data));
     });
     dispatch(updateSelectedEvents({}));

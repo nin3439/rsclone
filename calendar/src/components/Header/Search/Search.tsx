@@ -1,10 +1,9 @@
 import TextField from '@material-ui/core/TextField';
-import classes from './Search.module.scss';
 import './styles/Search.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { updateSelectedEvents } from '../../../../redux/actions/contentAction';
-import { changeActivePopup } from '../../../../redux/actions/StateContolAction';
+import { updateSelectedEvents } from '../../../redux/actions/contentAction';
+import { changeActivePopup } from '../../../redux/actions/StateContolAction';
 
 export const SearchBlock = () => {
   const dispatch = useDispatch();
@@ -39,8 +38,8 @@ export const SearchBlock = () => {
       })
       .map((element: any) => {
         return (
-          <ul className="searchPath">
-            <li className="searchPoint" onClick={selectedSlot}>
+          <ul className="search-path">
+            <li className="search-point" onClick={selectedSlot}>
               {element}
             </li>
           </ul>
@@ -49,16 +48,18 @@ export const SearchBlock = () => {
     return listTitleArray;
   };
   return (
-    <form className={classes.searchBlock} noValidate autoComplete="off">
+    <form className="search-block" noValidate autoComplete="off">
       <TextField
         id="outlined-basic"
-        className="textField"
+        className="text-field"
         label="Search"
         variant="outlined"
         autoFocus={true}
         onChange={(element) => searchSpace(element)}
       />
-      <div>{generateEventList(searchEvent(arrEvents))}</div>
+      <div className="events-wrapper">
+        {generateEventList(searchEvent(arrEvents))}
+      </div>
     </form>
   );
 };

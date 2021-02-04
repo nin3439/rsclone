@@ -10,11 +10,12 @@ export const FormReminders = () => {
   const { t } = useTranslation();
   const classMaterial: any = useStyles();
   return (
-    <Box>
+    <div className={classMaterial.wrapper}>
       <Box className={classMaterial.box}>
-        <AccessTime />
+        <AccessTime className={classMaterial.icons} color="action" />
         <Box className={classMaterial.timeBox}>
           <TextInput
+            id="start"
             name="start"
             type="datetime-local"
             label={t('Start_Date')}
@@ -24,7 +25,6 @@ export const FormReminders = () => {
           />
         </Box>
       </Box>
-      <Box>{t('Select_Interval')}</Box>
       <Box className={classMaterial.formButtons}>
         <Button
           className={classMaterial.btnSubmit}
@@ -36,6 +36,6 @@ export const FormReminders = () => {
           {t('save')}
         </Button>
       </Box>
-    </Box>
+    </div>
   );
 };
