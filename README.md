@@ -11,3 +11,5 @@ Thank you for visining our project!
 5. Install all dependencies use npm install;
 6. Run npm start;
 7. Enjoy using **RSClone Calendar**;
+
+You can also open our [demo](https://rsclone-calendar.netlify.app/) and enjoy using **RSClone Calendar**.
