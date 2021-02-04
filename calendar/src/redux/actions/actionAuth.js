@@ -24,7 +24,7 @@ export const auth = () => {
   return async (dispatch) => {
     try {
       const response = await axios.get(
-        `https://rs-back-mongo.herokuapp.com/api/auth/auth`,
+        `https://rs-back-mongo.herokuapp.com/auth/auth`,
         {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         }
@@ -36,11 +36,12 @@ export const auth = () => {
     }
   };
 };
+
 export const login = (email, password) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        `https://rs-back-mongo.herokuapp.com/api/auth/login`,
+        `https://rs-back-mongo.herokuapp.com/auth/login`,
         {
           email,
           password,

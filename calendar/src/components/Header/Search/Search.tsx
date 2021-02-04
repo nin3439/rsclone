@@ -20,27 +20,33 @@ export const SearchBlock = () => {
   };
 
   const arrEvents = useSelector((state: any) => state.content.events);
-  const searchEvent = (array: any) => {
-    return array.map((element: any) => {
-      return element.title;
-    });
-  };
+  // const searchEvent = (array: any) => {
+  //   return array.map((element: any) => {
+  //     element.title = element.title? : ''
+  //   });
+  // };
 
   const generateEventList = (array: any) => {
     debugger;
     const listTitleArray = array
       .filter((element: any) => {
-        if (searchValue === '' || searchValue === 'undefined')
-          return (element = '');
-        else if (element.toLowerCase().includes(searchValue.toLowerCase())) {
-          return element;
+        if (!searchValue) return (element = '');
+        else if (
+          element.title.toLowerCase().includes(searchValue.toLowerCase())
+        ) {
+          return element.title;
         } else return '';
       })
       .map((element: any) => {
         return (
           <ul className="search-path">
-            <li className="search-point" onClick={selectedSlot}>
-              {element}
+            <li
+              className="search-point"
+              onClick={() => {
+                selectedSlot(element);
+              }}
+            >
+              {element.title}
             </li>
           </ul>
         );
@@ -57,9 +63,7 @@ export const SearchBlock = () => {
         autoFocus={true}
         onChange={(element) => searchSpace(element)}
       />
-      <div className="events-wrapper">
-        {generateEventList(searchEvent(arrEvents))}
-      </div>
+      <div className="events-wrapper">{generateEventList(arrEvents)}</div>
     </form>
   );
 };

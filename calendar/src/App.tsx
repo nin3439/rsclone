@@ -9,7 +9,7 @@ import { SignIn } from './components/loginForm/loginForm.js';
 import { SignUp } from './components/formRegistration.js/reistration';
 import './App.scss';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import { auth } from './redux/actions/actionAuth';
+import { auth } from './redux/actions/actionAuth.js';
 
 export const App = () => {
   const showBlock = useSelector((state: any) => state.stateControl.showBlock);
@@ -30,6 +30,7 @@ export const App = () => {
         </Switch>
       ) : (
         <div className="app">
+          <Redirect to="/" />
           <div className="appLoader">
             <Loader
               type="Circles"
