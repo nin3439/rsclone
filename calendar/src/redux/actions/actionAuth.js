@@ -41,7 +41,7 @@ export const login = (email, password) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        `https://rs-back-mongo.herokuapp.com/api/auth/auth`,
+        `https://rs-back-mongo.herokuapp.com/api/auth/login`,
         {
           email,
           password,
