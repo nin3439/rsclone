@@ -45,7 +45,7 @@ export const SignUp = () => {
   const classes = useStyles();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { isErrorRequest } = useSelector((state) => state.auth);
+  const { isErrorRegistration } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   return (
     <Container component="main" maxWidth="xs">
@@ -58,11 +58,10 @@ export const SignUp = () => {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        {isErrorRequest && (
-          <Typography component="h4" color="error" variant="h5">
-            {'Uncorrect request'}
-          </Typography>
-        )}
+        <Typography component="p" color="error" variant="p">
+          {isErrorRegistration}
+        </Typography>
+
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -89,7 +88,7 @@ export const SignUp = () => {
                 type="password"
                 id="password"
                 value={password}
-                onClick={() => dispatch(changeErrorRegistration(false))}
+                onClick={() => dispatch(changeErrorRegistration(''))}
                 autoComplete="current-password"
                 onChange={(e) => setPassword(e.target.value)}
               />

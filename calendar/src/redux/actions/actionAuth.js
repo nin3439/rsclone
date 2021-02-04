@@ -16,7 +16,8 @@ export const registration = async (dispatch, email, password) => {
     );
     alert(response.data.message);
   } catch (e) {
-    dispatch(changeErrorRegistration(true));
+    debugger;
+    dispatch(changeErrorRegistration(e.response.data.message));
   }
 };
 
