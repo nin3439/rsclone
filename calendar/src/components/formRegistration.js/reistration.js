@@ -3,27 +3,29 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Box from '@material-ui/core/Box';
+
+import Grid from '@material-ui/core/Grid';
+
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  changeErrorLogin,
-  signIn,
-  updateLoginField,
-  updatePasswordField,
-} from '../../redux/reducers/auth';
-import { login } from '../../redux/actions/actionAuth';
+import { registration } from '../../redux/actions/actionAuth';
+import { Box } from '@material-ui/core';
 import { NavLink } from 'react-router-dom';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { changeErrorRegistration } from '../../redux/reducers/auth';
 const useStyles = makeStyles((theme) => ({
   paper: {
+    borderRadius: '4px',
     marginTop: theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+  },
+  btn: {
+    display: 'flex',
+    justifyContent: 'space-between',
   },
   avatar: {
     margin: theme.spacing(1),
@@ -31,75 +33,68 @@ const useStyles = makeStyles((theme) => ({
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(3),
   },
-  btn: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-
   submit: {
     width: '45%',
     margin: theme.spacing(3, 0, 2),
   },
 }));
 
-export const SignIn = () => {
+export const SignUp = () => {
   const classes = useStyles();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { isErrorRequest } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  const { isErrorLogin } = useSelector((state) => state.auth);
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
+
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Sign up
         </Typography>
-        {isErrorLogin && (
+        {isErrorRequest && (
           <Typography component="h4" color="error" variant="h5">
-            {'Incorrect login or password'}
+            {'Uncorrect request'}
           </Typography>
         )}
         <form className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            onClick={() => {
-              dispatch(changeErrorLogin(false));
-            }}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            value={password}
-            onClick={() => {
-              dispatch(changeErrorLogin(false));
-            }}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="email"
+                value={email}
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                onClick={() => dispatch(changeErrorRegistration(false))}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                value={password}
+                onClick={() => dispatch(changeErrorRegistration(false))}
+                autoComplete="current-password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </Grid>
+          </Grid>
           <Box className={classes.btn}>
             <Button
               type="button"
@@ -107,26 +102,23 @@ export const SignIn = () => {
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick={() => {
-                dispatch(login(email, password));
-              }}
+              onClick={() => registration(dispatch, email, password)}
             >
-              Sign In
+              Sign Up
             </Button>
-            <NavLink to="/registration" className={classes.submit}>
+            <NavLink to="/login" className={classes.submit}>
               <Button
                 type="button"
                 fullWidth
                 variant="contained"
                 color="primary"
               >
-                Sign Up
+                Sign in
               </Button>
             </NavLink>
           </Box>
         </form>
       </div>
-      <Box mt={8}></Box>
     </Container>
   );
 };

@@ -33,6 +33,7 @@ const initialState = {
 export const content = (state = initialState, action) => {
   switch (action.type) {
     case Content.GET_EVENTS: {
+      if (!action.events) return state;
       const newEvents = [
         ...action.events.map((event) => {
           return {

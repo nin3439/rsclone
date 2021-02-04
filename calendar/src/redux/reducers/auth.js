@@ -1,76 +1,45 @@
-import Cookies from 'universal-cookie';
-import createHistory from '../history';
-const UPDATE_LOGIN = 'UPDATE_LOGIN';
-const UPDATE_PASSWORD = 'UPDATE_PASSWORD';
-const LOGIN = 'LOGIN';
-const cookies = new Cookies();
-const history = createHistory();
-const initialState = {
-  email: '',
-  password: '',
-  token: cookies.get('token'),
-  user: {},
+const SET_USER = 'SET_USER';
+const LOGOUT = 'LOGOUT';
+const ERROR_LOGIN = 'ERROR_LOGIN';
+const ERROR_REGISTRATION = 'ERROR_REGISTRATION ';
+const defaultState = {
+  currentUser: {},
+  isAuth: false,
+  isErrorLogin: false,
+  isErrorRegistration: false,
 };
-const autorizstionURL = `http://localhost:3020/api/v1`;
-export default (state = initialState, action) => {
+export const auth = (state = defaultState, action) => {
   switch (action.type) {
-    case UPDATE_LOGIN: {
-      return { ...state, email: action.email };
-    }
-
-    case UPDATE_PASSWORD: {
-      return { ...state, password: action.password };
-    }
-    case LOGIN: {
-      return { ...state, token: action.token, password: '', user: action.user };
-    }
+    case SET_USER:
+      return {
+        ...state,
+        currentUser: action.payload,
+        isAuth: true,
+      };
+    case LOGOUT:
+      localStorage.removeItem('token');
+      return {
+        ...state,
+        currentUser: {},
+        isAuth: false,
+      };
+    case ERROR_LOGIN:
+      return {
+        ...state,
+        isErrorLogin: action.boolean,
+      };
+    case ERROR_REGISTRATION:
+      return {
+        ...state,
+        isErrorRegistration: action.boolean,
+      };
     default:
       return state;
   }
 };
-
-export const updateLoginField = (email) => ({ type: UPDATE_LOGIN, email });
-export const updatePasswordField = (password) => ({
-  type: UPDATE_PASSWORD,
-  password,
+export const changeErrorRegistration = (boolean) => ({
+  type: ERROR_REGISTRATION,
+  boolean,
 });
-export const trySignIn = () => {
-  return (dispatch) => {
-    fetch(`${autorizstionURL}/auth`)
-      .then((response) => response.json())
-      .then((data) => {
-        dispatch({ type: LOGIN, token: data.token, user: data.user });
-        history.push('/private');
-      });
-  };
-};
-export const tryGetUserInfo = () => {
-  return (dispatch) => {
-    fetch(`${autorizstionURL}/user-info`)
-      .then((response) => response.json())
-      .then((data) => {
-        dispatch({ type: LOGIN, token: data.token, user: data.user });
-        history.push('/private');
-      });
-  };
-};
-export const signIn = () => {
-  return (dispatch, getState) => {
-    const { email, password } = getState().auth;
-    fetch(`${autorizstionURL}/auth`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        dispatch({ type: LOGIN, token: data.token, user: data.user });
-        history.push('/private');
-      });
-  };
-};
+export const changeErrorLogin = (boolean) => ({ type: ERROR_LOGIN, boolean });
+export const setUser = (user) => ({ type: SET_USER, payload: user });
