@@ -6,7 +6,7 @@ const defaultState = {
   currentUser: {},
   isAuth: false,
   isErrorLogin: false,
-  isErrorRegistration: false,
+  isErrorRegistration: '',
 };
 export const auth = (state = defaultState, action) => {
   switch (action.type) {
@@ -29,17 +29,18 @@ export const auth = (state = defaultState, action) => {
         isErrorLogin: action.boolean,
       };
     case ERROR_REGISTRATION:
+      debugger;
       return {
         ...state,
-        isErrorRegistration: action.boolean,
+        isErrorRegistration: action.data,
       };
     default:
       return state;
   }
 };
-export const changeErrorRegistration = (boolean) => ({
+export const changeErrorRegistration = (data) => ({
   type: ERROR_REGISTRATION,
-  boolean,
+  data,
 });
 export const changeErrorLogin = (boolean) => ({ type: ERROR_LOGIN, boolean });
 export const setUser = (user) => ({ type: SET_USER, payload: user });
