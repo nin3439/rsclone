@@ -20,7 +20,8 @@ export const updateEvents = (events) => ({
 
 export const updateAllEvents = () => {
   return (dispatch, getState) => {
-    getAllEvents().then(({ data }) => {
+    const userId = getState().auth.currentUser.id;
+    getAllEvents(userId).then(({ data }) => {
       dispatch(updateEvents(data));
     });
   };
@@ -28,7 +29,8 @@ export const updateAllEvents = () => {
 
 export const setEvents = (data) => {
   return (dispatch, getState) => {
-    postEvent(data).then(({ data }) => {
+    const userId = getState().auth.currentUser.id;
+    postEvent(data, userId).then(({ data }) => {
       dispatch(createEvent(data));
     });
   };
@@ -50,7 +52,8 @@ export const updateHolidaysBelarus = () => {
 };
 export const removeEvent = (id) => {
   return (dispatch, getState) => {
-    remove(id).then(() => {
+    const userId = getState().auth.currentUser.id;
+    remove(id, userId).then(() => {
       dispatch(updateRemoveEvent(id));
     });
     dispatch(changeActivePopup());
@@ -70,4 +73,9 @@ const updateRemoveEvent = (id) => ({ type: Content.REMOVE_EVENT, id });
 export const updateSelectedEvents = (data) => ({
   type: Content.UPDATE_SELECTED_EVENTS,
   data,
+});
+
+export const changeSelectedTask = () => ({ type: Content.SELECTED_TASK });
+export const changeSelectedReminders = () => ({
+  type: Content.SELECTED_REMINDERS,
 });

@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateHolidaysBelarus } from '../../../../redux/actions/contentAction';
+import {
+  changeSelectedReminders,
+  changeSelectedTask,
+  updateHolidaysBelarus,
+} from '../../../../redux/actions/contentAction';
 import { changeSelectedHoliday } from '../../../../redux/actions/StateContolAction';
 import { playSound } from '../../../../utils/playSound';
 import {
@@ -30,6 +34,15 @@ export const MyCalendars: React.FC = () => {
   const toggleHolidays = () => {
     dispatch(changeSelectedHoliday());
   };
+  const { isSelectedTask, isSelectedReminders } = useSelector(
+    (state: any) => state.content
+  );
+  const toggleTasks = () => {
+    dispatch(changeSelectedTask());
+  };
+  const toggleReminders = () => {
+    dispatch(changeSelectedReminders());
+  };
   return (
     <div className={classMaterial.root}>
       <Typography
@@ -48,6 +61,8 @@ export const MyCalendars: React.FC = () => {
               style={{
                 color: '#f50057',
               }}
+              checked={isSelectedTask}
+              onChange={toggleTasks}
             />
           }
           label={t('Tasks')}
@@ -60,6 +75,8 @@ export const MyCalendars: React.FC = () => {
               style={{
                 color: '#ff9800',
               }}
+              checked={isSelectedReminders}
+              onChange={toggleReminders}
             />
           }
           label={t('Reminders')}

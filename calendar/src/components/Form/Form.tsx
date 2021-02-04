@@ -37,7 +37,8 @@ export const FormElement: React.FC<FormProps> = ({
 
     if (event === eventType.TASKS)
       return { title, description, start, end: start };
-    return { title, description, start };
+
+    return { title, description, start, end: start };
   };
   const dispatch = useDispatch();
   const { startDataOnClick, endDataOnClick } = useSelector(

@@ -14,6 +14,7 @@ export const SearchBlock = () => {
 
   const [searchValue, setSearchValue] = useState('');
   const searchSpace = (event: any) => {
+    debugger;
     let keyword = event.target.value;
     setSearchValue(keyword);
   };
@@ -26,6 +27,7 @@ export const SearchBlock = () => {
   };
 
   const generateEventList = (array: any) => {
+    debugger;
     const listTitleArray = array
       .filter((element: any) => {
         if (searchValue === '' || searchValue === 'undefined')
