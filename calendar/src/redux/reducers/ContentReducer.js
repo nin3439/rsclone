@@ -40,6 +40,7 @@ export const content = (state = initialState, action) => {
         ...action.events.map((event) => {
           return {
             ...event,
+            title: event.title ?? '',
             start: new Date(event.start),
             end: new Date(event.end),
           };

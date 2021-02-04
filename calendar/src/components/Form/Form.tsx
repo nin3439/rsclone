@@ -67,7 +67,7 @@ export const FormElement: React.FC<FormProps> = ({
             end: endDataOnClick || moment(end).format('YYYY-MM-DDTHH:mm'),
           }}
           validationSchema={Yup.object({
-            title: Yup.string().min(3, 'fggetg'),
+            title: Yup.string().min(3, 'Min 3 symbol'),
           })}
           onSubmit={async (values: FormValuesProps, { setSubmitting }) => {
             const typeEvents = switchParameter;
