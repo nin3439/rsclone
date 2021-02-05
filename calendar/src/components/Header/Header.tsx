@@ -38,6 +38,8 @@ import {
   FormControlLabel,
   ClickAwayListener,
 } from '@material-ui/core/';
+import { logout } from '../../redux/reducers/auth';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useStyles } from './styles/materialUIStyles';
 import './styles/Header.scss';
 
@@ -217,6 +219,7 @@ export const Header: React.FC = () => {
       <div className="date-wrapper">
         <span className="calendar-date">{changeViewDate()}</span>
       </div>
+
       <div className="search-settings-wrapper">
         <Tooltip title={t('Search')}>
           <ClickAwayListener onClickAway={() => setOpenSearch(false)}>
@@ -281,6 +284,11 @@ export const Header: React.FC = () => {
           </IconButton>
         </Tooltip>
         <SimpleDialog />
+        <ExitToAppIcon
+          onClick={() => {
+            dispatch(logout());
+          }}
+        />
       </div>
     </div>
   );

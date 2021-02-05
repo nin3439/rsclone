@@ -20,12 +20,6 @@ export const SearchBlock = () => {
   };
 
   const arrEvents = useSelector((state: any) => state.content.events);
-  // const searchEvent = (array: any) => {
-  //   return array.map((element: any) => {
-  //     element.title = element.title? : ''
-  //   });
-  // };
-
   const generateEventList = (array: any) => {
     debugger;
     const listTitleArray = array

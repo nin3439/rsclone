@@ -22,6 +22,8 @@ export const auth = (state = defaultState, action) => {
         ...state,
         currentUser: {},
         isAuth: false,
+        isErrorLogin: false,
+        isErrorRegistration: '',
       };
     case ERROR_LOGIN:
       return {
@@ -44,3 +46,4 @@ export const changeErrorRegistration = (data) => ({
 });
 export const changeErrorLogin = (boolean) => ({ type: ERROR_LOGIN, boolean });
 export const setUser = (user) => ({ type: SET_USER, payload: user });
+export const logout = () => ({ type: LOGOUT });
