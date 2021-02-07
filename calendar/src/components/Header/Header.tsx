@@ -164,7 +164,7 @@ export const Header: React.FC = () => {
           </IconButton>
         </Tooltip>
 
-        <Today color="action" />
+        <Today color="action" className={classMaterial.iconCalendar} />
         <span className="calendar-name">{t('Calendar')}</span>
         <Tooltip title={moment().format(dateFormats.TODAY)}>
           <Button
@@ -284,11 +284,15 @@ export const Header: React.FC = () => {
           </IconButton>
         </Tooltip>
         <SimpleDialog />
-        <ExitToAppIcon
-          onClick={() => {
-            dispatch(logout());
-          }}
-        />
+        <Tooltip title={t('Log_out')}>
+          <ExitToAppIcon
+            color="action"
+            className={classMaterial.iconLogout}
+            onClick={() => {
+              dispatch(logout());
+            }}
+          />
+        </Tooltip>
       </div>
     </div>
   );

@@ -36,6 +36,16 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     width: '45%',
     margin: theme.spacing(3, 0, 2),
+    textDecoration: 'none',
+    '&:hover': {
+      background: '#3f51b5eb',
+    },
+  },
+  btnHover: {
+    '&:hover': {
+      background: '#3f51b5eb',
+      outline: 'none',
+    },
   },
 }));
 
@@ -110,6 +120,7 @@ export const SignIn = () => {
             </Button>
             <NavLink to="/registration" className={classes.submit}>
               <Button
+                className={classes.btnHover}
                 type="button"
                 fullWidth
                 variant="contained"

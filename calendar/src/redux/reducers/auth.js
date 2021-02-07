@@ -31,7 +31,6 @@ export const auth = (state = defaultState, action) => {
         isErrorLogin: action.boolean,
       };
     case ERROR_REGISTRATION:
-      debugger;
       return {
         ...state,
         isErrorRegistration: action.data,
