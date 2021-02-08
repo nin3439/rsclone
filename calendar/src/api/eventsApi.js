@@ -1,6 +1,7 @@
 import axios from 'axios';
 const route = 'todos';
-const baseURL = `https://rs-back-mongo.herokuapp.com/${route}`;
+//http://localhost:3000/ `https://rs-back-mongo.herokuapp.com/
+const baseURL = `http://localhost:5000/${route}`;
 const belarusHolidaysUrl = `https://calendarific.com/api/v2/holidays?api_key=49b59051224e551a4d502bb47e736b778ff4fab9&country=BY&year=`;
 
 export const getAllEvents = (idUser) => {

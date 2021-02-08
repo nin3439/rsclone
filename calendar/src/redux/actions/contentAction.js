@@ -62,7 +62,9 @@ export const removeEvent = (id) => {
 };
 export const updateEvent = (dataEvent, id) => {
   return (dispatch, getState) => {
-    putEvent(dataEvent, id).then(({ data }) => {
+    const userId = getState().auth.currentUser.id;
+    putEvent(dataEvent, id, userId).then(({ data }) => {
+      console.log(data);
       dispatch(changeEvent(id, data));
     });
     dispatch(updateSelectedEvents({}));
