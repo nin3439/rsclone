@@ -78,7 +78,6 @@ export const content = (state = initialState, action) => {
       };
     }
     case Content.REMOVE_EVENT: {
-      debugger;
       const newEvent = state.events.filter((e) => e.id !== action.id);
       return {
         ...state,

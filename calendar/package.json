@@ -48,7 +48,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "precommit": "lint-staged",
-    "eslint": "eslint src/"
+    "eslint": "eslint src/ --fix"
   },
   "browserslist": {
     "production": [

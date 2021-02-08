@@ -14,14 +14,12 @@ export const SearchBlock = () => {
 
   const [searchValue, setSearchValue] = useState('');
   const searchSpace = (event: any) => {
-    debugger;
     let keyword = event.target.value;
     setSearchValue(keyword);
   };
 
   const arrEvents = useSelector((state: any) => state.content.events);
   const generateEventList = (array: any) => {
-    debugger;
     const listTitleArray = array
       .filter((element: any) => {
         if (!searchValue) return (element = '');
