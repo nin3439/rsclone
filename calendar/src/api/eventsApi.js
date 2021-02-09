@@ -4,7 +4,9 @@ const baseURL = `https://rs-back-mongo.herokuapp.com/${route}`;
 const belarusHolidaysUrl = `https://calendarific.com/api/v2/holidays?api_key=49b59051224e551a4d502bb47e736b778ff4fab9&country=BY&year=`;
 
 export const getAllEvents = (idUser) => {
-  return axios.get(`${baseURL}?idUser=${idUser}`);
+  return axios.get(`${baseURL}?idUser=${idUser}`, {
+    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+  });
 };
 export const postEvent = (data, idUser) => {
   return axios({
@@ -12,6 +14,7 @@ export const postEvent = (data, idUser) => {
     method: 'post',
     data,
     url: '',
+    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
   });
 };
 
@@ -19,7 +22,9 @@ export const getHolidaysBelarus = (year) => {
   return axios.get(`${belarusHolidaysUrl}${year}`);
 };
 export const remove = (id, idUser) => {
-  return axios.delete(`${baseURL}/${id}?idUser=${idUser}`);
+  return axios.delete(`${baseURL}/${id}?idUser=${idUser}`, {
+    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+  });
 };
 export const putEvent = (data, id, idUser) => {
   debugger;
@@ -28,5 +33,6 @@ export const putEvent = (data, id, idUser) => {
     method: 'put',
     data,
     url: `/${id}?idUser=${idUser}`,
+    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
   });
 };

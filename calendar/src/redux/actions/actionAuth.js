@@ -4,16 +4,13 @@ import {
   changeErrorRegistration,
   setUser,
 } from '../reducers/auth';
-
+const baseUrl = 'https://rs-back-mongo.herokuapp.com';
 export const registration = async (dispatch, email, password) => {
   try {
-    const response = await axios.post(
-      `https://rs-back-mongo.herokuapp.com/api/auth/registration`,
-      {
-        email,
-        password,
-      }
-    );
+    const response = await axios.post(`${baseUrl}/api/auth/registration`, {
+      email,
+      password,
+    });
     alert(response.data.message);
   } catch (e) {
     debugger;
@@ -24,32 +21,25 @@ export const registration = async (dispatch, email, password) => {
 export const auth = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(
-        `https://rs-back-mongo.herokuapp.com/api/auth/auth`,
-        {
-          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-        }
-      );
-      dispatch(setUser(response.data.user));
+      const response = await axios.get(`${baseUrl}/api/auth/auth`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      });
       localStorage.setItem('token', response.data.token);
+      dispatch(setUser(response.data.user));
     } catch (e) {
       localStorage.removeItem('token');
     }
   };
 };
-
 export const login = (email, password) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post(
-        `https://rs-back-mongo.herokuapp.com/api/auth/login`,
-        {
-          email,
-          password,
-        }
-      );
-      dispatch(setUser(response.data.user));
+      const response = await axios.post(`${baseUrl}/api/auth/login`, {
+        email,
+        password,
+      });
       localStorage.setItem('token', response.data.token);
+      dispatch(setUser(response.data.user));
     } catch (e) {
       dispatch(changeErrorLogin(true));
     }
