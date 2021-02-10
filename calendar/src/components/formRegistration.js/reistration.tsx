@@ -3,13 +3,11 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-
 import Grid from '@material-ui/core/Grid';
-
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import { Container } from '@material-ui/core';
 import { registration } from '../../redux/actions/actionAuth.js';
 import { Box } from '@material-ui/core';
 import { NavLink } from 'react-router-dom';
@@ -51,16 +49,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const SignUp = () => {
-  const classes = useStyles();
+export const SignUp: React.FC = () => {
+  const classes: Record<
+    'paper' | 'btn' | 'avatar' | 'form' | 'submit' | 'btnHover',
+    string
+  > = useStyles();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { isErrorRegistration } = useSelector((state) => state.auth);
+  const { isErrorRegistration } = useSelector((state: any) => state.auth);
   const dispatch = useDispatch();
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
@@ -68,7 +68,7 @@ export const SignUp = () => {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <Typography component="p" color="error" variant="p">
+        <Typography component="p" color="error">
           {isErrorRegistration}
         </Typography>
 
@@ -85,7 +85,9 @@ export const SignUp = () => {
                 name="email"
                 autoComplete="email"
                 onClick={() => dispatch(changeErrorRegistration(false))}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>): void =>
+                  setEmail(e.target.value)
+                }
               />
             </Grid>
             <Grid item xs={12}>
@@ -100,7 +102,9 @@ export const SignUp = () => {
                 value={password}
                 onClick={() => dispatch(changeErrorRegistration(''))}
                 autoComplete="current-password"
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>): void =>
+                  setPassword(e.target.value)
+                }
               />
             </Grid>
           </Grid>
@@ -111,7 +115,9 @@ export const SignUp = () => {
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick={() => registration(dispatch, email, password)}
+              onClick={(): void => {
+                registration(dispatch, email, password);
+              }}
             >
               Sign Up
             </Button>

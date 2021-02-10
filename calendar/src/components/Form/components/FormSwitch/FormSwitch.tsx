@@ -10,9 +10,12 @@ import { useStyles } from './materialUIStyles';
 import { useTranslation } from 'react-i18next';
 
 export const FormSwitch = ({ id, setSwitch, switchParameter }: any) => {
-  const classMaterial: any = useStyles();
+  const classMaterial: Record<
+    'inputTitle' | 'form' | 'categoryBox',
+    string
+  > = useStyles();
   const { t } = useTranslation();
-  const changeswitchParameter = (param: string) => {
+  const changeswitchParameter = (param: string): void => {
     if (param !== switchParameter) setSwitch(param);
   };
   const changeForm = (switchParam: string) => {
