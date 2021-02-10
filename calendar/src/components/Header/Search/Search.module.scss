@@ -1,0 +1,10 @@
+.searchBlock {
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  transform:translate(-50%, -50%);
+  z-index: 999;
+  background-color: #f0f0f0;
+  width: 70vw;
+  height: 55px;
+}

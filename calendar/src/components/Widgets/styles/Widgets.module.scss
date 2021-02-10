@@ -1,0 +1,15 @@
+.widgets {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 550px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-top: 1px solid rgba(192, 191, 191, 0.5);
+  overflow: hidden;
+  width: 310px;
+}

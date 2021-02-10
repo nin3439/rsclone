@@ -1,0 +1,146 @@
+.type-reminders {
+  background-color: #ff9800;
+  box-shadow: 0 4px 20px 0px rgba(#000, 0.14),
+    0 7px 10px -5px rgba(#ff9800, 0.4);
+  &:hover {
+    background-color: #ff9900a8;
+  }
+}
+.type-tasks {
+  background-color: #f50057;
+  box-shadow: 0 4px 20px 0px rgba(#000, 0.14),
+    0 7px 10px -5px rgba(#f50057, 0.4);
+  &:hover {
+    background-color: #f50056b4;
+  }
+}
+
+.type-holidaysBelarus {
+  background-color: #00bcd4;
+  box-shadow: 0 4px 20px 0px rgba(#000, 0.14),
+    0 7px 10px -5px rgba(#00bcd4, 0.4);
+  &:hover {
+    background-color: #00bbd4ad;
+  }
+}
+
+.type-events {
+  background-color: #3f51b5;
+  box-shadow: 0 4px 20px 0px rgba(#000, 0.14),
+    0 7px 10px -5px rgba(#3f51b5, 0.4);
+  &:hover {
+    background-color: #3f51b5c0;
+  }
+}
+
+.rbc-event.rbc-selected {
+  background-color: #86828299;
+  box-shadow: 0 4px 20px 0px rgba(#000, 0.4);
+}
+
+.events:focus {
+  outline: none;
+}
+
+.rbc-off-range-bg {
+  background-color: #e6e6e626;
+}
+
+.rbc-today {
+  background-color: #eaeeff8c;
+}
+
+.rbc-show-more {
+  background-color: transparent;
+  text-decoration: none;
+  color: #3c4043;
+}
+.rbc-show-more:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.rbc-time-header {
+  margin-right: 10px;
+}
+
+.rbc-time-content {
+  &::-webkit-scrollbar {
+    width: 17px;
+  }
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.5);
+    background-color: #dddddd80;
+    border-radius: 10px;
+  }
+}
+
+.rbc-agenda-view {
+  &::-webkit-scrollbar {
+    width: 17px;
+  }
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.5);
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.5);
+    background-color: #dddddd80;
+    border-radius: 10px;
+  }
+}
+
+.rbc-date-cell {
+  padding: 10px;
+  text-align: center;
+}
+
+.rbc-date-cell {
+  a {
+    border-radius: 50%;
+    padding: 7px;
+    font-size: 13px;
+    &:hover {
+      background-color: #dddddd80;
+      cursor: pointer;
+    }
+  }
+}
+
+.rbc-agenda-empty {
+  border-top: 1px solid rgba(192, 191, 191, 0.5);
+  text-align: center;
+  padding-top: 20px;
+}
+.rbc-current {
+  a {
+    background: #3f51b5;
+
+    color: #fff;
+    &:hover {
+      background: #3f51b5;
+      cursor: pointer;
+    }
+  }
+}
+
+.rbc-agenda-content {
+  .events {
+    background-color: #fff;
+    box-shadow: none;
+  }
+}
+
+.schedule {
+  height: 90vh;
+  border-left: 0.5px solid rgba(192, 191, 191, 0.3);
+}
+
+@media (min-height: 900px) {
+  .schedule {
+    height: 94vh;
+  }
+}
